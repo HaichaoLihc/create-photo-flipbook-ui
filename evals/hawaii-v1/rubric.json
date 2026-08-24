@@ -1,0 +1,36 @@
+{
+  "name": "hawaii-photo-flipbook-v1",
+  "minimum_score": 85,
+  "criteria": [
+    {
+      "id": "page_fidelity",
+      "weight": 30,
+      "description": "Page order, orientation, pairing, crop, and source identity are correct."
+    },
+    {
+      "id": "interaction",
+      "weight": 20,
+      "description": "Mouse, touch, buttons, and keyboard controls turn pages correctly."
+    },
+    {
+      "id": "responsive_layout",
+      "weight": 15,
+      "description": "Desktop spread and mobile single-page layouts remain usable."
+    },
+    {
+      "id": "visual_quality",
+      "weight": 15,
+      "description": "Shadows, paper treatment, animation, and hierarchy feel polished."
+    },
+    {
+      "id": "extensibility",
+      "weight": 10,
+      "description": "Images, text, captions, blank pages, and metadata are data-driven."
+    },
+    {
+      "id": "engineering_quality",
+      "weight": 10,
+      "description": "Production build and automated tests pass without runtime errors."
+    }
+  ]
+}

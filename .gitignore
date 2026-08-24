@@ -1,0 +1,7 @@
+.DS_Store
+**/.env
+**/.env.*
+**/.next/
+**/.wrangler/
+**/dist/
+**/node_modules/

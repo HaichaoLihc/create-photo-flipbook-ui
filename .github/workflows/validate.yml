@@ -1,0 +1,21 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: examples/hawaii-book/package-lock.json
+      - run: python3 tests/validate_repo.py
+      - run: npm ci
+        working-directory: examples/hawaii-book
+      - run: npm test
+        working-directory: examples/hawaii-book
