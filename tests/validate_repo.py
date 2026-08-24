@@ -33,15 +33,23 @@ def main() -> None:
     required = [
         SKILL / "agents" / "openai.yaml",
         SKILL / "assets" / "react" / "PhotoFlipbook.tsx",
+        SKILL / "assets" / "react" / "flipbook-contract.test.mjs",
         SKILL / "scripts" / "split_spreads.sh",
         ROOT / "examples" / "hawaii-book" / "package.json",
-        ROOT / "evals" / "hawaii-v1" / "rubric.json",
+        ROOT / "evals" / "run_eval.py",
+        ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
+        ROOT / "evals" / "cases" / "hawaii-v1" / "input" / "page-01-cover-hd.jpg",
+        ROOT / "evals" / "rubrics" / "photo-flipbook-v1.json",
     ]
     for path in required:
         require(path.is_file(), f"Missing required repository file: {path.relative_to(ROOT)}")
 
     subprocess.run(
         ["bash", "-n", str(SKILL / "scripts" / "split_spreads.sh")],
+        check=True,
+    )
+    subprocess.run(
+        ["node", "--test", str(SKILL / "assets" / "react" / "flipbook-contract.test.mjs")],
         check=True,
     )
     print("Repository structure is valid")

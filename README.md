@@ -7,7 +7,9 @@ responsive, page-turning photo-book websites.
 
 - `skills/create-photo-flipbook-ui/`: the installable Codex skill
 - `examples/hawaii-book/`: a runnable ground-truth implementation
-- `evals/hawaii-v1/`: evaluation protocol and scoring rubric
+- `evals/cases/`: blinded forward-eval inputs
+- `evals/rubrics/`: grader-only scoring rubrics
+- `evals/run_eval.py`: isolated Codex eval runner
 - `tests/`: repository-level structural checks
 
 The installed skill intentionally excludes examples, evals, and repository
@@ -32,3 +34,12 @@ After a tagged release, replace `main` with a version such as `v0.2.0`.
 python3 tests/validate_repo.py
 npm --prefix examples/hawaii-book test
 ```
+
+Preview or run the Hawaii forward eval:
+
+```bash
+python3 evals/run_eval.py hawaii-v1 --dry-run
+python3 evals/run_eval.py hawaii-v1
+```
+
+See `evals/README.md` for the isolation and grading workflow.

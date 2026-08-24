@@ -87,8 +87,7 @@ body {
 .book-rig {
   position: relative;
   z-index: 4;
-  width: min(82vw, 1060px);
-  height: min(72vh, 720px);
+  width: min(82vw, calc((100svh - 160px) * 1.47), 1060px);
   display: grid;
   place-items: center;
   transform: rotateX(5.5deg) rotateZ(-.22deg) translateY(-1%);
@@ -132,8 +131,8 @@ body {
 .ambient-one { width: 36vw; height: 36vw; left: -22vw; top: 10%; background: rgba(242, 239, 229, .55); }
 .ambient-two { width: 23vw; height: 23vw; right: -12vw; bottom: 5%; background: rgba(173, 178, 159, .16); animation-delay: -4s; }
 
-.book-page {
-  position: relative;
+.book-page.stf__item {
+  position: absolute;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(64, 58, 47, .035), transparent 6%, transparent 92%, rgba(64, 58, 47, .035)),
@@ -244,7 +243,7 @@ kbd { display: inline-grid; place-items: center; min-width: 21px; height: 21px; 
   .atelier { gap: 6px; padding: 19px 17px 17px; }
   .topbar { grid-template-columns: 1fr 1fr; }
   .topbar > p { display: none; }
-  .book-rig { width: 92vw; height: min(73vh, 680px); transform: rotateX(3deg); }
+  .book-rig { width: min(92vw, calc((100svh - 135px) * .735)); transform: rotateX(3deg); }
   .is-turning .book-rig { transform: rotateX(5deg) translateY(-1%); }
   .book-shadow { width: 62vw; top: 56%; }
   .controls { grid-template-columns: 1fr; place-items: center; }
@@ -254,7 +253,7 @@ kbd { display: inline-grid; place-items: center; min-width: 21px; height: 21px; 
 
 @media (max-height: 650px) {
   .atelier { padding-block: 15px; }
-  .book-rig { height: 68vh; }
+  .book-rig { width: min(82vw, calc((100svh - 125px) * 1.47), 1060px); }
   .controls { min-height: 38px; }
 }
 

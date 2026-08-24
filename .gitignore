@@ -1,7 +1,9 @@
 .DS_Store
+**/__pycache__/
 **/.env
 **/.env.*
 **/.next/
 **/.wrangler/
 **/dist/
 **/node_modules/
+evals/results/

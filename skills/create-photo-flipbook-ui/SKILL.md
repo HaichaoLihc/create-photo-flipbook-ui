@@ -44,7 +44,17 @@ Ask one concise question only if title/year or faithful-vs-art-directed intent w
 - Use ordinary React content for future-extensible text, captions, and images.
 - Keep the page manifest as the single content source.
 
-Copy `assets/react/PhotoFlipbook.tsx`, `assets/react/photo-flipbook.css`, and `assets/react/book-pages.ts` into the app surface. Install `react-pageflip` if missing. Adapt paths and metadata; do not rewrite the interaction engine.
+Copy all files from `assets/react/` into the app surface. Install `react-pageflip` if missing. Adapt only the page manifest, image paths, text, and the CSS color tokens; do not rewrite the interaction engine, remove its contract test, or replace its renderer-critical rules.
+
+Preserve these renderer invariants:
+
+- Keep `data-density="hard"` on every leaf. This makes the current right page and next left page separate front/back faces during the turn.
+- Keep `.photo-leaf.stf__item { position: absolute; }`. Never add `position: relative` to `.photo-leaf`; `page-flip` replaces inline styles during animation and a relative rule makes the bottom page fall into document flow below the book.
+- Apply tilt, scale, and perspective effects to `.photo-book-rig`, not `.photo-book`; the library owns the engine root transform and sizing.
+- Keep controls locked while the renderer state is not `read` so simultaneous turns cannot corrupt stacking.
+- Keep the rig constrained by both viewport width and viewport height.
+
+After integration, run `node --test PATH_TO_COPIED_ASSETS/flipbook-contract.test.mjs`. Treat a failure as an engine regression, not as a test to rewrite.
 
 ## Produce art-directed spreads
 
@@ -74,7 +84,9 @@ Do not publish until all checks pass:
 5. Confirm no duplicated art, black padding, missing edges, UI overlays, or swapped ordering.
 6. Confirm panoramic subjects meet naturally at the gutter.
 7. Confirm the cover opens alone and a blank back cover is appended when required for an even leaf count.
-8. Run the production build.
+8. Capture a forward turn before its midpoint, after its midpoint, and after completion. Confirm the moving front is the current right page, the moving back is the next left page, the destination right page is underneath, and no page appears below the book.
+9. Test a short-height desktop viewport and a narrow mobile viewport; no page may overlap the controls or leave the stage.
+10. Run the bundled contract test, automated application tests, and production build.
 
 If any crop fails, re-run the deterministic script from the original generated spread. Do not regenerate artwork to fix a crop.
 
@@ -83,6 +95,7 @@ If any crop fails, re-run the deterministic script from the original generated s
 - Responsive landscape spread with automatic portrait/single-page mode.
 - Mouse drag, touch swipe, corner fold, previous/next buttons, and arrow-key navigation.
 - Dynamic page-turn shading, grounded book shadow, subtle paper texture, and reduced-motion support.
+- Correct two-face page identity throughout the animation, with no duplicate or flow-positioned page below the stage.
 - Accessible page labels, button labels, and live page count.
 - No heavy toolbar, fake browser chrome, or decorative UI competing with the book.
 - Keep pages extendable through a typed array containing `id`, `image`, `alt`, and optional text fields.

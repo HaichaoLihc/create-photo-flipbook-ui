@@ -29,6 +29,7 @@ const Page = forwardRef<HTMLDivElement, { page: BookPage; number: number }>(
         ref={ref}
         className={`book-page book-page--${page.tone ?? "paper"}${page.image ? " book-page--image" : ""}`}
         aria-label={`Page ${number}${hasContent ? "" : ", blank"}`}
+        data-density="hard"
       >
         {!page.image && <div className="paper-grain" aria-hidden="true" />}
         {hasContent && (
