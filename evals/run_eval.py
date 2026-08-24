@@ -167,6 +167,12 @@ def main() -> int:
         "--ephemeral",
         "--sandbox",
         "workspace-write",
+        "-c",
+        "sandbox_workspace_write.network_access=true",
+        "-c",
+        "features.network_proxy.enabled=true",
+        "-c",
+        'features.network_proxy.domains={ "registry.npmjs.org" = "allow" }',
         "--json",
     ]
     if args.model:
@@ -204,6 +210,15 @@ def main() -> int:
 
     workspace = Path(tempfile.mkdtemp(prefix=f"flipbook-eval-{args.case}-"))
     shutil.copytree(input_dir, workspace / "input")
+    npm_cache = workspace / ".npm-cache"
+    npm_logs = workspace / ".npm-logs"
+    npm_cache.mkdir()
+    npm_logs.mkdir()
+    run_environment = {
+        **os.environ,
+        "NPM_CONFIG_CACHE": str(npm_cache),
+        "NPM_CONFIG_LOGS_DIR": str(npm_logs),
+    }
     (record_dir / "prompt.md").write_text(prompt, encoding="utf-8")
 
     manifest = {
@@ -245,6 +260,7 @@ def main() -> int:
                 stdout=events,
                 stderr=errors,
                 check=False,
+                env=run_environment,
             )
         return_code = completed.returncode
     finally:
