@@ -5,8 +5,9 @@ import { test } from "node:test";
 const component = await readFile(new URL("./PhotoFlipbook.tsx", import.meta.url), "utf8");
 const styles = await readFile(new URL("./photo-flipbook.css", import.meta.url), "utf8");
 
-test("every rendered leaf uses the two-face hard-page path", () => {
-  assert.match(component, /data-density="hard"/);
+test("covers stay hard while interior leaves keep the soft curl path", () => {
+  assert.match(component, /data-density=\{isHard \? "hard" : "soft"\}/);
+  assert.match(component, /isHard=\{index === 0 \|\| index === leaves\.length - 1\}/);
   assert.match(component, /onChangeState=/);
   assert.match(component, /disabled=\{current === 0 \|\| isTurning\}/);
 });

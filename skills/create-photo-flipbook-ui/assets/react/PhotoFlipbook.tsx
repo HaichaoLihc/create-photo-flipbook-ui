@@ -27,8 +27,11 @@ type RenderablePhotoBookPage = PhotoBookPage & {
   fit?: "fill" | "cover" | "contain";
 };
 
-const Leaf = forwardRef<HTMLDivElement, { page: RenderablePhotoBookPage; index: number }>(
-  function Leaf({ page, index }, ref) {
+const Leaf = forwardRef<
+  HTMLDivElement,
+  { page: RenderablePhotoBookPage; index: number; isHard: boolean }
+>(
+  function Leaf({ page, index, isHard }, ref) {
     const blank = !page.image && !page.text && !page.caption;
     const fit = page.fit ?? "fill";
 
@@ -37,7 +40,7 @@ const Leaf = forwardRef<HTMLDivElement, { page: RenderablePhotoBookPage; index: 
         ref={ref}
         className={`photo-leaf photo-leaf--fit-${fit}${index === 0 ? " photo-leaf--cover" : ""}${blank ? " photo-leaf--blank" : ""}`}
         aria-label={page.alt || "Blank back cover"}
-        data-density="hard"
+        data-density={isHard ? "hard" : "soft"}
         data-page-id={page.id}
         data-source-filename={page.sourceFilename}
       >
@@ -149,7 +152,12 @@ export function PhotoFlipbook({
             onChangeState={(event) => setIsTurning(event.data !== "read")}
           >
             {leaves.map((page, index) => (
-              <Leaf key={page.id} page={page} index={index} />
+              <Leaf
+                key={page.id}
+                page={page}
+                index={index}
+                isHard={index === 0 || index === leaves.length - 1}
+              />
             ))}
           </HTMLFlipBook>
         </div>
