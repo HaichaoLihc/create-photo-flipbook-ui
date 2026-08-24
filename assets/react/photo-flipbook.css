@@ -1,0 +1,17 @@
+:root { --room: #d7d3c8; --ink: #292923; --paper: #f5f1e6; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--room); color: var(--ink); font-family: Arial, sans-serif; }
+.flipbook-room { min-height: 100svh; display: grid; grid-template-rows: auto minmax(0,1fr) auto; padding: 24px 32px 20px; overflow: hidden; background: radial-gradient(circle at 50% 42%,rgba(255,255,255,.65),transparent 35%),linear-gradient(135deg,#dedacf,#cbc7bb); }
+.flipbook-room header { position: relative; z-index: 20; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+.flipbook-room header h1 { margin: 0; font: 500 10px/1 Arial,sans-serif; }
+.flipbook-room header span:last-child { justify-self: end; color: #77746b; }
+.flipbook-stage { position: relative; min-height: 0; display: grid; place-items: center; perspective: 1900px; }
+.photo-book { filter: drop-shadow(0 30px 22px rgba(47,42,32,.22)); transform: rotateX(5deg); }
+.ground-shadow { position: absolute; left: 50%; top: 57%; width: min(78vw,960px); height: 130px; transform: translate(-50%,-50%); border-radius: 50%; background: rgba(62,55,43,.18); filter: blur(30px); }
+.photo-leaf { overflow: hidden; background: var(--paper); border: 1px solid rgba(70,64,52,.1); }
+.photo-leaf img { display: block; width: 100%; height: 100%; object-fit: fill; user-select: none; }
+.flipbook-room footer { position: relative; z-index: 20; display: flex; justify-content: center; align-items: center; gap: 18px; color: #77746b; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.flipbook-room footer button { width: 36px; height: 36px; border: 1px solid rgba(41,41,35,.18); border-radius: 50%; background: rgba(255,255,255,.25); color: var(--ink); cursor: pointer; font: 24px/1 Georgia,serif; }
+.flipbook-room footer button:disabled { opacity: .25; cursor: default; }
+@media (max-width: 720px) { .flipbook-room { padding: 18px 14px; } .flipbook-room header { grid-template-columns: 1fr 1fr; } .flipbook-room header h1 { display: none; } .photo-book { transform: rotateX(3deg); } }
+@media (prefers-reduced-motion: reduce) { .photo-book { transition: none; } }
