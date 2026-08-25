@@ -9,7 +9,7 @@ Build the smallest complete photo-book app that satisfies the request. Reuse the
 
 ## Workflow
 
-1. Inventory filenames, dimensions, orientation, and order. Inspect images visually only when composition or cropping is uncertain.
+1. Inventory filenames, pixel dimensions, orientation, and order. Inspect images visually only when composition or cropping is uncertain.
 2. Use faithful mode unless the user explicitly requests collage, zine, scrapbook, restoration, or newly generated artwork.
 3. Copy the bundled React files into the app and adapt only the page manifest, image paths, text, and CSS color tokens.
 4. Run the bundled contract test, the application's existing tests, and the production build.
@@ -32,7 +32,11 @@ The evaluation harness should provide a dependency-ready workspace when it requi
 - Keep supplied images unchanged and in deterministic filename order.
 - Treat the first image as the front cover unless the user says otherwise.
 - Use original files rather than screenshots.
-- Avoid cropping unless requested; prefer `contain` for finished page artwork.
+- Record each image's `width` and `height` in the page manifest.
+- If every image has the same pixel dimensions, use that aspect ratio for the book and render images edge to edge with `fill`.
+- If dimensions differ or are unavailable, keep the default 500×680 book, center images with `contain`, and leave the template's small four-sided padding.
+- Preserve the source aspect ratio when sizing the book; normalize only its on-screen scale. Avoid cropping unless requested.
+- Override `fit` or `padding` on individual pages only when their composition needs it.
 - Keep content in the typed page manifest so images, captions, and text remain extensible.
 
 Copy all files from `assets/react/`. Do not rewrite the interaction engine, remove its contract test, or change these renderer invariants:
