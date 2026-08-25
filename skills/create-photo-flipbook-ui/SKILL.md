@@ -9,7 +9,7 @@ Build the smallest complete photo-book app that satisfies the request. Reuse the
 
 ## Workflow
 
-1. Inventory filenames, pixel dimensions, orientation, and order.
+1. Check every supplied image and inventory its filename, pixel dimensions, aspect ratio, orientation, and order before choosing the book size.
 2. View one or two representative photos locally to determine the overall palette, mood, and suitable subtle page texture. Inspect more only when composition or cropping is uncertain.
 3. Use faithful mode unless the user explicitly requests collage, zine, scrapbook, restoration, or newly generated artwork.
 4. Copy the bundled React files into the app and adapt only the page manifest, image paths, text, and CSS theme tokens.
@@ -34,17 +34,20 @@ The evaluation harness should provide a dependency-ready workspace when it requi
 - Treat the first image as the front cover unless the user says otherwise.
 - Use original files rather than screenshots.
 - Record each image's `width` and `height` in the page manifest.
-- If every image has the same pixel dimensions, use that aspect ratio for the book and render images edge to edge with `fill`.
-- If dimensions differ or are unavailable, keep the default 500×680 book, center images with `contain`, and leave the template's small four-sided padding.
+- Choose the book aspect ratio from the complete image set. Select the source aspect ratio that maximizes total contained-image area across all pages; do not fall back merely because dimensions differ by a few pixels.
+- If every image has the same pixel dimensions, use that aspect ratio and render images edge to edge with `fill`.
+- If dimensions vary, use the selected representative aspect ratio, center images with `contain`, and keep the template's generous four-sided padding. Use the default 500×680 ratio only when no usable dimensions are available.
 - Preserve the source aspect ratio when sizing the book; normalize only its on-screen scale. Avoid cropping unless requested.
 - Override `fit` or `padding` on individual pages only when their composition needs it.
 - Derive the page surface from the representative photos. Set restrained theme colors and a subtle CSS paper, fiber, grain, or print texture using the bundled surface tokens.
 - Use one color and texture consistently for every interior page. Only the front and back covers may use different surface colors; do not create per-page themes.
+- Keep the automatically generated back cover photo-free and text-free. Use one solid theme color with no texture or image.
 - Keep content in the typed page manifest so images, captions, and text remain extensible.
 
 Copy all files from `assets/react/`. Do not rewrite the interaction engine, remove its contract test, or change these renderer invariants:
 
 - Keep only the first and last leaves `hard`; keep interior leaves `soft`.
+- Keep the final leaf as the automatically generated solid-color back cover; never assign it a photograph.
 - Keep `.photo-leaf.stf__item { position: absolute; }`; never add `position: relative` to `.photo-leaf`.
 - Apply visual transforms to `.photo-book-rig`, not `.photo-book`.
 - Lock controls while the renderer state is not `read`.

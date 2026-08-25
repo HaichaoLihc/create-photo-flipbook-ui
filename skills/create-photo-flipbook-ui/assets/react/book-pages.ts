@@ -11,8 +11,8 @@ export type PhotoBookPage = {
   padding?: number;
 };
 
-// Record each image's natural pixel size. Uniform dimensions make the book
-// adopt that aspect ratio; mixed or missing dimensions use the padded default.
+// Record every image's natural pixel size. The book selects the source aspect
+// ratio that minimizes aggregate extra letterboxing across the complete set.
 export const pages: PhotoBookPage[] = [
   {
     id: "cover",

@@ -22,11 +22,14 @@ type FlipBookHandle = {
 };
 
 const DEFAULT_PAGE = { width: 500, height: 680 };
-const DEFAULT_PADDING = 14;
+const DEFAULT_PADDING = 24;
 
 function resolveBookLayout(pages: PhotoBookPage[]) {
   const imagePages = pages.filter((page) => page.image);
   const first = imagePages[0];
+  const measuredPages = imagePages.filter(
+    (page) => page.width && page.height && page.width > 0 && page.height > 0,
+  );
   const uniformDimensions = Boolean(
     first?.width &&
       first?.height &&
@@ -34,9 +37,21 @@ function resolveBookLayout(pages: PhotoBookPage[]) {
         (page) => page.width === first.width && page.height === first.height,
       ),
   );
-  const source = uniformDimensions
-    ? { width: first.width!, height: first.height! }
-    : DEFAULT_PAGE;
+  const ratios = measuredPages
+    .map((page) => page.width! / page.height!)
+    .sort((a, b) => a - b);
+  const containedArea = (pageRatio: number) =>
+    ratios.reduce(
+      (total, imageRatio) =>
+        total + Math.min(imageRatio / pageRatio, pageRatio / imageRatio),
+      0,
+    );
+  const representativeRatio = ratios.length
+    ? ratios.reduce((best, candidate) =>
+        containedArea(candidate) > containedArea(best) ? candidate : best,
+      )
+    : DEFAULT_PAGE.width / DEFAULT_PAGE.height;
+  const source = { width: representativeRatio, height: 1 };
   const scale = Math.min(
     DEFAULT_PAGE.width / source.width,
     DEFAULT_PAGE.height / source.height,
@@ -100,9 +115,10 @@ const Leaf = forwardRef<
 
 export function makeLeaves(pages: PhotoBookPage[]) {
   const leaves = [...pages];
-  if (leaves.length % 2) {
-    leaves.push({ id: "back-cover", alt: "Blank back cover" });
+  if ((leaves.length + 1) % 2) {
+    leaves.push({ id: "inside-back-cover", alt: "Blank inside back cover" });
   }
+  leaves.push({ id: "back-cover", alt: "Solid-color back cover" });
   return leaves;
 }
 
@@ -154,7 +170,8 @@ export function PhotoFlipbook({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isTurning, leaves.length, next, previous]);
 
-  const onBackCover = current >= pages.length;
+  const onBackCover = current === leaves.length - 1;
+  const onInsideBackCover = current >= pages.length && !onBackCover;
   const visiblePage = Math.min(current + 1, pages.length);
 
   return (
@@ -229,6 +246,8 @@ export function PhotoFlipbook({
           <span>
             {onBackCover
               ? "Back cover"
+              : onInsideBackCover
+                ? "Inside back cover"
               : `${String(visiblePage).padStart(2, "0")} / ${String(pages.length).padStart(2, "0")}`}
           </span>
           <small>Drag, swipe, or use arrow keys</small>

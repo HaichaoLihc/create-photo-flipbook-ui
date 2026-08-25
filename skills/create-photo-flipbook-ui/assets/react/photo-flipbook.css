@@ -8,7 +8,7 @@
   --flipbook-back-cover-color: #cbc1a9;
   --flipbook-page-texture: repeating-linear-gradient(2deg, transparent 0 3px, rgba(72,62,44,.03) 4px);
   --flipbook-cover-texture: repeating-linear-gradient(88deg, transparent 0 5px, rgba(72,62,44,.045) 6px);
-  --flipbook-back-cover-texture: var(--flipbook-cover-texture);
+  --flipbook-back-cover-texture: none;
   --flipbook-page-ratio: .7353;
   --flipbook-spread-ratio: 1.4706;
   --flipbook-max-spread: 1040px;
@@ -117,6 +117,7 @@ button { font: inherit; }
 .photo-leaf.stf__item.photo-leaf--back-cover {
   --leaf-color: var(--flipbook-back-cover-color);
   --leaf-texture: var(--flipbook-back-cover-texture);
+  background: var(--flipbook-back-cover-color);
 }
 
 .photo-leaf::after {
