@@ -9,11 +9,12 @@ Build the smallest complete photo-book app that satisfies the request. Reuse the
 
 ## Workflow
 
-1. Inventory filenames, pixel dimensions, orientation, and order. Inspect images visually only when composition or cropping is uncertain.
-2. Use faithful mode unless the user explicitly requests collage, zine, scrapbook, restoration, or newly generated artwork.
-3. Copy the bundled React files into the app and adapt only the page manifest, image paths, text, and CSS color tokens.
-4. Run the bundled contract test, the application's existing tests, and the production build.
-5. Report the build result and start command. Publish only when requested.
+1. Inventory filenames, pixel dimensions, orientation, and order.
+2. View one or two representative photos locally to determine the overall palette, mood, and suitable subtle page texture. Inspect more only when composition or cropping is uncertain.
+3. Use faithful mode unless the user explicitly requests collage, zine, scrapbook, restoration, or newly generated artwork.
+4. Copy the bundled React files into the app and adapt only the page manifest, image paths, text, and CSS theme tokens.
+5. Run the bundled contract test, the application's existing tests, and the production build.
+6. Report the build result and start command. Publish only when requested.
 
 ## Dependency policy
 
@@ -37,6 +38,8 @@ The evaluation harness should provide a dependency-ready workspace when it requi
 - If dimensions differ or are unavailable, keep the default 500×680 book, center images with `contain`, and leave the template's small four-sided padding.
 - Preserve the source aspect ratio when sizing the book; normalize only its on-screen scale. Avoid cropping unless requested.
 - Override `fit` or `padding` on individual pages only when their composition needs it.
+- Derive the page surface from the representative photos. Set restrained theme colors and a subtle CSS paper, fiber, grain, or print texture using the bundled surface tokens.
+- Use one color and texture consistently for every interior page. Only the front and back covers may use different surface colors; do not create per-page themes.
 - Keep content in the typed page manifest so images, captions, and text remain extensible.
 
 Copy all files from `assets/react/`. Do not rewrite the interaction engine, remove its contract test, or change these renderer invariants:

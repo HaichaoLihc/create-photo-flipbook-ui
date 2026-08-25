@@ -2,7 +2,13 @@
   --flipbook-room: #d7d3c8;
   --flipbook-ink: #292923;
   --flipbook-muted: #77746b;
-  --flipbook-paper: #f5f1e6;
+  /* Adapt these six surface tokens after viewing one or two representative photos. */
+  --flipbook-page-color: #f5f1e6;
+  --flipbook-cover-color: #d8d0bc;
+  --flipbook-back-cover-color: #cbc1a9;
+  --flipbook-page-texture: repeating-linear-gradient(2deg, transparent 0 3px, rgba(72,62,44,.03) 4px);
+  --flipbook-cover-texture: repeating-linear-gradient(88deg, transparent 0 5px, rgba(72,62,44,.045) 6px);
+  --flipbook-back-cover-texture: var(--flipbook-cover-texture);
   --flipbook-page-ratio: .7353;
   --flipbook-spread-ratio: 1.4706;
   --flipbook-max-spread: 1040px;
@@ -91,14 +97,26 @@ button { font: inherit; }
  * and appears as a duplicate below the book.
  */
 .photo-leaf.stf__item {
+  --leaf-color: var(--flipbook-page-color);
+  --leaf-texture: var(--flipbook-page-texture);
   position: absolute;
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(70,64,52,.045), transparent 5%, transparent 94%, rgba(70,64,52,.075)),
-    var(--flipbook-paper);
+    var(--leaf-color);
   border: 1px solid rgba(70,64,52,.12);
   box-shadow: inset 0 0 22px rgba(70,64,52,.04);
   color: var(--flipbook-ink);
+}
+
+.photo-leaf.stf__item.photo-leaf--cover {
+  --leaf-color: var(--flipbook-cover-color);
+  --leaf-texture: var(--flipbook-cover-texture);
+}
+
+.photo-leaf.stf__item.photo-leaf--back-cover {
+  --leaf-color: var(--flipbook-back-cover-color);
+  --leaf-texture: var(--flipbook-back-cover-texture);
 }
 
 .photo-leaf::after {
@@ -108,7 +126,7 @@ button { font: inherit; }
   pointer-events: none;
   opacity: .08;
   mix-blend-mode: multiply;
-  background-image: repeating-linear-gradient(2deg, transparent 0 3px, rgba(72,62,44,.03) 4px);
+  background-image: var(--leaf-texture);
 }
 
 .photo-leaf img {
@@ -124,7 +142,6 @@ button { font: inherit; }
 .photo-leaf--fit-fill img { object-fit: fill; }
 .photo-leaf--fit-cover img { object-fit: cover; }
 .photo-leaf--fit-contain img { object-fit: contain; }
-.photo-leaf--blank { background: linear-gradient(135deg, #e8e1d0, #f2ecdd 50%, #ddd4bf); }
 
 .photo-leaf__copy { position: absolute; z-index: 2; inset: auto 8% 7%; }
 .photo-leaf__copy p { margin: .4em 0 0; }

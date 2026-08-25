@@ -74,7 +74,7 @@ const Leaf = forwardRef<
     return (
       <article
         ref={ref}
-        className={`photo-leaf photo-leaf--fit-${fit}${index === 0 ? " photo-leaf--cover" : ""}${blank ? " photo-leaf--blank" : ""}`}
+        className={`photo-leaf photo-leaf--fit-${fit}${index === 0 ? " photo-leaf--cover" : ""}${isHard && index > 0 ? " photo-leaf--back-cover" : ""}${blank ? " photo-leaf--blank" : ""}`}
         aria-label={page.alt || "Blank back cover"}
         data-density={isHard ? "hard" : "soft"}
         data-page-id={page.id}
