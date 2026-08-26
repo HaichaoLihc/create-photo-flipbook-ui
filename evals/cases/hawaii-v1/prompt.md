@@ -6,5 +6,5 @@ first image as the front cover. Implement mouse, touch, button, and keyboard
 page-turn controls, responsive desktop and mobile layouts, accessible labels,
 and data-driven page content that can later support images, captions, and text.
 
-Run automated checks and a production build before finishing. Leave the
-complete runnable application in this workspace and report how to start it.
+Run the bundled static contract check and report how to start the book. Do not
+perform browser QA or require a production build.

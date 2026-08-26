@@ -32,10 +32,13 @@ def main() -> None:
 
     required = [
         SKILL / "agents" / "openai.yaml",
-        SKILL / "assets" / "react" / "PhotoFlipbook.tsx",
-        SKILL / "assets" / "react" / "flipbook-contract.test.mjs",
-        SKILL / "scripts" / "split_spreads.sh",
-        ROOT / "examples" / "hawaii-book" / "package.json",
+        SKILL / "assets" / "html" / "index.html",
+        SKILL / "assets" / "html" / "styles.css",
+        SKILL / "assets" / "html" / "flipbook.js",
+        SKILL / "assets" / "html" / "html-contract.test.mjs",
+        SKILL / "assets" / "html" / "vendor" / "page-flip.browser.js",
+        SKILL / "scripts" / "make_contact_sheet.py",
+        ROOT / "examples" / "vanilla-html-book" / "index.html",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
         ROOT / "evals" / "cases" / "hawaii-v1" / "input" / "page-01-cover-hd.jpg",
@@ -45,11 +48,15 @@ def main() -> None:
         require(path.is_file(), f"Missing required repository file: {path.relative_to(ROOT)}")
 
     subprocess.run(
-        ["bash", "-n", str(SKILL / "scripts" / "split_spreads.sh")],
+        ["node", "--test", str(SKILL / "assets" / "html" / "html-contract.test.mjs")],
         check=True,
     )
     subprocess.run(
-        ["node", "--test", str(SKILL / "assets" / "react" / "flipbook-contract.test.mjs")],
+        ["python3", "-m", "unittest", str(ROOT / "tests" / "test_contact_sheet.py")],
+        check=True,
+    )
+    subprocess.run(
+        ["node", "--test", str(ROOT / "examples" / "vanilla-html-book" / "test.mjs")],
         check=True,
     )
     print("Repository structure is valid")

@@ -2,7 +2,7 @@
   "name": "photo-flipbook-v1",
   "minimum_score": 85,
   "hard_failures": [
-    "production_build_failure",
+    "runtime_load_failure",
     "incorrect_page_order_or_pairing",
     "unusable_mobile_interaction"
   ],
@@ -35,7 +35,7 @@
     {
       "id": "engineering_quality",
       "weight": 10,
-      "description": "Production build and automated tests pass without runtime errors."
+      "description": "The static HTML book loads without runtime errors and automated checks pass."
     }
   ]
 }
