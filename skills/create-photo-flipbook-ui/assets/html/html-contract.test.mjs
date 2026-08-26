@@ -20,9 +20,11 @@ test("template is vanilla HTML", () => {
   assert.match(script, /loadFromHTML\(pages\)/);
   assert.match(script, /bookElement\.dataset\.pageWidth/);
   assert.match(script, /bookElement\.dataset\.pageHeight/);
-  assert.match(styles, /\.book-page\.\--left/);
-  assert.match(styles, /\.book-page\.\--right/);
-  assert.match(styles, /box-shadow:\s*inset/);
+  assert.match(styles, /\.book-page\.\--left::before/);
+  assert.match(styles, /\.book-page\.\--right::before/);
+  assert.match(styles, /z-index:\s*3/);
+  assert.match(styles, /linear-gradient\(to (?:left|right)/);
+  assert.doesNotMatch(styles, /box-shadow:\s*inset/);
   assert.doesNotMatch(styles, /book-gutter|data-orientation="landscape"/);
 });
 

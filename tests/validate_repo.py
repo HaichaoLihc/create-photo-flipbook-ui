@@ -29,6 +29,14 @@ def main() -> None:
         re.search(r"^description:\s*\S", frontmatter, re.MULTILINE) is not None,
         "Skill description is missing",
     )
+    require(
+        "If the request is ambiguous, default to the editing path." in text,
+        "Skill must default ambiguous requests to editing",
+    )
+    require(
+        "Trigger this path only from an explicit no-edit or assemble-as-is request." in text,
+        "Fast path must require explicit no-edit intent",
+    )
 
     required = [
         SKILL / "agents" / "openai.yaml",
@@ -38,6 +46,8 @@ def main() -> None:
         SKILL / "assets" / "html" / "html-contract.test.mjs",
         SKILL / "assets" / "html" / "vendor" / "page-flip.browser.js",
         SKILL / "scripts" / "make_contact_sheet.py",
+        SKILL / "references" / "styles" / "poetic-documentary.md",
+        SKILL / "references" / "styles" / "travel-zine.md",
         ROOT / "examples" / "vanilla-html-book" / "index.html",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",

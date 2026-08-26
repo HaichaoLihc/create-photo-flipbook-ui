@@ -1,80 +1,106 @@
 ---
 name: create-photo-flipbook-ui
-description: Turn supplied raw photographs, finished page images, contact sheets, existing book HTML, or visual references into a responsive 3D page-turning photo-book website made with raw HTML, CSS, and vanilla JavaScript. Use for photo flipbooks, albums, lookbooks, portfolios, editorial photo books, sequencing raw photos, or wrapping already-designed pages in a book UI. Includes ordered contact-sheet generation and a dependency-free HTML page-turn template.
+description: Turn supplied raw photographs, finished page images, contact sheets, existing book HTML, or visual references into a responsive 3D page-turning photobook website using raw HTML, CSS, and vanilla JavaScript. Use for photo flipbooks, albums, travel zines, lookbooks, portfolios, fine-art photo books, sequencing raw photos, or wrapping already-designed pages in a book UI. Includes self-contained poetic-documentary and ImageGen-authored tactile travel-zine styles, ordered contact-sheet generation, and a dependency-free HTML page-turn template.
 ---
 
 # Create Photo Flipbook UI
 
-Inspect the input before deciding how much editorial work it needs. Reuse the bundled vanilla runtime without forcing every project through the same workflow.
+Choose the path from the user's requested level of editing. Reuse the bundled runtime; do not force already-finished page artwork through an internal redesign.
 
-## Decide the path
+## Intent gate
 
-First inspect the complete set, preferably through a contact sheet when there are several images. Check visual finish, dimensions, aspect ratios, orientation, likely order, and whether the files are pages or raw photographs.
+Use the finished-page fast path only when the user explicitly asks to assemble the supplied images as-is, preserve their order, perform no editing, or simply wrap them in a book UI. If the request is ambiguous, default to the editing path.
+
+## Choose the path
 
 ### Finished-page fast path
 
-Use this path when the images already contain deliberate typography, collage, margins, or other page design. Matching or nearly matching dimensions make this an especially direct wrapper task; varied dimensions alone do not turn finished pages back into raw photographs.
+Trigger this path only from an explicit no-edit or assemble-as-is request. It applies to raw photographs and designed pages alike.
 
-- Preserve the supplied order and files exactly unless the user asks for changes.
-- Make each supplied image one complete HTML leaf. Do not redesign, crop, caption, or place it inside a new composition.
-- Set the book page ratio from the finished pages. Normalize only the on-screen scale; do not force the template's default portrait ratio.
-- If all dimensions match, use that exact source ratio. If dimensions differ, use the dominant ratio and `contain`; preserve differently shaped pages without cropping and choose the least disruptive page surface.
-- If a supplied file is clearly the finished front cover, keep it and match the back cover to its dominant edge or paper color. Otherwise create a simple front cover from the collection theme.
-- Choose a cover surface color from the collection's palette and mood. For generated covers, use exactly the same surface color for front and back; the front may add restrained title content while the back stays empty.
-- Prefer the smallest working implementation: copy the runtime, add the pages, set the ratio and theme, run the contract check, and stop.
+- Preserve every supplied image and its artwork exactly.
+- Make each image one complete HTML leaf; do not crop, caption, or redesign it.
+- Derive the book ratio from the finished pages. Normalize the longer UI edge to at most `640`; never use raw pixel dimensions as UI dimensions.
+- Use the exact common ratio when dimensions match. Otherwise use the dominant ratio with `contain`.
+- Preserve a supplied front cover. Otherwise make a restrained cover whose surface color matches the empty back cover.
+- Copy the runtime, insert the pages, set ratio and colors, validate, and stop.
 
-### Raw-photo editorial path
+### Default editing path
 
-Use this path when the inputs look like standalone photographs and the sequence or layout is unresolved. Mixed dimensions are supporting evidence, not the deciding signal.
+Use this path whenever the user has not explicitly declined editing. For more than three images, generate and actually view a contact sheet before making editorial decisions; creating the file is not inspection.
 
-- Spend time on selection, sequence, pacing, spread pairing, and image placement before writing the book.
-- Use contact sheets as the primary inspection surface. Open originals only when crop, focus, expression, or near-duplicate choice is uncertain.
-- Infer a coherent theme from subject, palette, atmosphere, chronology, and repeated motifs.
-- Choose a narrative sequence rather than accepting filename order automatically. Preserve chronology when it is meaningful; otherwise build an intentional opening, development, pause, and ending.
-- Author each leaf directly in HTML. Use full bleed, containment, margins, diptychs, grids, text, or blank space as the photographs require; do not impose one layout system on every page.
-- Crop only deliberately. Keep important subjects safe and preserve the original files.
-- Use the same theme-derived surface color for front and back covers. Keep the back cover photo-free and text-free.
-- Review the planned sequence and pairings from the source contact sheet before coding.
+For standalone photographs, edit selection, sequence, pairings, pacing, and layout. For already-designed pages, treat each page image as an indivisible artwork: edit selection, sequence, pacing, blank leaves, and covers, but do not alter its internal composition unless requested.
+
+Follow this order:
+
+1. Generate and view a source contact sheet
+2. Inspect the collection; open originals only to resolve focus, expression, crop, or near-duplicates. Do not preserve every image or filename order automatically.
+3. Choose one style from **Styles**, read that style file, and use its editing, sequencing, pacing, composition, typography, material, cover, and critique rules. Do not blend styles unless requested or apply a separate generic editorial doctrine.
+4. Build spreads directly from the selected sequence using the production method required by the style.
+5. When a non-interactive static renderer is available, render spread previews, assemble them in reading order with the contact-sheet script, and inspect the whole book using the style's critique rules. If no renderer exists, state that visual spread QA was not performed; do not pretend that generating HTML is the same as inspecting it.
+6. Revise only when the spread overview reveals a clear improvement, then produce final HTML and PDF when requested.
 
 ### Mixed or existing-book inputs
 
-Preserve already-polished pages and apply editorial layout only to unresolved raw photographs. When an existing HTML book is supplied, modify it in place when practical instead of replacing its structure. Maintain compatibility with supplied ordering, filenames, captions, and existing controls unless the request changes them.
+On the default editing path, preserve the internal artwork of polished pages while editing unresolved photographs and the book-level sequence. Modify supplied HTML in place when practical. Preserve filenames, captions, and existing controls unless requested otherwise; preserve ordering only on the fast path or when explicitly requested.
+
+## Styles
+
+- Use [poetic-documentary.md](references/styles/poetic-documentary.md) for artistic fine-art books shaped by associative sequence, documentary observation, lyrical detail, and restrained design.
+- Use [travel-zine.md](references/styles/travel-zine.md) for informal, place-driven travel stories that benefit from ImageGen-authored tactile paper, selective scrapbook-like assembly, maps or notes, expressive type, and lively scale changes.
+
+Choose from the user's stated direction first, then the collection's subject and visual character. If both styles could fit and the user did not choose, select the stronger interpretation and state it briefly. Never use every or most photographs merely to increase page count; follow the selected style's curation rules and copy only selected source files into the output.
+
+Keep every future style self-contained. Each style file must own its selection, sequencing, pairing, pacing, spread composition, typography, cover, and critique rules. Do not add shared editorial references or assume every style should edit photographs the same way.
+
+Add another concise style file only when requested. Create a separate skill only when a style requires fundamentally different tools or source transformation.
 
 ## Runtime
 
-Copy `assets/html/` into the output directory when a runtime is needed. Keep pages as raw `.book-page` HTML elements inside `#book`; do not introduce React, TypeScript, JSX, Vite, or a required page manifest.
+Copy `assets/html/` into the output root when a runtime is needed. Keep raw `.book-page` elements inside `#book`; do not introduce React, TypeScript, JSX, Vite, or a required page manifest.
 
-Place `index.html` directly in the requested output root. Do not create a nested `site/` directory unless the user asks for one; the reported server command must open the book at `/`, not a directory listing.
+Place `index.html` directly in the requested output root. Do not create a nested `site/` directory unless requested. Put photographs under `assets/photos/` and reference them directly.
 
-Do not read or rewrite the vendored page-turn library. On the finished-page fast path, avoid rereading unchanged template files; copy the runtime and edit only `index.html`, the page-size settings, and necessary theme tokens.
+When a style requires generated page artwork, put the flattened leaves under `assets/pages/`. Make each `.book-page` contain only one full-page image; do not reconstruct or embellish that artwork with HTML or CSS.
 
-Set `data-page-width` and `data-page-height` on `#book` to a normalized size with the selected source aspect ratio. Normalize the longer page edge to at most `640`; never use raw image pixel dimensions as UI dimensions. Put photographs under `assets/photos/` and reference them directly.
+Do not read or rewrite the vendored page-turn library. On the fast path, copy the runtime and edit only `index.html`, page-size settings, and necessary theme tokens.
 
 Keep these invariants:
 
-- Only the first and last leaves use `data-density="hard"`; interior leaves stay soft.
-- Add a blank interior leaf when needed for correct spread pairing.
-- The final leaf is an empty back cover using the same surface color as the front cover.
-- Controls stay locked while the renderer state is not `read`.
-- Mouse, touch, buttons, keyboard, desktop spread, and mobile single-page behavior remain usable.
-- The book is constrained by both viewport width and height.
-- Do not add a visible center gap or overlay. Use subtle inset shadows on the inner edges of left and right pages so the spine cue moves naturally with each page turn.
+- Only the first and last leaves use `data-density="hard"`; interior leaves remain soft.
+- Add a blank interior leaf when correct spread pairing requires it.
+- Keep the final leaf empty and use the same surface color as the front cover.
+- Lock controls while renderer state is not `read`.
+- Preserve mouse, touch, buttons, keyboard, desktop-spread, and mobile single-page behavior.
+- Constrain the book by viewport width and height.
+- Do not add a visible center gap or book-level overlay. Use page-bound pseudo-elements above page content for spine shadows so photographs cannot cover them and the shadows move with turns.
 
 ## Contact sheets
 
-Pass filenames in the exact intended display order. The script does not discover or sort files.
+Pass filenames in the exact display order; the script does not discover or sort files. Use it first for source photos and again for rendered spreads. Stable IDs come from the supplied labels.
 
 ```bash
 python3 scripts/make_contact_sheet.py --output contact-sheet.jpg image-03.jpg image-01.jpg image-08.jpg
+python3 scripts/make_contact_sheet.py --output spread-contact-sheet.jpg spread-01.png spread-02.png spread-03.png
 ```
+
+Review the spread contact sheet using the selected style file's critique rules.
+
+## Efficiency
+
+- Do not inspect or rewrite the vendored runtime.
+- Copy the template once and make one focused editing pass.
+- Do not install packages or retry unavailable image tools; the bundled contact-sheet script is sufficient for collection inspection.
+- Run the bundled contract test once after editing. Add a small targeted check only for requirements the contract does not cover; avoid large ad hoc validation scripts.
 
 ## Validation
 
 - Verify referenced assets exist and copied sources remain unchanged.
 - Run `node --test html-contract.test.mjs` after copying the runtime.
-- Check page count, order, hard-cover placement, source references, selected page ratio, and matching cover colors programmatically.
-- Do not start a local server, use browser tools, capture screenshots, or manually exercise animation for validation.
-- Report the static checks that passed and provide the start command. Do not claim that runtime animation was tested.
+- Check page count, order, cover density, source references, selected ratio, and matching cover colors programmatically.
+- On the editing path, verify the rendered order and inspect the static spread contact sheet when a renderer is available.
+- Do not use browser interaction to test animation. Do not claim animation was tested.
+- Do not claim PDF delivery unless a PDF file was actually generated and validated.
+- Report checks that passed and provide the start command.
 
 From the directory containing `index.html`, serve the book with:
 

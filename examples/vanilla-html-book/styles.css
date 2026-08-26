@@ -108,12 +108,25 @@ button {
   color: #29271f;
 }
 
-.book-page.--left {
-  box-shadow: inset -12px 0 14px -14px rgb(35 31 25 / 34%);
+
+.book-page.--left::before,
+.book-page.--right::before {
+  position: absolute;
+  inset-block: 0;
+  z-index: 3;
+  width: clamp(14px, 4%, 28px);
+  content: "";
+  pointer-events: none;
 }
 
-.book-page.--right {
-  box-shadow: inset 12px 0 14px -14px rgb(35 31 25 / 34%);
+.book-page.--left::before {
+  right: 0;
+  background: linear-gradient(to left, rgb(27 24 20 / 30%), rgb(27 24 20 / 8%) 42%, transparent);
+}
+
+.book-page.--right::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(27 24 20 / 30%), rgb(27 24 20 / 8%) 42%, transparent);
 }
 
 .book-page::after {
