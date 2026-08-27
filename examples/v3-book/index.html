@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="Leaf v3 — a tactile WebGL photo-book library." />
+    <title>Leaf v3 — Quick FlipBook Library</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <canvas id="book-scene" aria-label="Interactive three-dimensional photo book"></canvas>
+      <nav class="library" aria-label="Select a photo book" id="library"></nav>
+      <div class="reader-controls" aria-label="Page controls">
+        <button class="page-button" id="previous-page" type="button" aria-label="Previous page">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="page-button" id="next-page" type="button" aria-label="Next page">
+          <span aria-hidden="true">›</span>
+        </button>
+        <span class="sr-only" id="page-state" aria-live="polite">Cover</span>
+      </div>
+      <div class="loading-card" id="loading-card" role="status" aria-live="polite">
+        <span class="loading-pulse"></span>
+        <span class="sr-only" id="loading-copy">Preparing edition</span>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

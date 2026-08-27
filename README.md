@@ -70,7 +70,9 @@ After a tagged release, replace `main` with a version such as `v0.2.0`.
 ## Repository layout
 
 - `skills/create-photo-flipbook-ui/`: installable Codex skill and reusable HTML runtime
-- `examples/vanilla-html-book/`: dependency-free HTML reference implementation
+- `examples/v1/`: dependency-free vanilla HTML reference implementation
+- `examples/v2/`: React Three Fiber library and reader experiment
+- `examples/v3-book/`: reviewed Three.js / Quick FlipBook demonstration
 - `docs/images/`: README workflow and result examples
 - `evals/cases/`: blinded forward-eval inputs
 - `evals/rubrics/`: grader-only scoring rubrics
@@ -83,7 +85,8 @@ The installed skill excludes examples, evals, and repository documentation so Co
 
 ```bash
 python3 tests/validate_repo.py
-node --test examples/vanilla-html-book/test.mjs
+node --test examples/v1/test.mjs
+node --test examples/v3-book/src/quick-flipbook-contract.test.mjs
 ```
 
 Preview or run a forward eval:

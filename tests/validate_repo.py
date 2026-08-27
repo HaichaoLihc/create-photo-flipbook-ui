@@ -73,7 +73,11 @@ def main() -> None:
         SKILL / "scripts" / "make_contact_sheet.py",
         SKILL / "references" / "book-editing.md",
         SKILL / "references" / "photo-skill-catalog.md",
-        ROOT / "examples" / "vanilla-html-book" / "index.html",
+        ROOT / "examples" / "v1" / "index.html",
+        ROOT / "examples" / "v2" / "index.html",
+        ROOT / "examples" / "v2" / "package.json",
+        ROOT / "examples" / "v3-book" / "index.html",
+        ROOT / "examples" / "v3-book" / "package.json",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
         ROOT / "evals" / "cases" / "hawaii-v1" / "input" / "page-01-cover-hd.jpg",
@@ -111,7 +115,23 @@ def main() -> None:
         check=True,
     )
     subprocess.run(
-        ["node", "--test", str(ROOT / "examples" / "vanilla-html-book" / "test.mjs")],
+        ["node", "--test", str(ROOT / "examples" / "v1" / "test.mjs")],
+        check=True,
+    )
+    subprocess.run(
+        [
+            "node",
+            "--test",
+            str(ROOT / "examples" / "v2" / "src" / "flipbook-contract.test.mjs"),
+        ],
+        check=True,
+    )
+    subprocess.run(
+        [
+            "node",
+            "--test",
+            str(ROOT / "examples" / "v3-book" / "src" / "quick-flipbook-contract.test.mjs"),
+        ],
         check=True,
     )
     print("Repository structure is valid")
