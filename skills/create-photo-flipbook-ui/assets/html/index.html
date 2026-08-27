@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vanilla HTML Photo Book</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="room">
+      <header class="book-header">
+        <span>HTML prototype</span>
+        <h1>Quiet Light</h1>
+        <span id="orientation">Open spread</span>
+      </header>
+
+      <section class="stage" aria-label="Interactive photo book">
+        <div class="book-rig">
+          <div id="book" class="book" data-page-width="471" data-page-height="640">
+            <article class="book-page cover" data-density="hard" aria-label="Front cover">
+              <div class="cover-mark">QL</div>
+              <div>
+                <p class="kicker">A small photo study</p>
+                <h2>Quiet<br />Light</h2>
+              </div>
+              <p class="folio">Photographs, 2026</p>
+            </article>
+
+            <article class="book-page title-page" aria-label="Title page">
+              <p class="kicker">Volume one</p>
+              <h2>Light moving<br />through ordinary rooms.</h2>
+              <p class="page-number">01</p>
+            </article>
+
+            <article class="book-page photo-layout photo-layout--full" aria-label="Photo page two">
+              <!-- Replace the placeholder below with: <img src="assets/photos/your-file.jpg" alt="..."> -->
+              <div class="photo-placeholder photo-placeholder--one" role="img" aria-label="Photo placeholder"></div>
+              <p class="page-number page-number--light">02</p>
+            </article>
+
+            <article class="book-page photo-layout photo-layout--framed" aria-label="Photo page three">
+              <div class="photo-placeholder photo-placeholder--two" role="img" aria-label="Photo placeholder"></div>
+              <p class="caption">The afternoon held its breath.</p>
+              <p class="page-number">03</p>
+            </article>
+
+            <article class="book-page photo-layout photo-layout--split" aria-label="Photo page four">
+              <div class="photo-placeholder photo-placeholder--three" role="img" aria-label="Photo placeholder"></div>
+              <div class="photo-placeholder photo-placeholder--four" role="img" aria-label="Photo placeholder"></div>
+              <p class="page-number">04</p>
+            </article>
+
+            <article class="book-page closing-page" aria-label="Closing page">
+              <p>Some light stays<br />after the room is gone.</p>
+              <p class="page-number">05</p>
+            </article>
+
+            <article class="book-page inside-cover" aria-label="Inside back cover"></article>
+
+            <article class="book-page back-cover" data-density="hard" aria-label="Back cover"></article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="controls" aria-label="Book controls">
+        <button id="previous" type="button" aria-label="Previous page">&larr;</button>
+        <div class="status" aria-live="polite">
+          <span id="page-status">Cover</span>
+          <small>Drag, swipe, click a corner, or use arrow keys</small>
+        </div>
+        <button id="next" type="button" aria-label="Next page">&rarr;</button>
+      </footer>
+    </main>
+
+    <script src="vendor/page-flip.browser.js"></script>
+    <script src="flipbook.js"></script>
+  </body>
+</html>

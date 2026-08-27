@@ -1,87 +1,119 @@
 ---
 name: create-photo-flipbook-ui
-description: Turn supplied photographs, image folders, contact sheets, finished page images, or visual references into a responsive 3D page-turning photo-book website. Use for photo flipbooks, albums, lookbooks, portfolios, editorial photo books, and recreating photographed book layouts. Supports faithful-photo output, optional art-directed spreads, bundled React page-flip integration, and build-only validation.
+description: Curate and sequence supplied photographs, finished pages, contact sheets, or existing book HTML into a responsive 3D page-turning photobook website using raw HTML, CSS, and vanilla JavaScript. Use for photo flipbooks, albums, zines, lookbooks, portfolios, sequencing raw photos, wrapping designed pages, or orchestrating a visual photo skill into a book. This style-neutral engine owns book editing and presentation while routing visual transformation to a curated list of separate photo skills.
 ---
 
 # Create Photo Flipbook UI
 
-Build the smallest complete photo-book app that satisfies the request. Reuse the bundled implementation and preserve supplied photographs.
+Own the book, not the visual style. Curate, sequence, pace, pair, and present the work; route image transformation to a separate photo skill. Reuse the bundled runtime and do not force finished artwork through redesign.
 
-## Workflow
+## Intent gate
 
-1. Check every supplied image and inventory its filename, pixel dimensions, aspect ratio, orientation, and order before choosing the book size.
-2. View one or two representative photos locally to determine the overall palette, mood, and suitable subtle page texture. Inspect more only when composition or cropping is uncertain.
-3. Use faithful mode unless the user explicitly requests collage, zine, scrapbook, restoration, or newly generated artwork.
-4. Copy the bundled React files into the app and adapt only the page manifest, image paths, text, and CSS theme tokens.
-5. Run the bundled contract test, the application's existing tests, and the production build.
-6. Report the build result and start command. Publish only when requested.
+Use the finished-page fast path only when the user explicitly asks to assemble the supplied images as-is, preserve their order, perform no editing, or simply wrap them in a book UI. If the request is ambiguous, default to the editing path.
 
-## Dependency policy
+## Choose the path
 
-Dependency provisioning belongs to the project or evaluation harness, not this skill.
+### Finished-page fast path
 
-- Reuse the existing package manager, lockfile, and installed dependencies.
-- If dependencies are missing, run exactly one install: use the lockfile when present (for example, `npm ci --no-audit --no-fund`), otherwise use the existing package manager once to create it.
-- Do not inspect, copy, clean, or repair global npm/pnpm caches.
-- Do not switch package managers, change versions to match a cache, edit a lockfile manually, install packages one at a time, or run retry loops.
-- If the single install fails because of network, cache, permission, or platform restrictions, stop dependency work and report the blocker. Do not claim that the build passed.
+Trigger this path only from an explicit no-edit or assemble-as-is request. It applies to raw photographs and designed pages alike.
 
-The evaluation harness should provide a dependency-ready workspace when it requires a successful offline build.
+- Preserve every supplied image and its artwork exactly.
+- Make each image one complete HTML leaf; do not crop, caption, or redesign it.
+- Derive the book ratio from the finished pages. Normalize the longer UI edge to at most `640`; never use raw pixel dimensions as UI dimensions.
+- Use the exact common ratio when dimensions match. Otherwise use the dominant ratio with `contain`.
+- Preserve a supplied front cover. Otherwise make a restrained cover whose surface color matches the empty back cover.
+- Copy the runtime, insert the pages, set ratio and colors, validate, and stop.
 
-## Faithful mode
+### Default editing path
 
-- Keep supplied images unchanged and in deterministic filename order.
-- Treat the first image as the front cover unless the user says otherwise.
-- Use original files rather than screenshots.
-- Record each image's `width` and `height` in the page manifest.
-- Choose the book aspect ratio from the complete image set. Select the source aspect ratio that maximizes total contained-image area across all pages; do not fall back merely because dimensions differ by a few pixels.
-- If every image has the same pixel dimensions, use that aspect ratio and render images edge to edge with `fill`.
-- If dimensions vary, use the selected representative aspect ratio, center images with `contain`, and keep the template's generous four-sided padding. Use the default 500×680 ratio only when no usable dimensions are available.
-- Preserve the source aspect ratio when sizing the book; normalize only its on-screen scale. Avoid cropping unless requested.
-- Override `fit` or `padding` on individual pages only when their composition needs it.
-- Derive the page surface from the representative photos. Set restrained theme colors and a subtle CSS paper, fiber, grain, or print texture using the bundled surface tokens.
-- Use one color and texture consistently for every interior page. Only the front and back covers may use different surface colors; do not create per-page themes.
-- Keep the automatically generated back cover photo-free and text-free. Use one solid theme color with no texture or image.
-- Keep content in the typed page manifest so images, captions, and text remain extensible.
+Use this path whenever the user has not explicitly declined editing. For more than three images, generate and actually view a contact sheet before making editorial decisions; creating the file is not inspection.
 
-Copy all files from `assets/react/`. Do not rewrite the interaction engine, remove its contract test, or change these renderer invariants:
+For standalone photographs, edit selection, sequence, pairings, pacing, and spread roles. For already-designed pages, treat each page image as an indivisible artwork: edit selection, sequence, pacing, blank leaves, and covers, but do not alter its internal composition unless requested.
 
-- Keep only the first and last leaves `hard`; keep interior leaves `soft`.
-- Keep the final leaf as the automatically generated solid-color back cover; never assign it a photograph.
-- Keep `.photo-leaf.stf__item { position: absolute; }`; never add `position: relative` to `.photo-leaf`.
-- Apply visual transforms to `.photo-book-rig`, not `.photo-book`.
-- Lock controls while the renderer state is not `read`.
-- Constrain the rig by both viewport width and viewport height.
+Follow this order:
 
-Run the copied `flipbook-contract.test.mjs` unchanged. Fix the implementation when it fails.
+1. Generate and view a source contact sheet.
+2. Explore the collection before editing it. Identify its strongest subjects, recurring motifs, visual range, emotional register, technical limits, and possible forms. Open originals only to resolve focus, expression, crop, or near-duplicates.
+3. Read [photo-skill-catalog.md](references/photo-skill-catalog.md). Use the user's named compatible photo skills when supplied; otherwise choose the smallest set of listed skills that fits the collection. One is usually sufficient, but choose more than one when their combination has a clear purpose and can form one coherent book. If none fits, keep the photographs visually unchanged rather than inventing a house style.
+4. Read every selected photo skill's `SKILL.md` and required resources. Separate each skill's non-negotiable invariants from adaptable variables. When combining skills, define a shared visual system and a distinct book-level role for each skill before editing.
+5. Read [book-editing.md](references/book-editing.md) as baseline knowledge, not a fixed recipe. Let the selected photo skills, the photographs, and the intended book experience determine the actual edit. Curate only photographs that are both strong and suitable for that direction, then design the complete sequence and its changing rhythm before generating artwork. Do not preserve every image or filename order automatically.
+6. Generate the outside-cover spread first: the left half is the back cover and the right half is the front cover. Then generate every interior double-page spread in reading order. Keep one spread ratio and consistent dimensions, protect the intended gutter, and treat each accepted spread as indivisible artwork.
+7. Split the accepted outside-cover spread so its right half becomes the first front-cover leaf and its left half becomes the final back-cover leaf. Split each accepted interior spread only at its intended gutter. Assemble the leaves in the bundled runtime without rebuilding their internal design in HTML.
+8. Build a contact sheet from the accepted full spreads in reading order. Inspect it using every relevant selected photo skill's quality gate and the book-level rhythm critique in [book-editing.md](references/book-editing.md). Regenerate only clear visual failures, revise only clear sequencing failures, then produce final HTML and PDF when requested.
 
-## Art-directed mode
+### Mixed or existing-book inputs
 
-Read [references/prompt-recipes.md](references/prompt-recipes.md) only when generating artwork.
+On the default editing path, preserve the internal artwork of polished pages while editing unresolved photographs and the book-level sequence. Modify supplied HTML in place when practical. Preserve filenames, captions, and existing controls unless requested otherwise; preserve ordering only on the fast path or when explicitly requested.
 
-- Generate one portrait cover and complete landscape spreads.
-- Generate independent spreads concurrently when safe.
-- Split spreads only with `scripts/split_spreads.sh`.
-- Verify the resulting page order and crops from the generated contact sheet.
+## Visual skill routing
 
-## Validation boundary
+- Keep this skill free of visual styles, artist references, palettes, texture systems, typography systems, and generation prompts.
+- Choose one or more visual photo skills according to the collection. Prefer the smallest sufficient set; combine skills only when their visual languages are compatible and their different roles strengthen the sequence.
+- Treat [photo-skill-catalog.md](references/photo-skill-catalog.md) as the default allowlist. A user may explicitly name another available photo skill; use it when its output can become a page or spread without violating the runtime contract.
+- If a selected skill is unavailable, state that briefly and use the closest available catalog entry only when the substitution preserves the requested direction.
+- Do not copy another skill's instructions into this skill. Extend the catalog with a routing entry instead.
 
-Validation is build-only:
+## Style fidelity vs book coherence
 
-- Check page order and source-file preservation programmatically.
-- Run the contract test and existing application tests once.
-- Run the production build once; after a code fix, rerun only the failed check and the final build.
-- Do not load a browser skill, start dev or preview servers, use curl as UI validation, capture screenshots, or perform manual browser inspection.
-- Do not add source-string tests merely to assert that props or CSS text exist beyond the bundled renderer contract test.
+Treat each selected photo skill as a visual grammar, not a rigid spread template.
 
-A passing build does not certify runtime animation. State that limitation briefly instead of attempting browser QA.
+- Preserve its signature invariants: source-photo treatment, material or process character, palette logic, typography behavior, collage or illustration language, and quality gate.
+- Let the selected grammar shape editorial decisions too. A sparse style may demand a shorter edit and longer pauses; a layered or multi-photo style may support denser pairings and faster passages. Decide from the selected skill set rather than applying one universal sequencing formula.
+- Vary book-level composition when the sequence needs it: image count and scale, density, negative space, contrast, crop or bleed, accent intensity, text presence, visual weight, and quiet versus peak spreads.
+- Adapt a page- or poster-oriented skill to the book's spread ratio while keeping its recognizable grammar. Do not repeat one recipe across the whole book.
+- Maintain continuity through a limited recurring palette, type system, material language, and motifs. Create rhythm through deliberate changes in space, scale, contrast, density, and emotional temperature.
+- Prefer a coherent book over isolated showpiece spreads. When combining skills, unify them through shared palette, typography, materials, image treatment, or recurring motifs; assign each skill a consistent purpose rather than switching styles arbitrarily.
 
-## UI requirements
+## Runtime
 
-- Desktop spread and mobile single-page layouts.
-- Mouse, touch, buttons, and keyboard page turns.
-- Page shading, book shadow, paper texture, and reduced-motion support.
-- Accessible page labels, controls, and live page status.
-- No heavy toolbar or fake browser chrome.
+Copy `assets/html/` into the output root when a runtime is needed. Keep raw `.book-page` elements inside `#book`; do not introduce React, TypeScript, JSX, Vite, or a required page manifest.
 
-When `.openai/hosting.json` exists, follow the Sites skills after the production build, but only if publishing is in scope.
+Place `index.html` directly in the requested output root. Do not create a nested `site/` directory unless requested. Put unchanged photographs under `assets/photos/`, accepted full-spread artwork under `assets/spreads/`, and split runtime leaves under `assets/pages/`.
+
+Make each transformed `.book-page` contain only its accepted artwork image. Do not reconstruct, decorate, caption, or repair another photo skill's artwork with HTML or CSS.
+
+Do not read or rewrite the vendored page-turn library. On the fast path, copy the runtime and edit only `index.html`, page-size settings, and necessary theme tokens.
+
+Keep these invariants:
+
+- Only the first and last leaves use `data-density="hard"`; interior leaves remain soft.
+- Add a blank interior leaf when correct spread pairing requires it.
+- On the editing path, keep the generated back cover as the final hard leaf. On the fast path, preserve a supplied back cover; only use an empty final leaf when no back cover exists, matching its surface color to the front cover.
+- Lock controls while renderer state is not `read`.
+- Preserve mouse, touch, buttons, keyboard, desktop-spread, and mobile single-page behavior.
+- Constrain the book by viewport width and height.
+- Do not add a visible center gap or book-level overlay. Use page-bound pseudo-elements above page content for spine shadows so photographs cannot cover them and the shadows move with turns.
+
+## Contact sheets
+
+Pass filenames in the exact display order; the script does not discover or sort files. Use it first for source photos and again for accepted full spreads. Stable IDs come from the supplied labels.
+
+```bash
+python3 scripts/make_contact_sheet.py --output contact-sheet.jpg image-03.jpg image-01.jpg image-08.jpg
+python3 scripts/make_contact_sheet.py --output spread-contact-sheet.jpg spread-00-cover.png spread-01.png spread-02.png
+```
+
+Review the final contact sheet using every relevant selected photo skill's quality gate and the book-editing critique.
+
+## Efficiency
+
+- Do not inspect or rewrite the vendored runtime.
+- Copy the template once and make one focused editing pass.
+- Do not install packages or retry unavailable image tools; the bundled contact-sheet script is sufficient for collection inspection.
+- Run the bundled contract test once after editing. Add a small targeted check only for requirements the contract does not cover; avoid large ad hoc validation scripts.
+
+## Validation
+
+- Verify referenced assets exist and copied sources remain unchanged.
+- Run `node --test html-contract.test.mjs` after copying the runtime.
+- Check page count, order, cover density, source references, selected ratio, and matching cover colors programmatically.
+- On the editing path, verify the finished artwork order and inspect its page contact sheet.
+- Do not use browser interaction to test animation. Do not claim animation was tested.
+- Do not claim PDF delivery unless a PDF file was actually generated and validated.
+- Report checks that passed and provide the start command.
+
+From the directory containing `index.html`, serve the book with:
+
+```bash
+python3 -m http.server 4173
+```

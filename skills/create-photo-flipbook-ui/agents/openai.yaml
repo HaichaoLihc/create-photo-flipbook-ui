@@ -1,4 +1,4 @@
 interface:
   display_name: "Photo Flipbook UI"
-  short_description: "Turn photos into a polished 3D flipbook UI"
-  default_prompt: "Use $create-photo-flipbook-ui to turn my photos into a fast, polished 3D page-turning book."
+  short_description: "Sequence visual photo skills into 3D books"
+  default_prompt: "Use $create-photo-flipbook-ui to curate my photos, choose a compatible visual skill, and assemble the results into a page-turning book."
