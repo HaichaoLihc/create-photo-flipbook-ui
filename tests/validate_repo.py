@@ -37,6 +37,31 @@ def main() -> None:
         "Trigger this path only from an explicit no-edit or assemble-as-is request." in text,
         "Fast path must require explicit no-edit intent",
     )
+    for snippet in (
+        "Explore the collection before editing it.",
+        "Style fidelity vs book coherence",
+        "as baseline knowledge, not a fixed recipe",
+        "choose more than one when their combination has a clear purpose",
+        "the left half is the back cover and the right half is the front cover",
+        "keep the generated back cover as the final hard leaf",
+        "Build a contact sheet from the accepted full spreads in reading order.",
+    ):
+        require(snippet in text, f"Missing spread-first workflow contract: {snippet}")
+    workflow_order = [
+        text.index("Explore the collection before editing it."),
+        text.index("Read [photo-skill-catalog.md]"),
+        text.index("Curate only photographs"),
+        text.index("Generate the outside-cover spread first"),
+    ]
+    require(
+        workflow_order == sorted(workflow_order),
+        "Editing workflow must explore, route, curate/sequence, then generate",
+    )
+    styles_dir = SKILL / "references" / "styles"
+    require(
+        not styles_dir.exists() or not any(styles_dir.iterdir()),
+        "Flipbook engine must not bundle visual styles",
+    )
 
     required = [
         SKILL / "agents" / "openai.yaml",
@@ -46,8 +71,8 @@ def main() -> None:
         SKILL / "assets" / "html" / "html-contract.test.mjs",
         SKILL / "assets" / "html" / "vendor" / "page-flip.browser.js",
         SKILL / "scripts" / "make_contact_sheet.py",
-        SKILL / "references" / "styles" / "poetic-documentary.md",
-        SKILL / "references" / "styles" / "travel-zine.md",
+        SKILL / "references" / "book-editing.md",
+        SKILL / "references" / "photo-skill-catalog.md",
         ROOT / "examples" / "vanilla-html-book" / "index.html",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
@@ -56,6 +81,26 @@ def main() -> None:
     ]
     for path in required:
         require(path.is_file(), f"Missing required repository file: {path.relative_to(ROOT)}")
+
+    catalog = (SKILL / "references" / "photo-skill-catalog.md").read_text(
+        encoding="utf-8"
+    )
+    catalog_skills = (
+        "$compose-photo-memory-archive",
+        "$gc-minimal-zine-poster-v0-3",
+        "$photo-abstract-editorial",
+        "$scene-distillation-zine-v1-3",
+        "$scenes-gathered-zine-v1-3",
+        "$surreal-pop-collage",
+    )
+    for skill_name in catalog_skills:
+        require(skill_name in catalog, f"Missing curated photo skill: {skill_name}")
+    catalog_lines = [line for line in catalog.splitlines() if line.strip()]
+    require(
+        catalog_lines[0] == "# Curated Photo Skills"
+        and all(line.startswith("- `$",) and line.endswith("`") for line in catalog_lines[1:]),
+        "Photo skill catalog must contain only a heading and skill-name list",
+    )
 
     subprocess.run(
         ["node", "--test", str(SKILL / "assets" / "html" / "html-contract.test.mjs")],

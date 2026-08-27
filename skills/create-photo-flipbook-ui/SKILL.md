@@ -1,11 +1,11 @@
 ---
 name: create-photo-flipbook-ui
-description: Turn supplied raw photographs, finished page images, contact sheets, existing book HTML, or visual references into a responsive 3D page-turning photobook website using raw HTML, CSS, and vanilla JavaScript. Use for photo flipbooks, albums, travel zines, lookbooks, portfolios, fine-art photo books, sequencing raw photos, or wrapping already-designed pages in a book UI. Includes self-contained poetic-documentary and ImageGen-authored tactile travel-zine styles, ordered contact-sheet generation, and a dependency-free HTML page-turn template.
+description: Curate and sequence supplied photographs, finished pages, contact sheets, or existing book HTML into a responsive 3D page-turning photobook website using raw HTML, CSS, and vanilla JavaScript. Use for photo flipbooks, albums, zines, lookbooks, portfolios, sequencing raw photos, wrapping designed pages, or orchestrating a visual photo skill into a book. This style-neutral engine owns book editing and presentation while routing visual transformation to a curated list of separate photo skills.
 ---
 
 # Create Photo Flipbook UI
 
-Choose the path from the user's requested level of editing. Reuse the bundled runtime; do not force already-finished page artwork through an internal redesign.
+Own the book, not the visual style. Curate, sequence, pace, pair, and present the work; route image transformation to a separate photo skill. Reuse the bundled runtime and do not force finished artwork through redesign.
 
 ## Intent gate
 
@@ -28,39 +28,49 @@ Trigger this path only from an explicit no-edit or assemble-as-is request. It ap
 
 Use this path whenever the user has not explicitly declined editing. For more than three images, generate and actually view a contact sheet before making editorial decisions; creating the file is not inspection.
 
-For standalone photographs, edit selection, sequence, pairings, pacing, and layout. For already-designed pages, treat each page image as an indivisible artwork: edit selection, sequence, pacing, blank leaves, and covers, but do not alter its internal composition unless requested.
+For standalone photographs, edit selection, sequence, pairings, pacing, and spread roles. For already-designed pages, treat each page image as an indivisible artwork: edit selection, sequence, pacing, blank leaves, and covers, but do not alter its internal composition unless requested.
 
 Follow this order:
 
-1. Generate and view a source contact sheet
-2. Inspect the collection; open originals only to resolve focus, expression, crop, or near-duplicates. Do not preserve every image or filename order automatically.
-3. Choose one style from **Styles**, read that style file, and use its editing, sequencing, pacing, composition, typography, material, cover, and critique rules. Do not blend styles unless requested or apply a separate generic editorial doctrine.
-4. Build spreads directly from the selected sequence using the production method required by the style.
-5. When a non-interactive static renderer is available, render spread previews, assemble them in reading order with the contact-sheet script, and inspect the whole book using the style's critique rules. If no renderer exists, state that visual spread QA was not performed; do not pretend that generating HTML is the same as inspecting it.
-6. Revise only when the spread overview reveals a clear improvement, then produce final HTML and PDF when requested.
+1. Generate and view a source contact sheet.
+2. Explore the collection before editing it. Identify its strongest subjects, recurring motifs, visual range, emotional register, technical limits, and possible forms. Open originals only to resolve focus, expression, crop, or near-duplicates.
+3. Read [photo-skill-catalog.md](references/photo-skill-catalog.md). Use the user's named compatible photo skills when supplied; otherwise choose the smallest set of listed skills that fits the collection. One is usually sufficient, but choose more than one when their combination has a clear purpose and can form one coherent book. If none fits, keep the photographs visually unchanged rather than inventing a house style.
+4. Read every selected photo skill's `SKILL.md` and required resources. Separate each skill's non-negotiable invariants from adaptable variables. When combining skills, define a shared visual system and a distinct book-level role for each skill before editing.
+5. Read [book-editing.md](references/book-editing.md) as baseline knowledge, not a fixed recipe. Let the selected photo skills, the photographs, and the intended book experience determine the actual edit. Curate only photographs that are both strong and suitable for that direction, then design the complete sequence and its changing rhythm before generating artwork. Do not preserve every image or filename order automatically.
+6. Generate the outside-cover spread first: the left half is the back cover and the right half is the front cover. Then generate every interior double-page spread in reading order. Keep one spread ratio and consistent dimensions, protect the intended gutter, and treat each accepted spread as indivisible artwork.
+7. Split the accepted outside-cover spread so its right half becomes the first front-cover leaf and its left half becomes the final back-cover leaf. Split each accepted interior spread only at its intended gutter. Assemble the leaves in the bundled runtime without rebuilding their internal design in HTML.
+8. Build a contact sheet from the accepted full spreads in reading order. Inspect it using every relevant selected photo skill's quality gate and the book-level rhythm critique in [book-editing.md](references/book-editing.md). Regenerate only clear visual failures, revise only clear sequencing failures, then produce final HTML and PDF when requested.
 
 ### Mixed or existing-book inputs
 
 On the default editing path, preserve the internal artwork of polished pages while editing unresolved photographs and the book-level sequence. Modify supplied HTML in place when practical. Preserve filenames, captions, and existing controls unless requested otherwise; preserve ordering only on the fast path or when explicitly requested.
 
-## Styles
+## Visual skill routing
 
-- Use [poetic-documentary.md](references/styles/poetic-documentary.md) for artistic fine-art books shaped by associative sequence, documentary observation, lyrical detail, and restrained design.
-- Use [travel-zine.md](references/styles/travel-zine.md) for informal, place-driven travel stories that benefit from ImageGen-authored tactile paper, selective scrapbook-like assembly, maps or notes, expressive type, and lively scale changes.
+- Keep this skill free of visual styles, artist references, palettes, texture systems, typography systems, and generation prompts.
+- Choose one or more visual photo skills according to the collection. Prefer the smallest sufficient set; combine skills only when their visual languages are compatible and their different roles strengthen the sequence.
+- Treat [photo-skill-catalog.md](references/photo-skill-catalog.md) as the default allowlist. A user may explicitly name another available photo skill; use it when its output can become a page or spread without violating the runtime contract.
+- If a selected skill is unavailable, state that briefly and use the closest available catalog entry only when the substitution preserves the requested direction.
+- Do not copy another skill's instructions into this skill. Extend the catalog with a routing entry instead.
 
-Choose from the user's stated direction first, then the collection's subject and visual character. If both styles could fit and the user did not choose, select the stronger interpretation and state it briefly. Never use every or most photographs merely to increase page count; follow the selected style's curation rules and copy only selected source files into the output.
+## Style fidelity vs book coherence
 
-Keep every future style self-contained. Each style file must own its selection, sequencing, pairing, pacing, spread composition, typography, cover, and critique rules. Do not add shared editorial references or assume every style should edit photographs the same way.
+Treat each selected photo skill as a visual grammar, not a rigid spread template.
 
-Add another concise style file only when requested. Create a separate skill only when a style requires fundamentally different tools or source transformation.
+- Preserve its signature invariants: source-photo treatment, material or process character, palette logic, typography behavior, collage or illustration language, and quality gate.
+- Let the selected grammar shape editorial decisions too. A sparse style may demand a shorter edit and longer pauses; a layered or multi-photo style may support denser pairings and faster passages. Decide from the selected skill set rather than applying one universal sequencing formula.
+- Vary book-level composition when the sequence needs it: image count and scale, density, negative space, contrast, crop or bleed, accent intensity, text presence, visual weight, and quiet versus peak spreads.
+- Adapt a page- or poster-oriented skill to the book's spread ratio while keeping its recognizable grammar. Do not repeat one recipe across the whole book.
+- Maintain continuity through a limited recurring palette, type system, material language, and motifs. Create rhythm through deliberate changes in space, scale, contrast, density, and emotional temperature.
+- Prefer a coherent book over isolated showpiece spreads. When combining skills, unify them through shared palette, typography, materials, image treatment, or recurring motifs; assign each skill a consistent purpose rather than switching styles arbitrarily.
 
 ## Runtime
 
 Copy `assets/html/` into the output root when a runtime is needed. Keep raw `.book-page` elements inside `#book`; do not introduce React, TypeScript, JSX, Vite, or a required page manifest.
 
-Place `index.html` directly in the requested output root. Do not create a nested `site/` directory unless requested. Put photographs under `assets/photos/` and reference them directly.
+Place `index.html` directly in the requested output root. Do not create a nested `site/` directory unless requested. Put unchanged photographs under `assets/photos/`, accepted full-spread artwork under `assets/spreads/`, and split runtime leaves under `assets/pages/`.
 
-When a style requires generated page artwork, put the flattened leaves under `assets/pages/`. Make each `.book-page` contain only one full-page image; do not reconstruct or embellish that artwork with HTML or CSS.
+Make each transformed `.book-page` contain only its accepted artwork image. Do not reconstruct, decorate, caption, or repair another photo skill's artwork with HTML or CSS.
 
 Do not read or rewrite the vendored page-turn library. On the fast path, copy the runtime and edit only `index.html`, page-size settings, and necessary theme tokens.
 
@@ -68,7 +78,7 @@ Keep these invariants:
 
 - Only the first and last leaves use `data-density="hard"`; interior leaves remain soft.
 - Add a blank interior leaf when correct spread pairing requires it.
-- Keep the final leaf empty and use the same surface color as the front cover.
+- On the editing path, keep the generated back cover as the final hard leaf. On the fast path, preserve a supplied back cover; only use an empty final leaf when no back cover exists, matching its surface color to the front cover.
 - Lock controls while renderer state is not `read`.
 - Preserve mouse, touch, buttons, keyboard, desktop-spread, and mobile single-page behavior.
 - Constrain the book by viewport width and height.
@@ -76,14 +86,14 @@ Keep these invariants:
 
 ## Contact sheets
 
-Pass filenames in the exact display order; the script does not discover or sort files. Use it first for source photos and again for rendered spreads. Stable IDs come from the supplied labels.
+Pass filenames in the exact display order; the script does not discover or sort files. Use it first for source photos and again for accepted full spreads. Stable IDs come from the supplied labels.
 
 ```bash
 python3 scripts/make_contact_sheet.py --output contact-sheet.jpg image-03.jpg image-01.jpg image-08.jpg
-python3 scripts/make_contact_sheet.py --output spread-contact-sheet.jpg spread-01.png spread-02.png spread-03.png
+python3 scripts/make_contact_sheet.py --output spread-contact-sheet.jpg spread-00-cover.png spread-01.png spread-02.png
 ```
 
-Review the spread contact sheet using the selected style file's critique rules.
+Review the final contact sheet using every relevant selected photo skill's quality gate and the book-editing critique.
 
 ## Efficiency
 
@@ -97,7 +107,7 @@ Review the spread contact sheet using the selected style file's critique rules.
 - Verify referenced assets exist and copied sources remain unchanged.
 - Run `node --test html-contract.test.mjs` after copying the runtime.
 - Check page count, order, cover density, source references, selected ratio, and matching cover colors programmatically.
-- On the editing path, verify the rendered order and inspect the static spread contact sheet when a renderer is available.
+- On the editing path, verify the finished artwork order and inspect its page contact sheet.
 - Do not use browser interaction to test animation. Do not claim animation was tested.
 - Do not claim PDF delivery unless a PDF file was actually generated and validated.
 - Report checks that passed and provide the start command.
