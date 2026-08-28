@@ -1,0 +1,27 @@
+{
+  "name": "photo-book-library-experiment-v2",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "test": "node --test src/flipbook-contract.test.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
+    "@vitejs/plugin-react": "latest",
+    "maath": "^0.10.8",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "^0.185.1",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/three": "^0.183.1",
+    "typescript": "latest"
+  }
+}

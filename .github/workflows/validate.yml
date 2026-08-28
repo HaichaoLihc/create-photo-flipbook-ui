@@ -19,9 +19,19 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: examples/hawaii-book/package-lock.json
+          cache-dependency-path: |
+            examples/v2/package-lock.json
+            examples/v3-book/package-lock.json
       - run: python tests/validate_repo.py
       - run: npm ci
-        working-directory: examples/hawaii-book
+        working-directory: examples/v2
       - run: npm test
-        working-directory: examples/hawaii-book
+        working-directory: examples/v2
+      - run: npm run build
+        working-directory: examples/v2
+      - run: npm ci
+        working-directory: examples/v3-book
+      - run: npm test
+        working-directory: examples/v3-book
+      - run: npm run build
+        working-directory: examples/v3-book
