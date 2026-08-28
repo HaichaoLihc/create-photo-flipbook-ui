@@ -5,7 +5,10 @@
   background: #fff;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  cursor: default;
+}
 
 html,
 body {
@@ -31,7 +34,6 @@ button { font: inherit; }
   inset: 0;
   width: 100%;
   height: 100%;
-  cursor: e-resize;
   touch-action: none;
 }
 
@@ -45,6 +47,7 @@ button { font: inherit; }
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+  pointer-events: none !important;
 }
 
 .library,
@@ -72,7 +75,6 @@ button { font: inherit; }
   border: 1px solid rgba(0, 0, 0, .12);
   border-radius: 50%;
   background: rgba(255, 255, 255, .84);
-  cursor: pointer;
   transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
 }
 
@@ -109,7 +111,7 @@ button { font: inherit; }
   font: 24px/1 Georgia, serif;
 }
 
-.page-button:disabled { opacity: .16; cursor: default; }
+.page-button:disabled { opacity: .16; }
 
 .loading-card {
   top: 50%;

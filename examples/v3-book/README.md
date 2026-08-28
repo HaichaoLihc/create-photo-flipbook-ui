@@ -5,8 +5,9 @@ in `public`. The page mesh and deformation engine
 comes from [`quick_flipbook`](https://github.com/bandinopla/quick_flipbook).
 
 The reader uses a straight-on orthographic camera, dynamically fits the complete
-open spread, and supplies flat, mipmapped page materials without the engine's
-decorative AO surface treatment.
+open spread, and supplies clean, mipmapped paper materials with soft dynamic
+shadows and bend-aware lighting, without the engine's decorative AO surface
+treatment.
 
 ```bash
 npm install
@@ -15,8 +16,9 @@ npm run dev
 
 ## Interaction
 
-- Choose one of four editions from the library rail.
-- Click the left or right side of the stage, swipe, or use the arrow keys.
+- Choose one of five editions from the library rail.
+- Hover a page edge for a subtle lift, drag to scrub its turn, or click, swipe,
+  and use the arrow keys.
 - Home and End jump to the front and back covers.
 
 ## Verification
