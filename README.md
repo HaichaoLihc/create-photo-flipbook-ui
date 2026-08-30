@@ -2,6 +2,8 @@
 
 A style-neutral Codex skill that turns raw photo collections or finished pages into curated, page-turning photo books using raw HTML, CSS, and vanilla JavaScript.
 
+**[▶ Live Demo](https://haichaolihc.github.io/create-photo-flipbook-ui/)** — Interactive 3D photo flipbook
+
 The skill inspects the collection, chooses compatible visual photo skills, curates the strongest images, designs the sequence and rhythm, generates complete spreads, and assembles the accepted artwork into a responsive 3D flipbook.
 
 ![Death Valley photo book open to a generated spread](docs/images/death-valley-flipbook.jpg)

@@ -151,7 +151,8 @@ function pageMaterial(bookId, source) {
   const cache = cacheForBook(bookId);
   if (cache.has(source)) return cache.get(source);
 
-  const request = textureLoader.loadAsync(source).then((texture) => {
+  const assetUrl = `${import.meta.env.BASE_URL}${source.replace(/^\/+/, "")}`;
+  const request = textureLoader.loadAsync(assetUrl).then((texture) => {
     resizeTextureImage(texture);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = Math.min(

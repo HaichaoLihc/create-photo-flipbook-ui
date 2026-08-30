@@ -71,6 +71,8 @@ test("v3 exposes only the Death Valley and Rinko editions", () => {
   const bookIds = [...books.matchAll(/id: "([^"]+)"/g)].map(([, id]) => id);
   assert.deepEqual(bookIds, ["death-valley", "rinko"]);
   assert.match(config, /publicDir: "public"/);
+  assert.match(main, /const assetUrl = `\$\{import\.meta\.env\.BASE_URL\}/);
+  assert.match(main, /textureLoader\.loadAsync\(assetUrl\)/);
 });
 
 test("v3 keeps the interface silent and the stage white", () => {
