@@ -67,9 +67,11 @@ test("the loading live region is removed from the accessibility tree when idle",
   assert.match(main, /loadingCopy\.textContent = value \? copy : ""/);
 });
 
-test("v3 exposes five editions and owns its public asset library", () => {
+test("v3 owns its public asset library and respects the deployment base path", () => {
   assert.equal((books.match(/id: "/g) || []).length, 5);
   assert.match(config, /publicDir: "public"/);
+  assert.match(main, /const assetUrl = `\$\{import\.meta\.env\.BASE_URL\}/);
+  assert.match(main, /textureLoader\.loadAsync\(assetUrl\)/);
 });
 
 test("v3 keeps the interface silent and the stage white", () => {
