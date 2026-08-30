@@ -16,7 +16,7 @@ npm run dev
 
 ## Interaction
 
-- Choose one of five editions from the library rail.
+- Choose Death Valley (D) or Rinko (E) from the library rail.
 - Hover a page edge for a subtle lift, drag to scrub its turn, or click, swipe,
   and use the arrow keys.
 - Home and End jump to the front and back covers.
