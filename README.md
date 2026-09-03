@@ -99,3 +99,14 @@ python3 evals/run_eval.py hawaii-v1
 ```
 
 See `evals/README.md` for the isolation and grading workflow.
+
+## License
+
+Original code and documentation authored by Haichao Li for this project,
+including the installable skill in `skills/create-photo-flipbook-ui/`, are
+available under the [MIT License](LICENSE).
+
+Third-party components remain subject to their own license terms and notices.
+The adapted experiment in `examples/v2/` and all photographs, videos, and
+other media assets are not covered by the project's MIT License unless an
+individual file or directory expressly says otherwise.

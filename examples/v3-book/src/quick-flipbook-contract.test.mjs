@@ -67,9 +67,9 @@ test("the loading live region is removed from the accessibility tree when idle",
   assert.match(main, /loadingCopy\.textContent = value \? copy : ""/);
 });
 
-test("v3 exposes only the Death Valley and Rinko editions", () => {
+test("v3 exposes only the Death Valley edition", () => {
   const bookIds = [...books.matchAll(/id: "([^"]+)"/g)].map(([, id]) => id);
-  assert.deepEqual(bookIds, ["death-valley", "rinko"]);
+  assert.deepEqual(bookIds, ["death-valley"]);
   assert.match(config, /publicDir: "public"/);
   assert.match(main, /const assetUrl = `\$\{import\.meta\.env\.BASE_URL\}/);
   assert.match(main, /textureLoader\.loadAsync\(assetUrl\)/);
