@@ -4,9 +4,8 @@ This folder is the preserved v2 implementation. The independent
 [`../v3-book/`](../v3-book/) example uses `quick_flipbook` with the same photo-book assets.
 
 A minimal spine-only library for photo books created with
-`create-photo-flipbook-ui`. It uses the latest `gathered-zine`,
-`landscape-photos`, `hawaii-v1`, and Death Valley eval outputs as four
-interactive books.
+`create-photo-flipbook-ui`. This preserved demo contains one interactive
+Death Valley volume.
 
 ```bash
 npm run dev
