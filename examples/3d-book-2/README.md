@@ -1,7 +1,7 @@
-# V3 Book — Quick FlipBook example
+# 3D Book 2
 
-An independent vanilla Three.js reader with its own copy of the Death Valley
-photo-book assets in `public`. The page mesh and deformation engine
+A reusable vanilla Three.js book template with a light stage and its own copy
+of the sample Death Valley assets in `public`. The page mesh and deformation engine
 comes from [`quick_flipbook`](https://github.com/bandinopla/quick_flipbook).
 
 The reader uses a straight-on orthographic camera, dynamically fits the complete
@@ -10,7 +10,7 @@ shadows and bend-aware lighting, without the engine's decorative AO surface
 treatment.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 

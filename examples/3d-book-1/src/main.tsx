@@ -537,7 +537,7 @@ function LibraryExperience() {
       </Canvas>
 
       <header className="library-header">
-        <span>{activeBook ? "Selected edition · v2" : "Photo book library · v2"}</span>
+        <span>{activeBook ? "Selected edition" : "Photo book library"}</span>
         <h1>{activeBook?.title ?? "Floating Editions"}</h1>
         {phase !== "library" ? (
           <button type="button" onClick={close}>Close <kbd>Esc</kbd></button>

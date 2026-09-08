@@ -25,20 +25,20 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: examples/v3-book/package-lock.json
+          cache-dependency-path: examples/3d-book-2/package-lock.json
       - name: Install dependencies
         run: npm ci
-        working-directory: examples/v3-book
+        working-directory: examples/3d-book-2
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Build demo
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
-        working-directory: examples/v3-book
+        working-directory: examples/3d-book-2
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: examples/v3-book/dist
+          path: examples/3d-book-2/dist
 
   deploy:
     environment:

@@ -1,64 +1,24 @@
 # Create Photo Flipbook UI
 
-A style-neutral Codex skill that turns raw photo collections or finished pages into curated, page-turning photo books using raw HTML, CSS, and vanilla JavaScript.
+A Codex skill for turning photographs into expressive photobooks using the bundled **2D Book** runtime (formerly v1) in [`assets/html/`](skills/create-photo-flipbook-ui/assets/html/).
 
-**[▶ Live Demo](https://haichaolihc.github.io/create-photo-flipbook-ui/)** — Interactive 3D photo flipbook
+[3D Book 2 demo](https://haichaolihc.github.io/create-photo-flipbook-ui/)
 
-The skill inspects the collection, chooses compatible visual photo skills, curates the strongest images, designs the sequence and rhythm, generates complete spreads, and assembles the accepted artwork into a responsive 3D flipbook.
+## Templates
 
-![Death Valley photo book open to a generated spread](docs/images/death-valley-flipbook.jpg)
+These templates live in `examples/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; Library and the 3D templates are separate alternatives.
 
-## How it works
+| [Library](examples/library/) | [2D Book](examples/2d-book/) |
+| --- | --- |
+| ![Library with three mock books](docs/images/library.png) | ![2D Book with a sample photo spread](docs/images/death-valley-flipbook.jpg) |
+| Reorderable shelf with three empty mock books. | Reference example of the skill’s bundled 2D runtime. |
 
-### 1. Inspect the raw photographs
+| [3D Book 1](examples/3d-book-1/) | [3D Book 2](examples/3d-book-2/) |
+| --- | --- |
+| ![3D Book 1 on a dark background](docs/images/3d-book-1.png) | ![3D Book 2 on a light background](docs/images/3d-book-2.png) |
+| React and WebGL reader with curved pages and a dark stage. | Three.js and Quick FlipBook reader with a light stage and soft shadows. |
 
-For larger collections, the agent first creates and actually views an ordered contact sheet. This makes subject repetition, technical problems, visual motifs, and changes in scale or atmosphere legible before any images are selected.
-
-![Contact sheet of 16 raw Death Valley photographs](docs/images/death-valley-raw-contact-sheet.jpg)
-
-### 2. Choose the visual direction and edit the book
-
-The flipbook engine does not own a house style. It chooses one or more compatible photo skills, reads their full instructions, and lets their visual behavior shape curation, pairing, pacing, and sequence.
-
-The agent then:
-
-- keeps quality above coverage;
-- selects photographs that fit the visual direction;
-- plans an opener, transitions, pauses, peaks, echoes, and ending when appropriate;
-- varies density, scale, contrast, negative space, and emotional temperature;
-- preserves one coherent material and visual language across the book.
-
-In this Death Valley example, the agent selected 11 of 16 photographs and used the Gathered Scenes visual grammar.
-
-### 3. Generate and review complete spreads
-
-The outside cover is generated first as one spread—back cover on the left, front cover on the right—followed by every interior spread in reading order. A second contact sheet lets the agent judge the complete book at once and regenerate only clear failures.
-
-![Contact sheet of seven generated Death Valley spreads](docs/images/death-valley-spread-contact-sheet.jpg)
-
-This edit produced seven full spreads: one outside cover and six interiors. Their compositions change from spread to spread while paper, color, typography, and photographic treatment remain coherent.
-
-### 4. Assemble the flipbook
-
-Accepted spreads are split only at their intended gutters. The front cover becomes the first hard leaf, the back cover becomes the final hard leaf, and the interior artwork becomes 12 soft leaves. The bundled runtime adds responsive sizing, page turns, touch, mouse, buttons, keyboard controls, and page-bound spine shadows without rebuilding the artwork in HTML.
-
-## Use it in Codex
-
-Attach a folder of photographs and ask:
-
-```text
-Use $create-photo-flipbook-ui to curate these photographs into a coherent photo book.
-Choose the visual direction, use only the strongest images, and build the final HTML flipbook.
-```
-
-If the inputs are already finished pages and should not be edited, say so explicitly:
-
-```text
-Use $create-photo-flipbook-ui to assemble these finished pages as-is.
-Do not edit, crop, reorder, or redesign them.
-```
-
-## Install from GitHub
+## Install
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
@@ -67,46 +27,24 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
   --ref main
 ```
 
-After a tagged release, replace `main` with a version such as `v0.2.0`.
+## Use
 
-## Repository layout
+```text
+Use $create-photo-flipbook-ui to turn these photographs into photobooks.
+```
 
-- `skills/create-photo-flipbook-ui/`: installable Codex skill and reusable HTML runtime
-- `examples/v1/`: dependency-free vanilla HTML reference implementation
-- `examples/v2/`: React Three Fiber library and reader experiment
-- `examples/v3-book/`: reviewed Three.js / Quick FlipBook demonstration
-- `docs/images/`: README workflow and result examples
-- `evals/cases/`: blinded forward-eval inputs
-- `evals/rubrics/`: grader-only scoring rubrics
-- `evals/run_eval.py`: isolated Codex eval runner
-- `tests/`: repository-level structural checks
+The skill selects photo skills, edits the book sequence, and creates complete covers and spreads. For finished pages, ask it to assemble them as-is, preserving their order.
 
-The installed skill excludes examples, evals, and repository documentation so Codex only loads the resources needed for the task. The example uses a null Sites project ID so it cannot accidentally target production deployment.
+See each template’s README for local preview instructions.
 
 ## Validate
 
 ```bash
 python3 tests/validate_repo.py
-node --test examples/v1/test.mjs
-node --test examples/v3-book/src/quick-flipbook-contract.test.mjs
 ```
 
-Preview or run a forward eval:
-
-```bash
-python3 evals/run_eval.py hawaii-v1 --dry-run
-python3 evals/run_eval.py hawaii-v1
-```
-
-See `evals/README.md` for the isolation and grading workflow.
+[Evaluation guide](evals/README.md).
 
 ## License
 
-Original code and documentation authored by Haichao Li for this project,
-including the installable skill in `skills/create-photo-flipbook-ui/`, are
-available under the [MIT License](LICENSE).
-
-Third-party components remain subject to their own license terms and notices.
-The adapted experiment in `examples/v2/` and all photographs, videos, and
-other media assets are not covered by the project's MIT License unless an
-individual file or directory expressly says otherwise.
+Original project code and the installable skill are [MIT licensed](LICENSE). Third-party components retain their own licenses. The adapted code in `examples/3d-book-1/` and all photographs, videos, and other media are excluded unless expressly stated otherwise.

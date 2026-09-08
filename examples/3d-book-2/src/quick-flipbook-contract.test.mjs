@@ -8,7 +8,7 @@ const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const styles = await readFile(new URL("./style.css", import.meta.url), "utf8");
 const config = await readFile(new URL("../vite.config.js", import.meta.url), "utf8");
 
-test("v3 uses the requested Quick FlipBook lifecycle", () => {
+test("3D Book 2 uses the requested Quick FlipBook lifecycle", () => {
   assert.match(main, /import \{ FlipBook \} from "quick_flipbook"/);
   assert.match(main, /new FlipBook\(/);
   assert.match(main, /flipBook\.setPages\(/);
@@ -67,7 +67,7 @@ test("the loading live region is removed from the accessibility tree when idle",
   assert.match(main, /loadingCopy\.textContent = value \? copy : ""/);
 });
 
-test("v3 exposes only the Death Valley edition", () => {
+test("3D Book 2 exposes only the Death Valley edition", () => {
   const bookIds = [...books.matchAll(/id: "([^"]+)"/g)].map(([, id]) => id);
   assert.deepEqual(bookIds, ["death-valley"]);
   assert.match(config, /publicDir: "public"/);
@@ -75,13 +75,13 @@ test("v3 exposes only the Death Valley edition", () => {
   assert.match(main, /textureLoader\.loadAsync\(assetUrl\)/);
 });
 
-test("v3 keeps the interface silent and the stage white", () => {
+test("3D Book 2 keeps the interface silent and the stage white", () => {
   assert.doesNotMatch(html, /QUICK FLIPBOOK STUDY|FOUR EDITIONS|CLICK EITHER SIDE|PREV|NEXT/);
   assert.match(styles, /background:\s*#fff/);
   assert.match(main, /scene\.background = new THREE\.Color\("#ffffff"\)/);
 });
 
-test("v3 uses a straight-on fitted camera and shadow-responsive paper materials", () => {
+test("3D Book 2 uses a straight-on fitted camera and shadow-responsive paper materials", () => {
   assert.match(main, /new THREE\.OrthographicCamera/);
   assert.match(main, /camera\.up\.set\(0, 0, -1\)/);
   assert.match(main, /bookRig\.rotation\.set\(0, 0, 0\)/);
@@ -92,7 +92,7 @@ test("v3 uses a straight-on fitted camera and shadow-responsive paper materials"
   assert.match(main, /camera\.right = halfHeight \* aspect/);
 });
 
-test("v3 renders soft dynamic shadows and refreshes every deformed sheet's normals", () => {
+test("3D Book 2 renders soft dynamic shadows and refreshes every deformed sheet's normals", () => {
   assert.match(main, /renderer\.shadowMap\.enabled = true/);
   assert.match(main, /renderer\.shadowMap\.type = THREE\.PCFShadowMap/);
   assert.match(main, /keyLight\.castShadow = true/);
@@ -106,7 +106,7 @@ test("v3 renders soft dynamic shadows and refreshes every deformed sheet's norma
   assert.match(main, /sheet\.page\.geometry\.computeVertexNormals\(\)/);
 });
 
-test("v3 bounds geometry, pixel, shadow, and texture work", () => {
+test("3D Book 2 bounds geometry, pixel, shadow, and texture work", () => {
   assert.match(main, /const PAGE_SUBDIVISIONS = 16/);
   assert.match(main, /const MAX_PIXEL_RATIO = 1\.5/);
   assert.match(main, /const SHADOW_MAP_SIZE = 1024/);
@@ -116,7 +116,7 @@ test("v3 bounds geometry, pixel, shadow, and texture work", () => {
   assert.match(main, /resizeTextureImage\(texture\)/);
 });
 
-test("v3 memoizes settled sheets and bounds the material cache", () => {
+test("3D Book 2 memoizes settled sheets and bounds the material cache", () => {
   assert.match(main, /function memoizeSheetDeformation\(\)/);
   assert.match(main, /pageProgress === previousPageProgress/);
   assert.match(main, /const CACHED_BOOK_LIMIT = 2/);
@@ -124,7 +124,7 @@ test("v3 memoizes settled sheets and bounds the material cache", () => {
   assert.match(main, /material\.dispose\(\)/);
 });
 
-test("v3 renders on demand and parks a settled edge preview", () => {
+test("3D Book 2 renders on demand and parks a settled edge preview", () => {
   assert.match(main, /function requestRender\(\)/);
   assert.match(main, /let animationFrame = null/);
   assert.match(main, /const previewNeedsFrame = animateEdgePreview\(delta\)/);
@@ -132,7 +132,7 @@ test("v3 renders on demand and parks a settled edge preview", () => {
   assert.match(main, /stop feeding the modifier stack identical poses/);
 });
 
-test("v3 settles page materials and avoids per-frame DOM writes", () => {
+test("3D Book 2 settles page materials and avoids per-frame DOM writes", () => {
   assert.match(main, /for \(let index = 0; index < pageMaterials\.length; index \+= 1\) await Promise\.resolve\(\)/);
   assert.match(main, /if \(statusKey === lastStatusKey\) return/);
 });
