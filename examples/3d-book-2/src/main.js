@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { FlipBook } from "quick_flipbook";
 import { books } from "./books.js";
+import { createFlipbookEditor } from "./editor.js";
 import {
   chooseDragDirection,
   dragFraction,
@@ -10,6 +11,7 @@ import {
   isPointerOverBook,
   shouldCompleteDrag,
 } from "./drag.js";
+import { flattenScenePages, sceneIndexFromCurrentPage } from "./timeline.js";
 import "./style.css";
 
 const canvas = document.querySelector("#book-scene");
@@ -19,6 +21,7 @@ const nextButton = document.querySelector("#next-page");
 const pageState = document.querySelector("#page-state");
 const loadingCard = document.querySelector("#loading-card");
 const loadingCopy = document.querySelector("#loading-copy");
+const previewStage = document.querySelector("#preview-stage");
 const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 const MAX_PIXEL_RATIO = 1.5;
 const SHADOW_MAP_SIZE = 1024;
@@ -28,7 +31,7 @@ const MAX_TEXTURE_ANISOTROPY = 4;
 const CACHED_BOOK_LIMIT = 2;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color("#ffffff");
+scene.background = new THREE.Color("#e9e7e1");
 
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 20);
 camera.position.set(0, 5, 0);
@@ -64,7 +67,7 @@ scene.add(rimLight);
 
 const table = new THREE.Mesh(
   new THREE.PlaneGeometry(18, 18),
-  new THREE.MeshStandardMaterial({ color: "#ffffff", roughness: 1, metalness: 0 }),
+  new THREE.MeshStandardMaterial({ color: "#e9e7e1", roughness: 1, metalness: 0 }),
 );
 table.rotation.x = -Math.PI / 2;
 table.position.y = -0.035;
@@ -89,6 +92,7 @@ flipBook.traverse((object) => {
 bookRig.add(flipBook);
 
 let selectedBook = books[0];
+let editor = null;
 let loading = false;
 let loadToken = 0;
 let pointerStart = null;
@@ -151,8 +155,7 @@ function pageMaterial(bookId, source) {
   const cache = cacheForBook(bookId);
   if (cache.has(source)) return cache.get(source);
 
-  const assetUrl = `${import.meta.env.BASE_URL}${source.replace(/^\/+/, "")}`;
-  const request = textureLoader.loadAsync(assetUrl).then((texture) => {
+  const request = textureLoader.loadAsync(assetUrl(source)).then((texture) => {
     resizeTextureImage(texture);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = Math.min(
@@ -167,6 +170,10 @@ function pageMaterial(bookId, source) {
   }).catch(() => blankMaterial);
   cache.set(source, request);
   return request;
+}
+
+function assetUrl(source) {
+  return `${import.meta.env.BASE_URL}${source.replace(/^\/+/, "")}`;
 }
 
 function disposeBookMaterials(bookId) {
@@ -217,7 +224,7 @@ function memoizeSheetDeformation() {
   }
 }
 
-function setLoading(value, copy = "Preparing edition") {
+function setLoading(value, copy = "正在准备摄影书") {
   loading = value;
   loadingCard.classList.toggle("is-visible", value);
   loadingCard.hidden = !value;
@@ -225,6 +232,7 @@ function setLoading(value, copy = "Preparing edition") {
   loadingCopy.textContent = value ? copy : "";
   previousButton.disabled = value;
   nextButton.disabled = value;
+  editor?.setBusy(value);
 }
 
 function renderLibrary() {
@@ -232,7 +240,7 @@ function renderLibrary() {
     .map(
       (book) => `
         <button class="library-book ${book.id === selectedBook.id ? "is-active" : ""}"
-          type="button" data-book="${book.id}" aria-label="Open ${book.title}" title="${book.title}">
+          type="button" data-book="${book.id}" aria-label="打开 ${book.title}" title="${book.title}">
           <span aria-hidden="true">${book.mark}</span>
         </button>`,
     )
@@ -246,11 +254,12 @@ async function selectBook(book, immediate = false) {
   selectedBook = book;
   const token = ++loadToken;
   renderLibrary();
-  setLoading(true, `Preparing ${book.title}`);
+  setLoading(true, `正在准备 ${book.title}`);
   resize();
 
+  const sources = editor?.pageSources() ?? book.pages;
   const pageMaterials = await Promise.all(
-    book.pages.map((source) => pageMaterial(book.id, source)),
+    sources.map((source) => pageMaterial(book.id, source)),
   );
   if (token !== loadToken) return;
 
@@ -272,6 +281,41 @@ async function selectBook(book, immediate = false) {
   rememberBook(book.id);
   setLoading(false);
   updateStatus();
+  requestRender();
+}
+
+async function applySceneOrder(scenes, activeIndex) {
+  clearEdgePreview(true);
+  const token = ++loadToken;
+  setLoading(true, "正在更新场景顺序");
+  const pageMaterials = await Promise.all(
+    flattenScenePages(scenes).map((source) => pageMaterial(selectedBook.id, source)),
+  );
+  if (token !== loadToken) return;
+
+  flipBook.setPages(pageMaterials);
+  memoizeSheetDeformation();
+  flipBook.currentPage = activeIndex * 2;
+  flipBook.progress = activeIndex;
+  refreshAllPageNormals();
+  for (let index = 0; index < pageMaterials.length; index += 1) await Promise.resolve();
+  if (token !== loadToken) return;
+  flipBook.traverse((object) => {
+    if (object.isMesh) {
+      object.castShadow = true;
+      object.receiveShadow = true;
+    }
+  });
+  setLoading(false);
+  lastStatusKey = "";
+  updateStatus();
+  requestRender();
+}
+
+function goToScene(index) {
+  if (loading) return;
+  clearEdgePreview(true);
+  flipBook.currentPage = index * 2;
   requestRender();
 }
 
@@ -419,6 +463,7 @@ function takeEdgePreviewForDrag() {
 
 function nextPage() {
   if (!loading && flipBook.currentPage < flipBook.totalPages) {
+    editor?.pause();
     clearEdgePreview(true);
     flipBook.nextPage();
     requestRender();
@@ -427,6 +472,7 @@ function nextPage() {
 
 function previousPage() {
   if (!loading && flipBook.currentPage > 0) {
+    editor?.pause();
     clearEdgePreview(true);
     flipBook.previousPage();
     requestRender();
@@ -442,9 +488,10 @@ function updateStatus() {
   const statusKey = `${loading}:${shown}:${total}`;
   if (statusKey === lastStatusKey) return;
   lastStatusKey = statusKey;
-  if (shown === 0) pageState.textContent = "Cover";
-  else if (shown >= total) pageState.textContent = "Back cover";
-  else pageState.textContent = `Spread ${Math.ceil(shown / 2)} of ${Math.ceil(total / 2)}`;
+  if (shown === 0) pageState.textContent = "封面";
+  else if (shown >= total) pageState.textContent = "封底";
+  else pageState.textContent = `跨页 ${Math.ceil(shown / 2)} / ${Math.ceil(total / 2)}`;
+  editor?.setActiveScene(sceneIndexFromCurrentPage(shown, editor.scenes.length));
   previousButton.disabled = loading || shown <= 0;
   nextButton.disabled = loading || shown >= total;
 }
@@ -459,6 +506,7 @@ nextButton.addEventListener("click", nextPage);
 
 canvas.addEventListener("pointerdown", (event) => {
   if (!event.isPrimary || loading) return;
+  editor?.pause();
 
   const preview = takeEdgePreviewForDrag();
   if (!preview) clearEdgePreview(true);
@@ -558,7 +606,7 @@ canvas.addEventListener("pointerup", (event) => {
   if (Math.abs(deltaX) > 36 && Math.abs(deltaX) > Math.abs(deltaY)) {
     deltaX < 0 ? nextPage() : previousPage();
   } else if (elapsed < 500 && Math.abs(deltaY) < 20) {
-    event.clientX < window.innerWidth / 2 ? previousPage() : nextPage();
+    event.clientX < getBookScreenMetrics().centerX ? previousPage() : nextPage();
   } else if (start.startFraction > 0) {
     flipBook.currentPage = start.sheet * 2;
     requestRender();
@@ -580,6 +628,8 @@ canvas.addEventListener("pointerleave", () => {
 });
 
 window.addEventListener("keydown", (event) => {
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  if (event.target instanceof Element && event.target.closest("input, textarea, select, button")) return;
   if (event.key === "ArrowRight" || event.key === " ") {
     event.preventDefault();
     nextPage();
@@ -598,11 +648,11 @@ window.addEventListener("keydown", (event) => {
 });
 
 function resize() {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const { width, height } = canvas.getBoundingClientRect();
+  if (!width || !height) return;
   const aspect = width / Math.max(1, height);
   const spreadWidth = selectedBook.ratio * 2;
-  const padding = width < 620 ? 1.16 : 1.1;
+  const padding = width < 620 ? 1.22 : 1.12;
   const halfHeight = Math.max(0.62, (spreadWidth * padding) / (2 * aspect));
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
   renderer.setSize(width, height, false);
@@ -615,6 +665,13 @@ function resize() {
 }
 
 window.addEventListener("resize", resize);
+new ResizeObserver(resize).observe(previewStage);
+editor = createFlipbookEditor({
+  book: selectedBook,
+  assetUrl,
+  onNavigate: goToScene,
+  onSceneOrderChange: applySceneOrder,
+});
 resize();
 renderLibrary();
 selectBook(books[0], true);

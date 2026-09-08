@@ -1,29 +1,151 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="3D Book 2 — a tactile WebGL photo-book template." />
-    <title>3D Book 2 — Photo Book Template</title>
+    <meta name="theme-color" content="#f2f0ea" />
+    <meta name="description" content="Flipbook Studio — 可编辑时间线、逐场景文案和播放节奏的 3D 摄影书工作台。" />
+    <title>Flipbook Studio — 3D 摄影书编辑器</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141715'/%3E%3Cpath d='M18 15h29v8H27v9h17v8H27v13h-9z' fill='%23e7ff5f'/%3E%3C/svg%3E" />
   </head>
   <body>
     <main class="app-shell">
-      <canvas id="book-scene" aria-label="Interactive three-dimensional photo book"></canvas>
-      <nav class="library" aria-label="Select a photo book" id="library"></nav>
-      <div class="reader-controls" aria-label="Page controls">
-        <button class="page-button" id="previous-page" type="button" aria-label="Previous page">
-          <span aria-hidden="true">‹</span>
-        </button>
-        <button class="page-button" id="next-page" type="button" aria-label="Next page">
-          <span aria-hidden="true">›</span>
-        </button>
-        <span class="sr-only" id="page-state" aria-live="polite">Cover</span>
-      </div>
-      <div class="loading-card" id="loading-card" role="status" aria-live="polite" aria-hidden="true" hidden>
-        <span class="loading-pulse"></span>
-        <span class="sr-only" id="loading-copy">Preparing edition</span>
-      </div>
+      <header class="topbar">
+        <div class="product-lockup">
+          <span class="product-mark" aria-hidden="true">F</span>
+          <div>
+            <strong>Flipbook Studio</strong>
+            <span id="save-state">自动保存已开启</span>
+          </div>
+        </div>
+        <div class="project-meta">
+          <span>当前项目</span>
+          <strong id="project-title">Photo book</strong>
+        </div>
+        <div class="topbar-actions">
+          <button class="button button--quiet" id="reset-project" type="button">恢复示例</button>
+          <button class="button button--primary" id="preview-toggle" type="button" aria-pressed="false">
+            <span>播放预览</span>
+            <kbd>⌘ Space</kbd>
+          </button>
+        </div>
+      </header>
+
+      <section class="editor-layout">
+        <section class="preview-panel" aria-label="3D 摄影书实时预览">
+          <div class="preview-heading">
+            <div>
+              <span class="section-kicker">实时预览</span>
+              <strong id="scene-indicator">场景 01 / 08</strong>
+            </div>
+            <span class="preview-hint">拖动书页翻页 · 点击时间线定位</span>
+          </div>
+          <div class="preview-stage" id="preview-stage">
+            <canvas id="book-scene" aria-label="可交互的三维摄影书"></canvas>
+            <div class="copy-preview" id="copy-preview" data-position="bottom-left" aria-live="polite">
+              <span id="preview-eyebrow"></span>
+              <h1 id="preview-title"></h1>
+              <p id="preview-body"></p>
+            </div>
+            <nav class="library" aria-label="选择摄影书" id="library"></nav>
+            <div class="reader-controls" aria-label="翻页控制">
+              <button class="page-button" id="previous-page" type="button" aria-label="上一页">
+                <span aria-hidden="true">←</span>
+              </button>
+              <button class="page-button" id="next-page" type="button" aria-label="下一页">
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <div class="loading-card" id="loading-card" role="status" aria-live="polite" aria-hidden="true" hidden>
+              <span class="loading-pulse"></span>
+              <span id="loading-copy">正在准备摄影书</span>
+            </div>
+          </div>
+          <span class="sr-only" id="page-state" aria-live="polite">封面</span>
+        </section>
+
+        <aside class="inspector" aria-label="场景属性">
+          <header class="inspector-heading">
+            <div>
+              <span class="section-kicker">场景属性</span>
+              <h2 id="inspector-scene-title">场景 01</h2>
+            </div>
+            <span class="autosave-dot">自动保存</span>
+          </header>
+
+          <section class="property-section">
+            <label class="field">
+              <span>场景名称</span>
+              <input id="scene-name" type="text" maxlength="40" autocomplete="off" />
+            </label>
+            <div class="field">
+              <span>停留时长</span>
+              <div class="duration-editor">
+                <input id="scene-duration-range" type="range" min="1.5" max="12" step="0.5" aria-label="场景停留时长" />
+                <label>
+                  <input id="scene-duration-number" type="number" min="1.5" max="12" step="0.5" aria-label="场景秒数" />
+                  <span>秒</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section class="property-section">
+            <div class="property-title">
+              <h3>画面文案</h3>
+              <span>实时更新</span>
+            </div>
+            <label class="field">
+              <span>眉题</span>
+              <input id="copy-eyebrow" type="text" maxlength="60" placeholder="例如：CHAPTER 01" />
+            </label>
+            <label class="field">
+              <span>主标题</span>
+              <input id="copy-title" type="text" maxlength="80" placeholder="输入主标题" />
+            </label>
+            <label class="field">
+              <span>正文</span>
+              <textarea id="copy-body" rows="3" maxlength="180" placeholder="输入补充说明"></textarea>
+            </label>
+            <div class="field">
+              <span>文案位置</span>
+              <div class="position-grid" aria-label="文案位置">
+                <button type="button" data-copy-position="top-left" aria-pressed="false">左上</button>
+                <button type="button" data-copy-position="top-right" aria-pressed="false">右上</button>
+                <button type="button" data-copy-position="bottom-left" aria-pressed="false">左下</button>
+                <button type="button" data-copy-position="bottom-right" aria-pressed="false">右下</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="property-section property-section--compact">
+            <div class="property-title">
+              <h3>场景顺序</h3>
+              <span>封面与封底固定</span>
+            </div>
+            <div class="scene-order-actions">
+              <button type="button" id="move-scene-earlier">向前移动</button>
+              <button type="button" id="move-scene-later">向后移动</button>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="timeline-panel" aria-label="自定义时间线">
+        <header class="timeline-heading">
+          <div class="timeline-title">
+            <button class="timeline-play" id="timeline-play" type="button" aria-label="播放时间线">▶</button>
+            <div>
+              <span class="section-kicker">自定义时间线</span>
+              <strong id="timeline-timecode">00:00 / 00:00</strong>
+            </div>
+          </div>
+          <p>点击定位 · 拖动中间场景排序 · 在右侧调整单段时长</p>
+        </header>
+        <div class="timeline-scroll">
+          <div class="timeline-track" id="timeline-track"></div>
+        </div>
+      </section>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

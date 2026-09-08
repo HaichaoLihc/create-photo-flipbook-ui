@@ -16,7 +16,7 @@ These templates live in `examples/`, outside the skill folder, and are optional 
 | [3D Book 1](examples/3d-book-1/) | [3D Book 2](examples/3d-book-2/) |
 | --- | --- |
 | ![3D Book 1 on a dark background](docs/images/3d-book-1.png) | ![3D Book 2 on a light background](docs/images/3d-book-2.png) |
-| React and WebGL reader with curved pages and a dark stage. | Three.js and Quick FlipBook reader with a light stage and soft shadows. |
+| React and WebGL reader with curved pages and a dark stage. | Three.js and Quick FlipBook editor with a custom timeline, per-scene copy, and soft shadows. |
 
 ## Install
 

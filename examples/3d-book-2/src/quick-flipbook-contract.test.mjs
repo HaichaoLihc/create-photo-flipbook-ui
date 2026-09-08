@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { books as bookFixtures } from "./books.js";
 
 const main = await readFile(new URL("./main.js", import.meta.url), "utf8");
-const books = await readFile(new URL("./books.js", import.meta.url), "utf8");
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const styles = await readFile(new URL("./style.css", import.meta.url), "utf8");
 const config = await readFile(new URL("../vite.config.js", import.meta.url), "utf8");
+const editor = await readFile(new URL("./editor.js", import.meta.url), "utf8");
 
 test("3D Book 2 uses the requested Quick FlipBook lifecycle", () => {
   assert.match(main, /import \{ FlipBook \} from "quick_flipbook"/);
@@ -49,7 +50,8 @@ test("the page edge offers a restrained, motion-safe hover preview", () => {
   assert.match(main, /animateEdgePreview\(delta\)/);
   assert.match(main, /edgePreview\.target = EDGE_PREVIEW_AMOUNT/);
   assert.match(main, /sheet\.flip\(pose\.pageProgress, edgePreview\.direction, pose\.curveIntensity\)/);
-  assert.deepEqual(styles.match(/cursor:\s*[^;]+;/g), ["cursor: default;"]);
+  assert.match(styles, /#book-scene\s*\{[^}]*cursor:\s*grab;/s);
+  assert.match(styles, /#book-scene:active\s*\{\s*cursor:\s*grabbing;/);
   assert.doesNotMatch(main, /classList\.(?:add|remove)\("is-dragging"\)/);
   assert.doesNotMatch(styles, /#book-scene\s*\{[^}]*pointer-events:\s*none/s);
 });
@@ -68,17 +70,28 @@ test("the loading live region is removed from the accessibility tree when idle",
 });
 
 test("3D Book 2 exposes only the Death Valley edition", () => {
-  const bookIds = [...books.matchAll(/id: "([^"]+)"/g)].map(([, id]) => id);
-  assert.deepEqual(bookIds, ["death-valley"]);
+  assert.deepEqual(bookFixtures.map(({ id }) => id), ["death-valley"]);
+  assert.equal(bookFixtures[0].scenes.length, 8);
   assert.match(config, /publicDir: "public"/);
-  assert.match(main, /const assetUrl = `\$\{import\.meta\.env\.BASE_URL\}/);
-  assert.match(main, /textureLoader\.loadAsync\(assetUrl\)/);
+  assert.match(main, /return `\$\{import\.meta\.env\.BASE_URL\}/);
+  assert.match(main, /textureLoader\.loadAsync\(assetUrl\(source\)\)/);
 });
 
-test("3D Book 2 keeps the interface silent and the stage white", () => {
+test("3D Book 2 uses restrained editor chrome and a neutral stage", () => {
   assert.doesNotMatch(html, /QUICK FLIPBOOK STUDY|FOUR EDITIONS|CLICK EITHER SIDE|PREV|NEXT/);
-  assert.match(styles, /background:\s*#fff/);
-  assert.match(main, /scene\.background = new THREE\.Color\("#ffffff"\)/);
+  assert.match(html, /id="timeline-track"/);
+  assert.match(html, /id="copy-title"/);
+  assert.match(styles, /--timeline:\s*#151815/);
+  assert.match(main, /scene\.background = new THREE\.Color\("#e9e7e1"\)/);
+});
+
+test("the editor supports persistent custom timing, copy, positioning, and scene order", () => {
+  assert.match(editor, /window\.localStorage\.setItem/);
+  assert.match(editor, /clampSceneDuration/);
+  assert.match(editor, /data-copy-position/);
+  assert.match(editor, /moveScene\(scenes, fromIndex, toIndex\)/);
+  assert.match(editor, /requestAnimationFrame\(playbackTick\)/);
+  assert.match(editor, /onSceneOrderChange\(scenes, activeIndex\)/);
 });
 
 test("3D Book 2 uses a straight-on fitted camera and shadow-responsive paper materials", () => {
