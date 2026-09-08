@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080909" />
+    <meta name="description" content="A bookshelf example with three empty mock books." />
+    <title>On the Shelf — Photo Books Library</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="collection.css" />
+    <script type="module" src="collection.js"></script>
+  </head>
+  <body>
+    <main class="library-shell">
+      <header class="masthead">
+        <div>
+          <h1>Photo Books Library</h1>
+          <p>A personal collection</p>
+          <p class="masthead__count" id="book-count"></p>
+          <button class="order-reset" type="button" hidden>Reset order ↺</button>
+        </div>
+        <p class="masthead__aside">
+          <span lang="zh-CN">摄影，装订成册。</span>
+          On the shelf
+        </p>
+      </header>
+      <div class="shelf-stage">
+        <div class="shelf-viewport">
+          <ol class="shelf" aria-label="All photobooks"></ol>
+        </div>
+      </div>
+      <footer class="library-footer">
+        <div class="shelf-scroll-cue">
+          <span class="scroll-label"></span>
+          <span class="shelf-progress" aria-hidden="true" hidden><span></span></span>
+        </div>
+        <span class="footer-selection" aria-hidden="true">PHOTOGRAPHS, BOUND.</span>
+        <span class="footer-note">
+          <span class="desktop-note">Drag to arrange. Click to open. ↗</span>
+          <span class="mobile-note">Hold &amp; drag to arrange</span>
+        </span>
+      </footer>
+      <noscript><p class="no-script">Enable JavaScript to view the bookshelf.</p></noscript>
+    </main>
+    <p id="shelf-help" class="sr-only">
+      Drag a book to rearrange the shelf. On touch screens, hold before dragging.
+      Use Left, Right, Home, and End to browse. Hold Shift with these keys to move
+      a book. Press Enter to open it. Escape cancels a move or hides the preview.
+    </p>
+    <p id="shelf-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <figure class="cover-preview" aria-hidden="true">
+      <div class="cover-preview__book"><span class="cover-preview__title"></span></div>
+      <figcaption>Empty book</figcaption>
+    </figure>
+  </body>
+</html>

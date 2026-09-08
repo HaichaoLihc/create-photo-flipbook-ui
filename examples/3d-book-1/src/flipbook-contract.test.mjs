@@ -42,7 +42,7 @@ test("the Death Valley volume includes all fourteen finished leaves", () => {
   assert.equal(filenames.length, 14);
 });
 
-test("the v2 catalog contains only the Death Valley volume", () => {
+test("the 3D Book 1 catalog contains only the Death Valley volume", () => {
   assert.equal([...pageData.matchAll(/^    id: "/gm)].length, 1);
   assert.match(pageData, /id: "death-valley"/);
 });

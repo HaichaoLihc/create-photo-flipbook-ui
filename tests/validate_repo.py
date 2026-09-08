@@ -73,11 +73,14 @@ def main() -> None:
         SKILL / "scripts" / "make_contact_sheet.py",
         SKILL / "references" / "book-editing.md",
         SKILL / "references" / "photo-skill-catalog.md",
-        ROOT / "examples" / "v1" / "index.html",
-        ROOT / "examples" / "v2" / "index.html",
-        ROOT / "examples" / "v2" / "package.json",
-        ROOT / "examples" / "v3-book" / "index.html",
-        ROOT / "examples" / "v3-book" / "package.json",
+        ROOT / "examples" / "2d-book" / "index.html",
+        ROOT / "examples" / "library" / "index.html",
+        ROOT / "examples" / "library" / "book.html",
+        ROOT / "examples" / "library" / "package.json",
+        ROOT / "examples" / "3d-book-1" / "index.html",
+        ROOT / "examples" / "3d-book-1" / "package.json",
+        ROOT / "examples" / "3d-book-2" / "index.html",
+        ROOT / "examples" / "3d-book-2" / "package.json",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
         ROOT / "evals" / "cases" / "hawaii-v1" / "input" / "page-01-cover-hd.jpg",
@@ -115,14 +118,14 @@ def main() -> None:
         check=True,
     )
     subprocess.run(
-        ["node", "--test", str(ROOT / "examples" / "v1" / "test.mjs")],
+        ["node", "--test", str(ROOT / "examples" / "2d-book" / "test.mjs")],
         check=True,
     )
     subprocess.run(
         [
             "node",
             "--test",
-            str(ROOT / "examples" / "v2" / "src" / "flipbook-contract.test.mjs"),
+            str(ROOT / "examples" / "3d-book-1" / "src" / "flipbook-contract.test.mjs"),
         ],
         check=True,
     )
@@ -130,8 +133,12 @@ def main() -> None:
         [
             "node",
             "--test",
-            str(ROOT / "examples" / "v3-book" / "src" / "quick-flipbook-contract.test.mjs"),
+            str(ROOT / "examples" / "3d-book-2" / "src" / "quick-flipbook-contract.test.mjs"),
         ],
+        check=True,
+    )
+    subprocess.run(
+        ["node", "--test", str(ROOT / "examples" / "library" / "test.mjs")],
         check=True,
     )
     print("Repository structure is valid")
