@@ -4,8 +4,9 @@ const previousButton = document.querySelector("#previous");
 const nextButton = document.querySelector("#next");
 const pageStatus = document.querySelector("#page-status");
 const orientationStatus = document.querySelector("#orientation");
-const pageWidth = Number(bookElement.dataset.pageWidth) || 471;
+const pageWidth = Number(bookElement.dataset.pageWidth) || 512;
 const pageHeight = Number(bookElement.dataset.pageHeight) || 640;
+document.documentElement.style.setProperty("--page-ratio", pageWidth / pageHeight);
 
 const pageFlip = new St.PageFlip(bookElement, {
   width: pageWidth,
@@ -36,6 +37,7 @@ let isTurning = false;
 function updateControls() {
   const pageCount = pageFlip.getPageCount();
   const lastPage = pageCount - 1;
+  bookElement.dataset.edge = currentPage === 0 ? "front" : currentPage === lastPage ? "back" : "inside";
 
   previousButton.disabled = currentPage === 0 || isTurning;
   nextButton.disabled = currentPage === lastPage || isTurning;
@@ -60,6 +62,7 @@ pageFlip.on("changeState", (event) => {
 });
 
 function updateOrientation(orientation) {
+  bookElement.dataset.layout = orientation;
   orientationStatus.textContent = orientation === "portrait" ? "Single page" : "Open spread";
 }
 
@@ -68,6 +71,11 @@ pageFlip.on("changeOrientation", (event) => updateOrientation(event.data));
 
 pageFlip.loadFromHTML(pages);
 updateControls();
+
+const requestedPage = Number(new URLSearchParams(location.search).get("page"));
+if (Number.isInteger(requestedPage) && requestedPage >= 0 && requestedPage < pages.length) {
+  pageFlip.turnToPage(requestedPage);
+}
 
 previousButton.addEventListener("click", () => {
   if (!isTurning) pageFlip.flipPrev("bottom");

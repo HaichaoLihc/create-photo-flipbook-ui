@@ -33,7 +33,23 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 Use $create-photo-flipbook-ui to turn these photographs into photobooks.
 ```
 
-The skill selects photo skills, edits the book sequence, and creates complete covers and spreads. For finished pages, ask it to assemble them as-is, preserving their order.
+One workflow, three stages:
+
+1. **Understand the photos:** their form, content, and themes. Semantic search and contact sheets are available.
+2. **Define the style and design:** fulfill the user's request with a coherent, high-quality book. Pinterest, the photo-skill catalogue, and image generation are available. Without a preferred style, preserve the original photos and use the bundled default photobook style.
+3. **Build the UI:** present the book with the built-in 2D HTML runtime and deliver a working local URL.
+
+The skill defines outcomes and provides tools. The agent chooses the process.
+
+The [default photobook style](skills/create-photo-flipbook-ui/references/default-style.md) provides concise text guidance, Source Serif 4, paper and cloth textures, and reusable page styles in the bundled runtime. The starter contains no sample photographs.
+
+## Photo search and reusable code
+
+The skill declares the existing `photo-search` MCP dependency for library search, ranked contact sheets, and larger previews. The MCP itself is read-only. The bundled `scripts/photo_library.py` adapter adds folder-specific cached indexes and semantic searches by reusing an installed photo-search engine's `index.py` and `PhotoSearchEngine`; it does not replace the connected MCP's global index.
+
+Install the engine and its Python requirements separately, set `PHOTO_SEARCH_ENGINE_DIR` to its location, and use its Python interpreter. See [Photo library setup and commands](skills/create-photo-flipbook-ui/references/photo-library.md). Index caches remain outside the skill and source folders. New and changed images are embedded incrementally; unchanged images are reused. Search output includes a contact sheet and manifest, and selections retain stable IDs and original paths.
+
+Reusable resources shipped with the skill include the photo-library adapter, ordered contact-sheet renderer, Pinterest helper, and 2D book runtime. Art direction and sequencing remain in workflow instructions. Model weights and photo libraries are not part of the skill package.
 
 See each template’s README for local preview instructions.
 

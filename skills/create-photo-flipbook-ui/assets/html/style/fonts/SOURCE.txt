@@ -1,0 +1,2 @@
+Source Serif 4 by Adobe. Official release branch: https://github.com/adobe-fonts/source-serif/tree/release
+Bundled under the accompanying SIL Open Font License.

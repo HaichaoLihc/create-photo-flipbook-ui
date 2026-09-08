@@ -29,39 +29,12 @@ def main() -> None:
         re.search(r"^description:\s*\S", frontmatter, re.MULTILINE) is not None,
         "Skill description is missing",
     )
-    require(
-        "If the request is ambiguous, default to the editing path." in text,
-        "Skill must default ambiguous requests to editing",
-    )
-    require(
-        "Trigger this path only from an explicit no-edit or assemble-as-is request." in text,
-        "Fast path must require explicit no-edit intent",
-    )
-    for snippet in (
-        "Explore the collection before editing it.",
-        "Style fidelity vs book coherence",
-        "as baseline knowledge, not a fixed recipe",
-        "choose more than one when their combination has a clear purpose",
-        "the left half is the back cover and the right half is the front cover",
-        "keep the generated back cover as the final hard leaf",
-        "Build a contact sheet from the accepted full spreads in reading order.",
-    ):
-        require(snippet in text, f"Missing spread-first workflow contract: {snippet}")
-    workflow_order = [
-        text.index("Explore the collection before editing it."),
-        text.index("Read [photo-skill-catalog.md]"),
-        text.index("Curate only photographs"),
-        text.index("Generate the outside-cover spread first"),
-    ]
-    require(
-        workflow_order == sorted(workflow_order),
-        "Editing workflow must explore, route, curate/sequence, then generate",
-    )
-    styles_dir = SKILL / "references" / "styles"
-    require(
-        not styles_dir.exists() or not any(styles_dir.iterdir()),
-        "Flipbook engine must not bundle visual styles",
-    )
+    for document in [SKILL_MD, *(SKILL / "references").rglob("*.md")]:
+        for target in re.findall(r"\]\(([^)]+)\)", document.read_text(encoding="utf-8")):
+            if "://" in target or target.startswith("#"):
+                continue
+            linked = document.parent / target.split("#", 1)[0]
+            require(linked.exists(), f"Broken skill reference in {document.name}: {target}")
 
     required = [
         SKILL / "agents" / "openai.yaml",
@@ -71,8 +44,17 @@ def main() -> None:
         SKILL / "assets" / "html" / "html-contract.test.mjs",
         SKILL / "assets" / "html" / "vendor" / "page-flip.browser.js",
         SKILL / "scripts" / "make_contact_sheet.py",
+        SKILL / "scripts" / "photo_library.py",
+        SKILL / "references" / "photo-library.md",
+        SKILL / "references" / "spread-generation.md",
         SKILL / "references" / "book-editing.md",
         SKILL / "references" / "photo-skill-catalog.md",
+        SKILL / "references" / "pinterest-style-research.md",
+        SKILL / "scripts" / "pinterest" / "cli.mjs",
+        SKILL / "scripts" / "pinterest" / "engine.mjs",
+        SKILL / "scripts" / "pinterest" / "storage.mjs",
+        SKILL / "scripts" / "pinterest" / "package.json",
+        SKILL / "scripts" / "pinterest" / "package-lock.json",
         ROOT / "examples" / "2d-book" / "index.html",
         ROOT / "examples" / "library" / "index.html",
         ROOT / "examples" / "library" / "book.html",
@@ -114,7 +96,8 @@ def main() -> None:
         check=True,
     )
     subprocess.run(
-        ["python3", "-m", "unittest", str(ROOT / "tests" / "test_contact_sheet.py")],
+        ["python3", "-m", "unittest", str(ROOT / "tests" / "test_contact_sheet.py"),
+         str(ROOT / "tests" / "test_photo_library.py")],
         check=True,
     )
     subprocess.run(
@@ -135,6 +118,10 @@ def main() -> None:
             "--test",
             str(ROOT / "examples" / "3d-book-2" / "src" / "quick-flipbook-contract.test.mjs"),
         ],
+        check=True,
+    )
+    subprocess.run(
+        ["node", "--test", str(ROOT / "tests" / "pinterest.test.mjs")],
         check=True,
     )
     subprocess.run(

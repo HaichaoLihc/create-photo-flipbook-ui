@@ -38,7 +38,9 @@ def _fit_label(draw: ImageDraw.ImageDraw, text: str, max_width: int, font: Image
     return candidate + suffix
 
 
-def make_contact_sheet(image_files: Sequence[str | Path], output_file: str | Path) -> Path:
+def make_contact_sheet(
+    image_files: Sequence[str | Path], output_file: str | Path, *, columns: int | None = None
+) -> Path:
     """Write a contact sheet whose cells follow ``image_files`` exactly."""
 
     files = [Path(path).expanduser() for path in image_files]
@@ -49,7 +51,12 @@ def make_contact_sheet(image_files: Sequence[str | Path], output_file: str | Pat
     if missing:
         raise FileNotFoundError(f"Image file not found: {missing[0]}")
 
-    columns, rows = _grid_shape(len(files))
+    if columns is None:
+        columns, rows = _grid_shape(len(files))
+    else:
+        if not 1 <= columns <= 10:
+            raise ValueError("columns must be between 1 and 10")
+        rows = math.ceil(len(files) / columns)
     cell_height = IMAGE_HEIGHT + LABEL_HEIGHT
     sheet_width = MARGIN * 2 + columns * CELL_WIDTH + (columns - 1) * GAP
     sheet_height = MARGIN * 2 + rows * cell_height + (rows - 1) * GAP
