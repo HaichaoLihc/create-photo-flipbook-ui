@@ -1,4 +1,9 @@
 interface:
-  display_name: "Photo Flipbook UI"
-  short_description: "Sequence visual photo skills into 3D books"
-  default_prompt: "Use $create-photo-flipbook-ui to curate my photos, choose a compatible visual skill, and assemble the results into a page-turning book."
+  display_name: "Photobook Art Direction"
+  short_description: "Understand photos, design a book, and build its 2D UI"
+  default_prompt: "Use $create-photo-flipbook-ui to understand my photos, define the book's style and design from my request, and build it with the built-in 2D book UI."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "photo-search"
+      description: "Local semantic photo search with ranked contact sheets and larger previews. New folders use the bundled collection adapter with the same installed engine."

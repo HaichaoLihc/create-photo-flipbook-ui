@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs><pattern id="weave" width="3" height="3" patternUnits="userSpaceOnUse"><path d="M0 .4H3M.4 0V3" stroke="#eeede2" stroke-opacity=".10" stroke-width=".45"/><path d="M0 1.7H3M1.7 0V3" stroke="#1e281f" stroke-opacity=".10" stroke-width=".6"/></pattern><filter id="fiber"><feTurbulence type="fractalNoise" baseFrequency=".6 .12" numOctaves="2" seed="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs>
+  <rect width="120" height="120" fill="url(#weave)"/><rect width="120" height="120" filter="url(#fiber)" opacity=".08"/>
+</svg>

@@ -1,0 +1,34 @@
+@font-face{font-family:"Source Serif 4";src:url("fonts/SourceSerif4-Regular.otf.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url("fonts/SourceSerif4-It.otf.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+:root{--paper:#f7f6f0;--ink:#292c26;--cloth:#7d8572;--book-serif:"Source Serif 4","Songti SC","Noto Serif CJK SC",Georgia,serif;--book-sans:Arial,Helvetica,sans-serif}
+.art-page{container-type:inline-size;position:relative;aspect-ratio:var(--page-ratio, .8);overflow:hidden;background:var(--paper) url("paper-grain.svg") repeat;color:var(--ink);font-family:var(--book-serif);font-weight:400}
+.art-page img{display:block;object-fit:contain;filter:none;border:0;border-radius:0;box-shadow:none}
+.art-page .plate{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:74%;height:72%;margin:0;display:flex;align-items:center;justify-content:center}
+.art-page .plate img{width:100%;height:100%;object-fit:contain}
+.art-page .plate.small{width:49%;height:53%}
+.art-page .plate.medium{width:68%;height:65%}
+.art-page .plate.large{width:86%;height:82%}
+.art-page .plate.portrait{width:67%;height:66%}
+.art-page .plate.high{top:40%}
+.art-page .plate.low{top:55%}
+.art-page .plate.aside{left:55%}
+.art-page .folio{position:absolute;bottom:4.7%;right:7.7%;margin:0;color:#73766c;font:400 1.5cqw/1 var(--book-serif);letter-spacing:0;text-transform:none}
+.art-page.verso .folio{left:7.7%;right:auto}
+.art-page.endpaper{background-color:#e9e9dc}
+.art-page.cloth{background:var(--cloth) url("cloth-weave.svg") repeat;color:#f2efdf}
+.art-page .cover-title{position:absolute;left:13.5%;right:10%;top:15%;margin:0;font:400 7.2cqw/1.12 var(--book-serif);letter-spacing:-.02em;text-shadow:0 1px 0 rgb(29 39 25 / 12%)}
+.art-page .cover-subtitle{position:absolute;left:13.5%;top:33%;font:400 2.1cqw/1.4 var(--book-serif);margin:0;letter-spacing:.025em}
+.art-page .cover-plate{position:absolute;left:13.5%;bottom:18%;width:52%;margin:0;box-shadow:0 1px 1px rgb(24 33 20 / 18%)}
+.art-page .cover-plate img{width:100%;height:auto}
+.art-page .cover-foot{position:absolute;bottom:7%;left:13.5%;font:400 1.6cqw/1.4 var(--book-sans);letter-spacing:.13em}
+.art-page .title-block{position:absolute;top:26%;left:16%;right:12%}
+.art-page .title-block h2{font:400 4.5cqw/1.2 var(--book-serif);letter-spacing:-.01em;margin:0 0 6cqw}
+.art-page .title-block p{font:400 2.1cqw/1.6 var(--book-serif);margin:0}
+.art-page .colophon{position:absolute;left:16%;right:18%;top:52%;font:400 2.2cqw/1.55 var(--book-serif)}
+.art-page .colophon p{margin:0 0 4cqw}
+.art-page .colophon .small-print{font:400 1.7cqw/1.65 var(--book-sans);color:#6f7268}
+.art-page .back-mark{position:absolute;bottom:10%;left:13.5%;font:400 2cqw/1.4 var(--book-serif)}
+/* The material is a background, so it never changes the photograph's pixels. */
+.book-page.art-page::after{content:none}
+.book-page.art-page.--left::before{background:linear-gradient(to left,rgb(28 30 24 / 12%),rgb(28 30 24 / 3%) 40%,transparent)}
+.book-page.art-page.--right::before{background:linear-gradient(to right,rgb(28 30 24 / 12%),rgb(28 30 24 / 3%) 40%,transparent)}
