@@ -1,0 +1,23 @@
+# Generated/private content. The importer creates these locally.
+/index.html
+/source-manifest.json
+/semantic-sequence.json
+/assets/
+/working/
+/photos/
+/__pycache__/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.heic
+*.avif
+*.npz
+.DS_Store
+
+# Local experiments and unused template assets are not part of this UI.
+/semantic_sequence.py
+/style/book-style.css
+/style/cloth-weave.svg
+/style/paper-grain.svg
+/style/fonts/

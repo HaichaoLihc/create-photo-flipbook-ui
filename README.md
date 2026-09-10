@@ -53,6 +53,10 @@ Reusable resources shipped with the skill include the photo-library adapter, ord
 
 See each template’s README for local preview instructions.
 
+[Negative Sleeves](film-negative-flipbook/) is a separate, photo-free film archive
+UI with page-corner previews and draggable film strips. Import a local photo
+folder with its Python builder; generated books and photographs stay Git-ignored.
+
 ## Validate
 
 ```bash
