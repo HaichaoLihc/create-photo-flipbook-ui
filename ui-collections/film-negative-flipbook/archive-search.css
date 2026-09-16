@@ -1,0 +1,27 @@
+#archive-search { display:flex; align-items:center; justify-self:end; gap:10px; width:min(100%,240px); border-bottom:1px solid #41433b; padding:4px 0; }
+#archive-search input { width:100%; min-width:0; padding:0; border:0; outline:0; border-radius:0; background:transparent; color:#deddd3; font:400 11px/1.5 "Helvetica Neue",Arial,sans-serif; }
+#archive-search input::placeholder { color:#8b8e80; }
+#archive-search input::-webkit-search-cancel-button { display:none; }
+#archive-search:focus-within { border-bottom-color:#c8ccb7; }
+#archive-search button { flex:none; padding:0; width:20px; height:24px; border:0; background:none; color:#b5b8a8; font:400 19px/1 Arial,sans-serif; cursor:pointer; }
+#archive-search button:hover { color:#eee8d9; }
+#archive-search button[hidden], #archive-search #orientation { display:none; }
+#archive-search[aria-busy="true"] { border-bottom-style:dashed; }
+#archive-search[aria-busy="true"] button[type="submit"] { opacity:.4; }
+#archive-search button:focus-visible { outline:1px solid #d7d9c4; outline-offset:2px; }
+#search-status { color:#b6baa8; font-size:8px; letter-spacing:0; }
+#search-status[hidden] { display:none; }
+.controls #retry-search { justify-self:center; width:auto; height:auto; padding:2px 0; border:0; border-radius:0; background:none; color:#d8d5cc; font:400 8px/1.5 ui-monospace,monospace; text-decoration:underline; text-underline-offset:3px; }
+.controls #retry-search:hover { color:#fff8e6; background:none; }
+.controls #retry-search[hidden] { display:none; }
+.has-book-search .status>small:not(#search-status) { display:none; }
+.has-search-matches .book[data-edge] { translate:0 0; }
+.is-awaiting-results .film-strip { visibility:hidden; }
+.is-assembling-results { pointer-events:none; }
+@media (max-width:700px) {
+  .book-header { grid-template-columns:1fr 1fr; gap:14px; }
+  .book-header h1 { display:none; }
+  #archive-search { width:100%; }
+  #archive-search input { font-size:12px; }
+  #search-status { font-size:7px; }
+}

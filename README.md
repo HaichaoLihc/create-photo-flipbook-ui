@@ -4,19 +4,29 @@ A Codex skill for turning photographs into expressive photobooks using the bundl
 
 [3D Book 2 demo](https://haichaolihc.github.io/create-photo-flipbook-ui/)
 
-## Templates
+## UI collections
 
-These templates live in `examples/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; Library and the 3D templates are separate alternatives.
+These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, and spatial galleries are separate alternatives.
 
-| [Library](examples/library/) | [2D Book](examples/2d-book/) |
+| [Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
 | ![Library with three mock books](docs/images/library.png) | ![2D Book with a sample photo spread](docs/images/death-valley-flipbook.jpg) |
 | Reorderable shelf with three empty mock books. | Reference example of the skill’s bundled 2D runtime. |
 
-| [3D Book 1](examples/3d-book-1/) | [3D Book 2](examples/3d-book-2/) |
+| [3D Book 1](ui-collections/3d-book-1/) | [3D Book 2](ui-collections/3d-book-2/) |
 | --- | --- |
 | ![3D Book 1 on a dark background](docs/images/3d-book-1.png) | ![3D Book 2 on a light background](docs/images/3d-book-2.png) |
 | React and WebGL reader with curved pages and a dark stage. | Three.js and Quick FlipBook reader with a light stage and soft shadows. |
+
+| [Card Gallery](ui-collections/card-gallery/) | [Image Atlas](ui-collections/image-atlas/) | [Photo Ring](ui-collections/photo-ring/) |
+| --- | --- | --- |
+| ![Card Gallery with numbered placeholder cards](docs/images/card-gallery.png) | ![Image Atlas with concentric year-based image rings](docs/images/image-atlas.png) | ![Photo Ring with layered placeholder images](docs/images/photo-ring.png) |
+| Scroll or drag cards through a ring, an arc, a stack, and an unfolded strip. | Explore a spatial archive of concentric year rings, with theme search and focused image browsing. | Switch between Flat, Tilt, Ring, and Gallery layouts while preserving your browsing position. |
+
+These three galleries use vanilla HTML, CSS, and JavaScript with local SVG
+placeholders and fictional sample content—no personal photographs or external
+image requests. No install or build step is needed; see each linked README for
+preview instructions and how to add your own images.
 
 ## Install
 
@@ -53,9 +63,10 @@ Reusable resources shipped with the skill include the photo-library adapter, ord
 
 See each template’s README for local preview instructions.
 
-[Negative Sleeves](film-negative-flipbook/) is a separate, photo-free film archive
-UI with page-corner previews and draggable film strips. Import a local photo
-folder with its Python builder; generated books and photographs stay Git-ignored.
+[Negative Sleeves](ui-collections/film-negative-flipbook/) is a separate, photo-free film archive
+UI with page-corner previews, draggable film strips, reversible single-frame
+inspection, and optional continuously paginated semantic search. Import a local
+photo folder with its Python builder; generated books and photographs stay Git-ignored.
 
 ## Validate
 
@@ -67,4 +78,4 @@ python3 tests/validate_repo.py
 
 ## License
 
-Original project code and the installable skill are [MIT licensed](LICENSE). Third-party components retain their own licenses. The adapted code in `examples/3d-book-1/` and all photographs, videos, and other media are excluded unless expressly stated otherwise.
+Original project code and the installable skill are [MIT licensed](LICENSE). Third-party components retain their own licenses. The adapted code in `ui-collections/3d-book-1/` and all photographs, videos, and other media are excluded unless expressly stated otherwise.

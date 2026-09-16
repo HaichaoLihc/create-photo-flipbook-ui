@@ -20,18 +20,18 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: |
-            examples/3d-book-1/package-lock.json
-            examples/3d-book-2/package-lock.json
+            ui-collections/3d-book-1/package-lock.json
+            ui-collections/3d-book-2/package-lock.json
       - run: python tests/validate_repo.py
       - run: npm ci
-        working-directory: examples/3d-book-1
+        working-directory: ui-collections/3d-book-1
       - run: npm test
-        working-directory: examples/3d-book-1
+        working-directory: ui-collections/3d-book-1
       - run: npm run build
-        working-directory: examples/3d-book-1
+        working-directory: ui-collections/3d-book-1
       - run: npm ci
-        working-directory: examples/3d-book-2
+        working-directory: ui-collections/3d-book-2
       - run: npm test
-        working-directory: examples/3d-book-2
+        working-directory: ui-collections/3d-book-2
       - run: npm run build
-        working-directory: examples/3d-book-2
+        working-directory: ui-collections/3d-book-2

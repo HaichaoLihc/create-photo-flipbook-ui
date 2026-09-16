@@ -1,0 +1,296 @@
+[
+  {
+    "name": "卡片 01",
+    "category": "moments",
+    "src": "assets/placeholders/card-01.svg",
+    "alt": "编号 01 的纯色占位图"
+  },
+  {
+    "name": "卡片 02",
+    "category": "moments",
+    "src": "assets/placeholders/card-02.svg",
+    "alt": "编号 02 的纯色占位图"
+  },
+  {
+    "name": "卡片 03",
+    "category": "moments",
+    "src": "assets/placeholders/card-03.svg",
+    "alt": "编号 03 的纯色占位图"
+  },
+  {
+    "name": "卡片 04",
+    "category": "moments",
+    "src": "assets/placeholders/card-04.svg",
+    "alt": "编号 04 的纯色占位图"
+  },
+  {
+    "name": "卡片 05",
+    "category": "moments",
+    "src": "assets/placeholders/card-05.svg",
+    "alt": "编号 05 的纯色占位图"
+  },
+  {
+    "name": "卡片 06",
+    "category": "moments",
+    "src": "assets/placeholders/card-06.svg",
+    "alt": "编号 06 的纯色占位图"
+  },
+  {
+    "name": "卡片 07",
+    "category": "moments",
+    "src": "assets/placeholders/card-07.svg",
+    "alt": "编号 07 的纯色占位图"
+  },
+  {
+    "name": "卡片 08",
+    "category": "moments",
+    "src": "assets/placeholders/card-08.svg",
+    "alt": "编号 08 的纯色占位图"
+  },
+  {
+    "name": "卡片 09",
+    "category": "moments",
+    "src": "assets/placeholders/card-09.svg",
+    "alt": "编号 09 的纯色占位图"
+  },
+  {
+    "name": "卡片 10",
+    "category": "moments",
+    "src": "assets/placeholders/card-10.svg",
+    "alt": "编号 10 的纯色占位图"
+  },
+  {
+    "name": "卡片 11",
+    "category": "moments",
+    "src": "assets/placeholders/card-11.svg",
+    "alt": "编号 11 的纯色占位图"
+  },
+  {
+    "name": "卡片 12",
+    "category": "moments",
+    "src": "assets/placeholders/card-12.svg",
+    "alt": "编号 12 的纯色占位图"
+  },
+  {
+    "name": "卡片 13",
+    "category": "moments",
+    "src": "assets/placeholders/card-13.svg",
+    "alt": "编号 13 的纯色占位图"
+  },
+  {
+    "name": "卡片 14",
+    "category": "moments",
+    "src": "assets/placeholders/card-14.svg",
+    "alt": "编号 14 的纯色占位图"
+  },
+  {
+    "name": "卡片 15",
+    "category": "moments",
+    "src": "assets/placeholders/card-15.svg",
+    "alt": "编号 15 的纯色占位图"
+  },
+  {
+    "name": "卡片 16",
+    "category": "moments",
+    "src": "assets/placeholders/card-16.svg",
+    "alt": "编号 16 的纯色占位图"
+  },
+  {
+    "name": "卡片 17",
+    "category": "moments",
+    "src": "assets/placeholders/card-17.svg",
+    "alt": "编号 17 的纯色占位图"
+  },
+  {
+    "name": "卡片 18",
+    "category": "moments",
+    "src": "assets/placeholders/card-18.svg",
+    "alt": "编号 18 的纯色占位图"
+  },
+  {
+    "name": "卡片 19",
+    "category": "moments",
+    "src": "assets/placeholders/card-19.svg",
+    "alt": "编号 19 的纯色占位图"
+  },
+  {
+    "name": "卡片 20",
+    "category": "moments",
+    "src": "assets/placeholders/card-20.svg",
+    "alt": "编号 20 的纯色占位图"
+  },
+  {
+    "name": "卡片 21",
+    "category": "moments",
+    "src": "assets/placeholders/card-21.svg",
+    "alt": "编号 21 的纯色占位图"
+  },
+  {
+    "name": "卡片 22",
+    "category": "moments",
+    "src": "assets/placeholders/card-22.svg",
+    "alt": "编号 22 的纯色占位图"
+  },
+  {
+    "name": "卡片 23",
+    "category": "moments",
+    "src": "assets/placeholders/card-23.svg",
+    "alt": "编号 23 的纯色占位图"
+  },
+  {
+    "name": "卡片 24",
+    "category": "moments",
+    "src": "assets/placeholders/card-24.svg",
+    "alt": "编号 24 的纯色占位图"
+  },
+  {
+    "name": "卡片 25",
+    "category": "daily",
+    "src": "assets/placeholders/card-25.svg",
+    "alt": "编号 25 的纯色占位图"
+  },
+  {
+    "name": "卡片 26",
+    "category": "daily",
+    "src": "assets/placeholders/card-26.svg",
+    "alt": "编号 26 的纯色占位图"
+  },
+  {
+    "name": "卡片 27",
+    "category": "daily",
+    "src": "assets/placeholders/card-27.svg",
+    "alt": "编号 27 的纯色占位图"
+  },
+  {
+    "name": "卡片 28",
+    "category": "daily",
+    "src": "assets/placeholders/card-28.svg",
+    "alt": "编号 28 的纯色占位图"
+  },
+  {
+    "name": "卡片 29",
+    "category": "daily",
+    "src": "assets/placeholders/card-29.svg",
+    "alt": "编号 29 的纯色占位图"
+  },
+  {
+    "name": "卡片 30",
+    "category": "daily",
+    "src": "assets/placeholders/card-30.svg",
+    "alt": "编号 30 的纯色占位图"
+  },
+  {
+    "name": "卡片 31",
+    "category": "daily",
+    "src": "assets/placeholders/card-31.svg",
+    "alt": "编号 31 的纯色占位图"
+  },
+  {
+    "name": "卡片 32",
+    "category": "daily",
+    "src": "assets/placeholders/card-32.svg",
+    "alt": "编号 32 的纯色占位图"
+  },
+  {
+    "name": "卡片 33",
+    "category": "daily",
+    "src": "assets/placeholders/card-33.svg",
+    "alt": "编号 33 的纯色占位图"
+  },
+  {
+    "name": "卡片 34",
+    "category": "daily",
+    "src": "assets/placeholders/card-34.svg",
+    "alt": "编号 34 的纯色占位图"
+  },
+  {
+    "name": "卡片 35",
+    "category": "daily",
+    "src": "assets/placeholders/card-35.svg",
+    "alt": "编号 35 的纯色占位图"
+  },
+  {
+    "name": "卡片 36",
+    "category": "daily",
+    "src": "assets/placeholders/card-36.svg",
+    "alt": "编号 36 的纯色占位图"
+  },
+  {
+    "name": "卡片 37",
+    "category": "daily",
+    "src": "assets/placeholders/card-37.svg",
+    "alt": "编号 37 的纯色占位图"
+  },
+  {
+    "name": "卡片 38",
+    "category": "daily",
+    "src": "assets/placeholders/card-38.svg",
+    "alt": "编号 38 的纯色占位图"
+  },
+  {
+    "name": "卡片 39",
+    "category": "daily",
+    "src": "assets/placeholders/card-39.svg",
+    "alt": "编号 39 的纯色占位图"
+  },
+  {
+    "name": "卡片 40",
+    "category": "daily",
+    "src": "assets/placeholders/card-40.svg",
+    "alt": "编号 40 的纯色占位图"
+  },
+  {
+    "name": "卡片 41",
+    "category": "daily",
+    "src": "assets/placeholders/card-41.svg",
+    "alt": "编号 41 的纯色占位图"
+  },
+  {
+    "name": "卡片 42",
+    "category": "daily",
+    "src": "assets/placeholders/card-42.svg",
+    "alt": "编号 42 的纯色占位图"
+  },
+  {
+    "name": "卡片 43",
+    "category": "daily",
+    "src": "assets/placeholders/card-43.svg",
+    "alt": "编号 43 的纯色占位图"
+  },
+  {
+    "name": "卡片 44",
+    "category": "daily",
+    "src": "assets/placeholders/card-44.svg",
+    "alt": "编号 44 的纯色占位图"
+  },
+  {
+    "name": "卡片 45",
+    "category": "daily",
+    "src": "assets/placeholders/card-45.svg",
+    "alt": "编号 45 的纯色占位图"
+  },
+  {
+    "name": "卡片 46",
+    "category": "daily",
+    "src": "assets/placeholders/card-46.svg",
+    "alt": "编号 46 的纯色占位图"
+  },
+  {
+    "name": "卡片 47",
+    "category": "daily",
+    "src": "assets/placeholders/card-47.svg",
+    "alt": "编号 47 的纯色占位图"
+  },
+  {
+    "name": "卡片 48",
+    "category": "daily",
+    "src": "assets/placeholders/card-48.svg",
+    "alt": "编号 48 的纯色占位图"
+  },
+  {
+    "name": "卡片 49",
+    "category": "daily",
+    "src": "assets/placeholders/card-49.svg",
+    "alt": "编号 49 的纯色占位图"
+  }
+]

@@ -1,0 +1,578 @@
+[
+  {
+    "id": "placeholder-01",
+    "number": 1,
+    "title": "示例照片 01",
+    "file": "assets/placeholders/photo-01.svg",
+    "alt": "编号 01 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2024.01"
+    }
+  },
+  {
+    "id": "placeholder-02",
+    "number": 2,
+    "title": "示例照片 02",
+    "file": "assets/placeholders/photo-02.svg",
+    "alt": "编号 02 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2024.01"
+    }
+  },
+  {
+    "id": "placeholder-03",
+    "number": 3,
+    "title": "示例照片 03",
+    "file": "assets/placeholders/photo-03.svg",
+    "alt": "编号 03 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2024.02"
+    }
+  },
+  {
+    "id": "placeholder-04",
+    "number": 4,
+    "title": "示例照片 04",
+    "file": "assets/placeholders/photo-04.svg",
+    "alt": "编号 04 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2024.02"
+    }
+  },
+  {
+    "id": "placeholder-05",
+    "number": 5,
+    "title": "示例照片 05",
+    "file": "assets/placeholders/photo-05.svg",
+    "alt": "编号 05 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2024.03"
+    }
+  },
+  {
+    "id": "placeholder-06",
+    "number": 6,
+    "title": "示例照片 06",
+    "file": "assets/placeholders/photo-06.svg",
+    "alt": "编号 06 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2024.03"
+    }
+  },
+  {
+    "id": "placeholder-07",
+    "number": 7,
+    "title": "示例照片 07",
+    "file": "assets/placeholders/photo-07.svg",
+    "alt": "编号 07 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2024.04"
+    }
+  },
+  {
+    "id": "placeholder-08",
+    "number": 8,
+    "title": "示例照片 08",
+    "file": "assets/placeholders/photo-08.svg",
+    "alt": "编号 08 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2024.04"
+    }
+  },
+  {
+    "id": "placeholder-09",
+    "number": 9,
+    "title": "示例照片 09",
+    "file": "assets/placeholders/photo-09.svg",
+    "alt": "编号 09 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2024.05"
+    }
+  },
+  {
+    "id": "placeholder-10",
+    "number": 10,
+    "title": "示例照片 10",
+    "file": "assets/placeholders/photo-10.svg",
+    "alt": "编号 10 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2024.05"
+    }
+  },
+  {
+    "id": "placeholder-11",
+    "number": 11,
+    "title": "示例照片 11",
+    "file": "assets/placeholders/photo-11.svg",
+    "alt": "编号 11 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2024.06"
+    }
+  },
+  {
+    "id": "placeholder-12",
+    "number": 12,
+    "title": "示例照片 12",
+    "file": "assets/placeholders/photo-12.svg",
+    "alt": "编号 12 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2024.06"
+    }
+  },
+  {
+    "id": "placeholder-13",
+    "number": 13,
+    "title": "示例照片 13",
+    "file": "assets/placeholders/photo-13.svg",
+    "alt": "编号 13 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2024.07"
+    }
+  },
+  {
+    "id": "placeholder-14",
+    "number": 14,
+    "title": "示例照片 14",
+    "file": "assets/placeholders/photo-14.svg",
+    "alt": "编号 14 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2024.07"
+    }
+  },
+  {
+    "id": "placeholder-15",
+    "number": 15,
+    "title": "示例照片 15",
+    "file": "assets/placeholders/photo-15.svg",
+    "alt": "编号 15 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2024.08"
+    }
+  },
+  {
+    "id": "placeholder-16",
+    "number": 16,
+    "title": "示例照片 16",
+    "file": "assets/placeholders/photo-16.svg",
+    "alt": "编号 16 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2024.08"
+    }
+  },
+  {
+    "id": "placeholder-17",
+    "number": 17,
+    "title": "示例照片 17",
+    "file": "assets/placeholders/photo-17.svg",
+    "alt": "编号 17 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2024.09"
+    }
+  },
+  {
+    "id": "placeholder-18",
+    "number": 18,
+    "title": "示例照片 18",
+    "file": "assets/placeholders/photo-18.svg",
+    "alt": "编号 18 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2024.09"
+    }
+  },
+  {
+    "id": "placeholder-19",
+    "number": 19,
+    "title": "示例照片 19",
+    "file": "assets/placeholders/photo-19.svg",
+    "alt": "编号 19 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2024.10"
+    }
+  },
+  {
+    "id": "placeholder-20",
+    "number": 20,
+    "title": "示例照片 20",
+    "file": "assets/placeholders/photo-20.svg",
+    "alt": "编号 20 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2024.10"
+    }
+  },
+  {
+    "id": "placeholder-21",
+    "number": 21,
+    "title": "示例照片 21",
+    "file": "assets/placeholders/photo-21.svg",
+    "alt": "编号 21 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2024.11"
+    }
+  },
+  {
+    "id": "placeholder-22",
+    "number": 22,
+    "title": "示例照片 22",
+    "file": "assets/placeholders/photo-22.svg",
+    "alt": "编号 22 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2024.11"
+    }
+  },
+  {
+    "id": "placeholder-23",
+    "number": 23,
+    "title": "示例照片 23",
+    "file": "assets/placeholders/photo-23.svg",
+    "alt": "编号 23 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2024.12"
+    }
+  },
+  {
+    "id": "placeholder-24",
+    "number": 24,
+    "title": "示例照片 24",
+    "file": "assets/placeholders/photo-24.svg",
+    "alt": "编号 24 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2024.12"
+    }
+  },
+  {
+    "id": "placeholder-25",
+    "number": 25,
+    "title": "示例照片 25",
+    "file": "assets/placeholders/photo-25.svg",
+    "alt": "编号 25 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2025.01"
+    }
+  },
+  {
+    "id": "placeholder-26",
+    "number": 26,
+    "title": "示例照片 26",
+    "file": "assets/placeholders/photo-26.svg",
+    "alt": "编号 26 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2025.01"
+    }
+  },
+  {
+    "id": "placeholder-27",
+    "number": 27,
+    "title": "示例照片 27",
+    "file": "assets/placeholders/photo-27.svg",
+    "alt": "编号 27 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2025.02"
+    }
+  },
+  {
+    "id": "placeholder-28",
+    "number": 28,
+    "title": "示例照片 28",
+    "file": "assets/placeholders/photo-28.svg",
+    "alt": "编号 28 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2025.02"
+    }
+  },
+  {
+    "id": "placeholder-29",
+    "number": 29,
+    "title": "示例照片 29",
+    "file": "assets/placeholders/photo-29.svg",
+    "alt": "编号 29 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2025.03"
+    }
+  },
+  {
+    "id": "placeholder-30",
+    "number": 30,
+    "title": "示例照片 30",
+    "file": "assets/placeholders/photo-30.svg",
+    "alt": "编号 30 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2025.03"
+    }
+  },
+  {
+    "id": "placeholder-31",
+    "number": 31,
+    "title": "示例照片 31",
+    "file": "assets/placeholders/photo-31.svg",
+    "alt": "编号 31 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2025.04"
+    }
+  },
+  {
+    "id": "placeholder-32",
+    "number": 32,
+    "title": "示例照片 32",
+    "file": "assets/placeholders/photo-32.svg",
+    "alt": "编号 32 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2025.04"
+    }
+  },
+  {
+    "id": "placeholder-33",
+    "number": 33,
+    "title": "示例照片 33",
+    "file": "assets/placeholders/photo-33.svg",
+    "alt": "编号 33 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2025.05"
+    }
+  },
+  {
+    "id": "placeholder-34",
+    "number": 34,
+    "title": "示例照片 34",
+    "file": "assets/placeholders/photo-34.svg",
+    "alt": "编号 34 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2025.05"
+    }
+  },
+  {
+    "id": "placeholder-35",
+    "number": 35,
+    "title": "示例照片 35",
+    "file": "assets/placeholders/photo-35.svg",
+    "alt": "编号 35 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2025.06"
+    }
+  },
+  {
+    "id": "placeholder-36",
+    "number": 36,
+    "title": "示例照片 36",
+    "file": "assets/placeholders/photo-36.svg",
+    "alt": "编号 36 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2025.06"
+    }
+  },
+  {
+    "id": "placeholder-37",
+    "number": 37,
+    "title": "示例照片 37",
+    "file": "assets/placeholders/photo-37.svg",
+    "alt": "编号 37 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2025.07"
+    }
+  },
+  {
+    "id": "placeholder-38",
+    "number": 38,
+    "title": "示例照片 38",
+    "file": "assets/placeholders/photo-38.svg",
+    "alt": "编号 38 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2025.07"
+    }
+  },
+  {
+    "id": "placeholder-39",
+    "number": 39,
+    "title": "示例照片 39",
+    "file": "assets/placeholders/photo-39.svg",
+    "alt": "编号 39 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2025.08"
+    }
+  },
+  {
+    "id": "placeholder-40",
+    "number": 40,
+    "title": "示例照片 40",
+    "file": "assets/placeholders/photo-40.svg",
+    "alt": "编号 40 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2025.08"
+    }
+  },
+  {
+    "id": "placeholder-41",
+    "number": 41,
+    "title": "示例照片 41",
+    "file": "assets/placeholders/photo-41.svg",
+    "alt": "编号 41 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2025.09"
+    }
+  },
+  {
+    "id": "placeholder-42",
+    "number": 42,
+    "title": "示例照片 42",
+    "file": "assets/placeholders/photo-42.svg",
+    "alt": "编号 42 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2025.09"
+    }
+  },
+  {
+    "id": "placeholder-43",
+    "number": 43,
+    "title": "示例照片 43",
+    "file": "assets/placeholders/photo-43.svg",
+    "alt": "编号 43 的占位图片",
+    "mock_metadata": {
+      "category": "日常",
+      "place": "房间",
+      "period": "2025.10"
+    }
+  },
+  {
+    "id": "placeholder-44",
+    "number": 44,
+    "title": "示例照片 44",
+    "file": "assets/placeholders/photo-44.svg",
+    "alt": "编号 44 的占位图片",
+    "mock_metadata": {
+      "category": "散步",
+      "place": "街角",
+      "period": "2025.10"
+    }
+  },
+  {
+    "id": "placeholder-45",
+    "number": 45,
+    "title": "示例照片 45",
+    "file": "assets/placeholders/photo-45.svg",
+    "alt": "编号 45 的占位图片",
+    "mock_metadata": {
+      "category": "学习",
+      "place": "书桌",
+      "period": "2025.11"
+    }
+  },
+  {
+    "id": "placeholder-46",
+    "number": 46,
+    "title": "示例照片 46",
+    "file": "assets/placeholders/photo-46.svg",
+    "alt": "编号 46 的占位图片",
+    "mock_metadata": {
+      "category": "旅行",
+      "place": "山间",
+      "period": "2025.11"
+    }
+  },
+  {
+    "id": "placeholder-47",
+    "number": 47,
+    "title": "示例照片 47",
+    "file": "assets/placeholders/photo-47.svg",
+    "alt": "编号 47 的占位图片",
+    "mock_metadata": {
+      "category": "相伴",
+      "place": "海边",
+      "period": "2025.12"
+    }
+  },
+  {
+    "id": "placeholder-48",
+    "number": 48,
+    "title": "示例照片 48",
+    "file": "assets/placeholders/photo-48.svg",
+    "alt": "编号 48 的占位图片",
+    "mock_metadata": {
+      "category": "摄影",
+      "place": "工作台",
+      "period": "2025.12"
+    }
+  }
+]

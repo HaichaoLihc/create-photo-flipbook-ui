@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#e6e6e6">
+  <meta name="description" content="使用 48 张编号占位图演示四种照片布局、整齐堆叠与滚动文字。所有内容均为示例。">
+  <title>照片年轮 · Photo Ring</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e6e6e6'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23080808' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23080808' stroke-width='1'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="layout.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>照片年轮</h1>
+    <nav class="views" aria-label="照片视图">
+      <button class="view-pill" type="button" data-view="flat" aria-pressed="true" aria-label="Flat，平面圆环">Flat</button>
+      <button class="view-pill" type="button" data-view="tilt" aria-pressed="false" aria-label="Tilt，倾斜弧线">Tilt</button>
+      <button class="view-pill" type="button" data-view="ring" aria-pressed="false" aria-label="Ring，立体圆环">Ring</button>
+      <button class="view-pill" type="button" data-view="gallery" aria-pressed="false" aria-label="Gallery，横向画廊">Gallery</button>
+    </nav>
+  </header>
+  <main class="collection" id="collection" data-view="flat" tabindex="0" aria-label="照片年轮。滚动、拖动，或按方向键浏览全部 48 张照片；Home 键回到起点。">
+    <div class="orbit" id="orbit" role="list" aria-label="四十八张占位图片">
+      <figure class="work" role="listitem" data-title="示例照片 01" aria-label="01 · 示例照片 01" title="示例照片 01" data-category="日常" data-place="房间" data-period="2024.01">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-24.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-18.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-12.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-06.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-02.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-01.svg" alt="编号 01 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 02" aria-label="02 · 示例照片 02" title="示例照片 02" data-category="散步" data-place="街角" data-period="2024.01">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-25.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-19.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-13.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-07.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-03.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-02.svg" alt="编号 02 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 03" aria-label="03 · 示例照片 03" title="示例照片 03" data-category="学习" data-place="书桌" data-period="2024.02">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-26.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-20.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-14.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-08.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-04.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-03.svg" alt="编号 03 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 04" aria-label="04 · 示例照片 04" title="示例照片 04" data-category="旅行" data-place="山间" data-period="2024.02">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-27.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-21.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-15.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-09.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-05.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-04.svg" alt="编号 04 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 05" aria-label="05 · 示例照片 05" title="示例照片 05" data-category="相伴" data-place="海边" data-period="2024.03">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-28.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-22.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-16.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-10.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-06.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-05.svg" alt="编号 05 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 06" aria-label="06 · 示例照片 06" title="示例照片 06" data-category="摄影" data-place="工作台" data-period="2024.03">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-29.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-23.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-17.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-11.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-07.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-06.svg" alt="编号 06 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 07" aria-label="07 · 示例照片 07" title="示例照片 07" data-category="日常" data-place="房间" data-period="2024.04">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-30.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-24.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-18.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-12.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-08.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-07.svg" alt="编号 07 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 08" aria-label="08 · 示例照片 08" title="示例照片 08" data-category="散步" data-place="街角" data-period="2024.04">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-31.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-25.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-19.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-13.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-09.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-08.svg" alt="编号 08 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 09" aria-label="09 · 示例照片 09" title="示例照片 09" data-category="学习" data-place="书桌" data-period="2024.05">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-32.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-26.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-20.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-14.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-10.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-09.svg" alt="编号 09 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 10" aria-label="10 · 示例照片 10" title="示例照片 10" data-category="旅行" data-place="山间" data-period="2024.05">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-33.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-27.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-21.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-15.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-11.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-10.svg" alt="编号 10 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 11" aria-label="11 · 示例照片 11" title="示例照片 11" data-category="相伴" data-place="海边" data-period="2024.06">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-34.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-28.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-22.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-16.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-12.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-11.svg" alt="编号 11 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 12" aria-label="12 · 示例照片 12" title="示例照片 12" data-category="摄影" data-place="工作台" data-period="2024.06">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-35.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-29.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-23.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-17.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-13.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-12.svg" alt="编号 12 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 13" aria-label="13 · 示例照片 13" title="示例照片 13" data-category="日常" data-place="房间" data-period="2024.07">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-36.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-30.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-24.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-18.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-14.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-13.svg" alt="编号 13 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 14" aria-label="14 · 示例照片 14" title="示例照片 14" data-category="散步" data-place="街角" data-period="2024.07">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-37.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-31.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-25.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-19.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-15.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-14.svg" alt="编号 14 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 15" aria-label="15 · 示例照片 15" title="示例照片 15" data-category="学习" data-place="书桌" data-period="2024.08">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-38.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-32.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-26.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-20.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-16.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-15.svg" alt="编号 15 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 16" aria-label="16 · 示例照片 16" title="示例照片 16" data-category="旅行" data-place="山间" data-period="2024.08">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-39.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-33.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-27.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-21.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-17.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-16.svg" alt="编号 16 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 17" aria-label="17 · 示例照片 17" title="示例照片 17" data-category="相伴" data-place="海边" data-period="2024.09">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-40.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-34.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-28.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-22.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-18.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-17.svg" alt="编号 17 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 18" aria-label="18 · 示例照片 18" title="示例照片 18" data-category="摄影" data-place="工作台" data-period="2024.09">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-41.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-35.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-29.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-23.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-19.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-18.svg" alt="编号 18 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 19" aria-label="19 · 示例照片 19" title="示例照片 19" data-category="日常" data-place="房间" data-period="2024.10">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-42.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-36.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-30.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-24.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-20.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-19.svg" alt="编号 19 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 20" aria-label="20 · 示例照片 20" title="示例照片 20" data-category="散步" data-place="街角" data-period="2024.10">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-43.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-37.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-31.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-25.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-21.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-20.svg" alt="编号 20 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 21" aria-label="21 · 示例照片 21" title="示例照片 21" data-category="学习" data-place="书桌" data-period="2024.11">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-44.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-38.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-32.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-26.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-22.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-21.svg" alt="编号 21 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 22" aria-label="22 · 示例照片 22" title="示例照片 22" data-category="旅行" data-place="山间" data-period="2024.11">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-45.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-39.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-33.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-27.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-23.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-22.svg" alt="编号 22 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 23" aria-label="23 · 示例照片 23" title="示例照片 23" data-category="相伴" data-place="海边" data-period="2024.12">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-46.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-40.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-34.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-28.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-24.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-23.svg" alt="编号 23 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 24" aria-label="24 · 示例照片 24" title="示例照片 24" data-category="摄影" data-place="工作台" data-period="2024.12">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-47.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-41.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-35.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-29.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-25.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-24.svg" alt="编号 24 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 25" aria-label="25 · 示例照片 25" title="示例照片 25" data-category="日常" data-place="房间" data-period="2025.01">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-48.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-42.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-36.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-30.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-26.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-25.svg" alt="编号 25 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 26" aria-label="26 · 示例照片 26" title="示例照片 26" data-category="散步" data-place="街角" data-period="2025.01">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-01.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-43.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-37.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-31.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-27.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-26.svg" alt="编号 26 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 27" aria-label="27 · 示例照片 27" title="示例照片 27" data-category="学习" data-place="书桌" data-period="2025.02">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-02.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-44.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-38.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-32.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-28.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-27.svg" alt="编号 27 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 28" aria-label="28 · 示例照片 28" title="示例照片 28" data-category="旅行" data-place="山间" data-period="2025.02">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-03.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-45.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-39.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-33.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-29.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-28.svg" alt="编号 28 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 29" aria-label="29 · 示例照片 29" title="示例照片 29" data-category="相伴" data-place="海边" data-period="2025.03">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-04.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-46.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-40.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-34.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-30.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-29.svg" alt="编号 29 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 30" aria-label="30 · 示例照片 30" title="示例照片 30" data-category="摄影" data-place="工作台" data-period="2025.03">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-05.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-47.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-41.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-35.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-31.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-30.svg" alt="编号 30 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 31" aria-label="31 · 示例照片 31" title="示例照片 31" data-category="日常" data-place="房间" data-period="2025.04">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-06.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-48.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-42.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-36.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-32.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-31.svg" alt="编号 31 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 32" aria-label="32 · 示例照片 32" title="示例照片 32" data-category="散步" data-place="街角" data-period="2025.04">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-07.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-01.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-43.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-37.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-33.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-32.svg" alt="编号 32 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 33" aria-label="33 · 示例照片 33" title="示例照片 33" data-category="学习" data-place="书桌" data-period="2025.05">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-08.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-02.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-44.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-38.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-34.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-33.svg" alt="编号 33 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 34" aria-label="34 · 示例照片 34" title="示例照片 34" data-category="旅行" data-place="山间" data-period="2025.05">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-09.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-03.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-45.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-39.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-35.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-34.svg" alt="编号 34 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 35" aria-label="35 · 示例照片 35" title="示例照片 35" data-category="相伴" data-place="海边" data-period="2025.06">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-10.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-04.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-46.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-40.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-36.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-35.svg" alt="编号 35 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 36" aria-label="36 · 示例照片 36" title="示例照片 36" data-category="摄影" data-place="工作台" data-period="2025.06">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-11.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-05.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-47.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-41.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-37.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-36.svg" alt="编号 36 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 37" aria-label="37 · 示例照片 37" title="示例照片 37" data-category="日常" data-place="房间" data-period="2025.07">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-12.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-06.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-48.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-42.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-38.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-37.svg" alt="编号 37 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 38" aria-label="38 · 示例照片 38" title="示例照片 38" data-category="散步" data-place="街角" data-period="2025.07">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-13.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-07.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-01.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-43.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-39.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-38.svg" alt="编号 38 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 39" aria-label="39 · 示例照片 39" title="示例照片 39" data-category="学习" data-place="书桌" data-period="2025.08">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-14.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-08.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-02.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-44.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-40.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-39.svg" alt="编号 39 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 40" aria-label="40 · 示例照片 40" title="示例照片 40" data-category="旅行" data-place="山间" data-period="2025.08">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-15.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-09.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-03.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-45.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-41.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-40.svg" alt="编号 40 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 41" aria-label="41 · 示例照片 41" title="示例照片 41" data-category="相伴" data-place="海边" data-period="2025.09">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-16.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-10.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-04.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-46.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-42.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-41.svg" alt="编号 41 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 42" aria-label="42 · 示例照片 42" title="示例照片 42" data-category="摄影" data-place="工作台" data-period="2025.09">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-17.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-11.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-05.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-47.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-43.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-42.svg" alt="编号 42 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 43" aria-label="43 · 示例照片 43" title="示例照片 43" data-category="日常" data-place="房间" data-period="2025.10">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-18.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-12.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-06.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-48.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-44.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-43.svg" alt="编号 43 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 44" aria-label="44 · 示例照片 44" title="示例照片 44" data-category="散步" data-place="街角" data-period="2025.10">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-19.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-13.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-07.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-01.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-45.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-44.svg" alt="编号 44 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 45" aria-label="45 · 示例照片 45" title="示例照片 45" data-category="学习" data-place="书桌" data-period="2025.11">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-20.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-14.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-08.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-02.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-46.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-45.svg" alt="编号 45 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 46" aria-label="46 · 示例照片 46" title="示例照片 46" data-category="旅行" data-place="山间" data-period="2025.11">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-21.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-15.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-09.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-03.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-47.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-46.svg" alt="编号 46 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 47" aria-label="47 · 示例照片 47" title="示例照片 47" data-category="相伴" data-place="海边" data-period="2025.12">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-22.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-16.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-10.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-04.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-48.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-47.svg" alt="编号 47 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+      <figure class="work" role="listitem" data-title="示例照片 48" aria-label="48 · 示例照片 48" title="示例照片 48" data-category="摄影" data-place="工作台" data-period="2025.12">
+        <span class="photo-stack" aria-hidden="true">
+          <img class="stack-photo" src="assets/placeholders/photo-23.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:5">
+          <img class="stack-photo" src="assets/placeholders/photo-17.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:4">
+          <img class="stack-photo" src="assets/placeholders/photo-11.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:3">
+          <img class="stack-photo" src="assets/placeholders/photo-05.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:2">
+          <img class="stack-photo" src="assets/placeholders/photo-01.svg" alt="" width="900" height="1200" draggable="false" decoding="async" style="--stack-depth:1">
+        </span>
+        <img class="photo-front" src="assets/placeholders/photo-48.svg" alt="编号 48 的占位图片" width="900" height="1200" draggable="false" decoding="async">
+      </figure>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="memory-caption" role="status" aria-live="polite" aria-atomic="true">
+      <span class="caption-label">当前分类 <span class="mock-label">示例信息</span></span>
+      <span class="caption-category">日常</span>
+      <span class="caption-details"><span class="caption-place">房间</span><span class="caption-divider" aria-hidden="true"> / </span><span class="caption-period">2024.01</span></span>
+    </div>
+    <span class="scroll-hint">滚动，浏览示例</span>
+    <span class="counter" aria-label="当前照片 1，共 48 张">01 — 48</span>
+  </footer>
+</body>
+</html>
