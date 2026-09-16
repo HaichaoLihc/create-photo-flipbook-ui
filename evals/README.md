@@ -11,7 +11,7 @@ cases/<case-id>/
 ```
 
 Rubrics are stored separately under `rubrics/` and are never copied into the
-builder workspace. Ground-truth implementations live under `examples/`; they
+builder workspace. Ground-truth implementations live under `ui-collections/`; they
 are grader inputs, not builder inputs.
 
 ## Run a case
@@ -50,7 +50,7 @@ folders, credentials, or session data.
 ## Grade a run
 
 Use a fresh Codex task. Give the grader the archived `workspace/`, the matching
-ground truth under `examples/`, and `rubrics/photo-flipbook-v1.json`. Do not ask
+ground truth under `ui-collections/`, and `rubrics/photo-flipbook-v1.json`. Do not ask
 the builder that created the output to grade itself.
 
 Record criterion-level evidence, elapsed time, build/test status, manual

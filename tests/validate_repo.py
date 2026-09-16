@@ -55,14 +55,18 @@ def main() -> None:
         SKILL / "scripts" / "pinterest" / "storage.mjs",
         SKILL / "scripts" / "pinterest" / "package.json",
         SKILL / "scripts" / "pinterest" / "package-lock.json",
-        ROOT / "examples" / "2d-book" / "index.html",
-        ROOT / "examples" / "library" / "index.html",
-        ROOT / "examples" / "library" / "book.html",
-        ROOT / "examples" / "library" / "package.json",
-        ROOT / "examples" / "3d-book-1" / "index.html",
-        ROOT / "examples" / "3d-book-1" / "package.json",
-        ROOT / "examples" / "3d-book-2" / "index.html",
-        ROOT / "examples" / "3d-book-2" / "package.json",
+        ROOT / "ui-collections" / "2d-book" / "index.html",
+        ROOT / "ui-collections" / "library" / "index.html",
+        ROOT / "ui-collections" / "library" / "book.html",
+        ROOT / "ui-collections" / "library" / "package.json",
+        ROOT / "ui-collections" / "3d-book-1" / "index.html",
+        ROOT / "ui-collections" / "3d-book-1" / "package.json",
+        ROOT / "ui-collections" / "3d-book-2" / "index.html",
+        ROOT / "ui-collections" / "3d-book-2" / "package.json",
+        ROOT / "ui-collections" / "card-gallery" / "index.html",
+        ROOT / "ui-collections" / "image-atlas" / "index.html",
+        ROOT / "ui-collections" / "photo-ring" / "index.html",
+        ROOT / "ui-collections" / "film-negative-flipbook" / "build_archive.py",
         ROOT / "evals" / "run_eval.py",
         ROOT / "evals" / "cases" / "hawaii-v1" / "prompt.md",
         ROOT / "evals" / "cases" / "hawaii-v1" / "input" / "page-01-cover-hd.jpg",
@@ -70,6 +74,10 @@ def main() -> None:
     ]
     for path in required:
         require(path.is_file(), f"Missing required repository file: {path.relative_to(ROOT)}")
+
+    for target in re.findall(r"\]\(([^)]+)\)", (ROOT / "README.md").read_text(encoding="utf-8")):
+        if "://" not in target and not target.startswith("#"):
+            require((ROOT / target.split("#", 1)[0]).exists(), f"Broken README reference: {target}")
 
     catalog = (SKILL / "references" / "photo-skill-catalog.md").read_text(
         encoding="utf-8"
@@ -101,14 +109,14 @@ def main() -> None:
         check=True,
     )
     subprocess.run(
-        ["node", "--test", str(ROOT / "examples" / "2d-book" / "test.mjs")],
+        ["node", "--test", str(ROOT / "ui-collections" / "2d-book" / "test.mjs")],
         check=True,
     )
     subprocess.run(
         [
             "node",
             "--test",
-            str(ROOT / "examples" / "3d-book-1" / "src" / "flipbook-contract.test.mjs"),
+            str(ROOT / "ui-collections" / "3d-book-1" / "src" / "flipbook-contract.test.mjs"),
         ],
         check=True,
     )
@@ -116,7 +124,7 @@ def main() -> None:
         [
             "node",
             "--test",
-            str(ROOT / "examples" / "3d-book-2" / "src" / "quick-flipbook-contract.test.mjs"),
+            str(ROOT / "ui-collections" / "3d-book-2" / "src" / "quick-flipbook-contract.test.mjs"),
         ],
         check=True,
     )
@@ -125,7 +133,11 @@ def main() -> None:
         check=True,
     )
     subprocess.run(
-        ["node", "--test", str(ROOT / "examples" / "library" / "test.mjs")],
+        ["node", "--test", str(ROOT / "ui-collections" / "library" / "test.mjs")],
+        check=True,
+    )
+    subprocess.run(
+        ["node", "--test", str(ROOT / "ui-collections" / "photo-ring" / "tests" / "collection.test.cjs")],
         check=True,
     )
     print("Repository structure is valid")

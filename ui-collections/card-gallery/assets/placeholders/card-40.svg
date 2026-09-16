@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="928" height="1200" viewBox="0 0 928 1200">
+  <title>Placeholder 40</title>
+  <rect width="928" height="1200" fill="#d2dcda"/>
+  <rect x="56" y="56" width="816" height="1088" rx="12" fill="none" stroke="#30504b" stroke-opacity=".22" stroke-width="2"/>
+  <path d="M80 102H132M106 76V128M796 1098H848M822 1072V1124" stroke="#30504b" stroke-opacity=".45" stroke-width="2"/>
+  <g fill="#30504b" text-anchor="middle" font-family="Arial, sans-serif">
+    <text x="464" y="455" font-size="24" letter-spacing="7">PLACEHOLDER</text>
+    <text x="464" y="665" font-size="190" font-weight="300">40</text>
+    <text x="464" y="750" font-size="22" letter-spacing="4">STACK / CARD</text>
+    <text x="464" y="1078" font-size="20" opacity=".65">928 × 1200</text>
+  </g>
+</svg>

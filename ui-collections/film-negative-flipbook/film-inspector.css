@@ -1,0 +1,47 @@
+.film-strip.has-extracted-frame {
+  -webkit-mask-image: linear-gradient(to right, #000 0 var(--extracted-start), transparent var(--extracted-start) var(--extracted-end), #000 var(--extracted-end) 100%);
+  mask-image: linear-gradient(to right, #000 0 var(--extracted-start), transparent var(--extracted-start) var(--extracted-end), #000 var(--extracted-end) 100%);
+}
+button.negative-frame { cursor:zoom-in; }
+.book-header, .controls { transition:opacity 200ms ease; }
+.is-inspecting-film .book-header, .is-inspecting-film .controls { opacity:0; pointer-events:none; }
+#film-inspector { position:fixed; inset:0; width:100%; max-width:none; height:100dvh; max-height:none; margin:0; padding:0; overflow:hidden; border:0; background:transparent; color:#dddccf; }
+#film-inspector::backdrop { background:transparent; }
+.inspect-shade { position:absolute; inset:0; background:rgba(9,10,8,.83); }
+.inspect-scene { position:absolute; inset:0; perspective:1400px; }
+.inspect-flight { display:block; position:absolute; top:0; left:0; padding:0; border:0; border-radius:0; background:transparent; transform-origin:0 0; transform-style:preserve-3d; cursor:zoom-out; will-change:transform; -webkit-tap-highlight-color:transparent; }
+.inspect-tilt, .inspect-card, .inspect-material { display:block; position:absolute; inset:0; transform-style:preserve-3d; }
+.inspect-card, .inspect-material { will-change:transform; }
+.inspect-face { display:block; position:absolute; inset:0; padding:var(--inspect-rail) var(--inspect-border); background:#351b1d; background-clip:content-box; backface-visibility:hidden; -webkit-backface-visibility:hidden; filter:drop-shadow(0 20px 22px #0007); }
+.inspect-front { transform:translateZ(.1px); }
+.inspect-back { transform:rotateY(180deg) translateZ(.1px); }
+.inspect-face[data-surface="base"] { --grain-opacity:.04; --surface-wash:.025; --film-rail:linear-gradient(113deg,transparent 32%,#edcdb947 47%,#fff1da70 49%,transparent 52%),linear-gradient(#684444,#331d20 35% 78%,#86615b); }
+.inspect-face[data-surface="emulsion"] { --grain-opacity:.19; --surface-wash:.08; --film-rail:linear-gradient(110deg,#795f5226,transparent 60%),linear-gradient(#513b37,#47312d); }
+.inspect-face::before, .inspect-face::after { position:absolute; left:0; right:0; height:var(--inspect-rail); content:''; background:var(--film-rail); -webkit-mask:url("style/film-perforations.svg") var(--inspect-hole-offset) 0 / var(--inspect-pitch) var(--inspect-rail) repeat-x; mask:url("style/film-perforations.svg") var(--inspect-hole-offset) 0 / var(--inspect-pitch) var(--inspect-rail) repeat-x; }
+.inspect-face::before { top:0; }
+.inspect-face::after { bottom:0; transform:scaleY(-1); }
+.inspect-image { position:relative; display:block; width:100%; height:100%; overflow:hidden; background:#211011; }
+.inspect-image img { display:block; width:100%; height:100%; object-fit:cover; user-select:none; }
+.inspect-image::before, .inspect-image::after { position:absolute; inset:0; content:''; pointer-events:none; }
+.inspect-image::before { background:linear-gradient(112deg,#dac3a7,transparent 68%,#241c14); opacity:var(--surface-wash); }
+/* Static, non-repeating-looking microtexture: the coating is not animated noise. */
+.inspect-image::after { z-index:2; opacity:var(--grain-opacity); background-image:var(--film-grain); background-size:180px 180px; mix-blend-mode:soft-light; }
+.inspect-sheen { position:absolute; inset:0; z-index:3; pointer-events:none; }
+.inspect-reflection { position:absolute; inset:-40%; pointer-events:none; }
+.inspect-face[data-surface="base"] .inspect-reflection { opacity:.28; background:linear-gradient(113deg,transparent 30%,#f4eed515 42%,#fff7df99 48%,#fffef9d9 49%,#fff4de26 50%,transparent 55%),linear-gradient(113deg,transparent 65%,#d3e1e833 69%,transparent 75%); }
+.inspect-face[data-surface="emulsion"] .inspect-reflection { opacity:.17; background:radial-gradient(ellipse 72% 64% at 35% 32%,#f6e6cd99, #dbc4a542 45%,transparent 76%); }
+.inspect-ui { position:absolute; inset:0; pointer-events:none; }
+.inspect-actions { position:absolute; top:25px; right:max(24px,calc((100vw - 1180px)/2)); display:flex; align-items:center; gap:32px; pointer-events:auto; }
+.inspect-return, .inspect-flip { padding:6px 0; border:0; background:none; color:#b8bbad; font:400 10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; cursor:pointer; }
+.inspect-actions button span { margin-left:10px; font-size:17px; }
+.inspect-actions button:hover:not(:disabled) { color:#f1edde; }
+.inspect-flip:disabled { opacity:.35; cursor:default; }
+.inspect-caption { position:absolute; bottom:24px; left:0; right:0; display:flex; justify-content:center; gap:30px; margin:0; color:#929989; font:400 8px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:.13em; }
+.inspect-flight:focus-visible { outline:1px solid #d7d9c4; outline-offset:8px; }
+.inspect-actions button:focus-visible { outline:0; color:#e2e5d7; text-decoration:underline; text-underline-offset:5px; }
+@media (max-width:600px) {
+  .inspect-actions { top:17px; right:20px; gap:24px; }
+  .inspect-caption { bottom:22px; gap:20px; font-size:7px; }
+  .inspect-caption span:last-child { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { .book-header, .controls { transition:none; } }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcfcfc">
+  <meta name="description" content="使用本地占位图的环形、叠放与展开卡片交互示例。">
+  <title>Card Gallery · 环形卡片示例</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='12' y='6' width='15' height='23' rx='3' fill='%23999'%3E%3C/rect%3E%3Crect x='7' y='4' width='15' height='23' rx='3' fill='%23ddd'%3E%3C/rect%3E%3Crect x='2' y='2' width='15' height='23' rx='3' fill='%234a4956'%3E%3C/rect%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="viewport" aria-label="卡片交互示例">
+    <nav class="navigation" aria-label="浏览方式">
+      <button type="button" data-chapter="intro">环形</button>
+      <button type="button" data-chapter="vision" aria-current="page">聚合</button>
+      <button type="button" data-chapter="intelligence">展开</button>
+    </nav>
+    <div id="stage" class="stage" aria-label="滚动、拖动或使用方向键浏览卡片" tabindex="0">
+      <div id="industry-cards"></div>
+      <div id="process-cards"></div>
+    </div>
+    <div class="intro-copy" id="intro-copy">
+      <p>一组卡片，多种展开方式。</p>
+      <button id="explore" type="button">滚动浏览</button>
+    </div>
+    <div class="caption" id="caption" aria-live="polite">
+      <p class="eyebrow" id="eyebrow">CARD GALLERY</p>
+      <p class="category" id="category">卡片 11</p>
+      <p class="description" id="description">滚动或拖动，浏览卡片。<br>也可以使用方向键。</p>
+    </div>
+    <div class="progress-rail" aria-hidden="true"><span id="progress-thumb"></span></div>
+    <input class="progress" id="progress" type="range" min="0" max="1000" value="650" aria-label="浏览卡片">
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <p class="sr-only" id="instructions">向下滚动展开卡片，向上滚动返回环形。也可拖动或用方向键浏览；Home 回到环形，End 到达最后一张，Escape 返回聚合。</p>
+    <div class="error" id="error" hidden>占位图暂时无法加载。 <button onclick="location.reload()">重试</button></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
