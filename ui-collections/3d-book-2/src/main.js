@@ -12,6 +12,24 @@ import {
 } from "./drag.js";
 import "./style.css";
 
+const chinese = document.documentElement.lang.startsWith("zh");
+const readerText = chinese ? {
+  loading: "正在准备相册",
+  preparing: (title) => `正在准备《${title}》`,
+  open: (title) => `打开《${title}》`,
+  cover: "封面",
+  backCover: "封底",
+  spread: (current, total) => `第 ${current} 组跨页，共 ${total} 组`,
+} : {
+  loading: "Preparing edition",
+  preparing: (title) => `Preparing ${title}`,
+  open: (title) => `Open ${title}`,
+  cover: "Cover",
+  backCover: "Back cover",
+  spread: (current, total) => `Spread ${current} of ${total}`,
+};
+const bookTitle = (book) => chinese ? book.titleZh ?? book.title : book.title;
+
 const canvas = document.querySelector("#book-scene");
 const library = document.querySelector("#library");
 const previousButton = document.querySelector("#previous-page");
@@ -217,7 +235,7 @@ function memoizeSheetDeformation() {
   }
 }
 
-function setLoading(value, copy = "Preparing edition") {
+function setLoading(value, copy = readerText.loading) {
   loading = value;
   loadingCard.classList.toggle("is-visible", value);
   loadingCard.hidden = !value;
@@ -232,7 +250,7 @@ function renderLibrary() {
     .map(
       (book) => `
         <button class="library-book ${book.id === selectedBook.id ? "is-active" : ""}"
-          type="button" data-book="${book.id}" aria-label="Open ${book.title}" title="${book.title}">
+          type="button" data-book="${book.id}" aria-label="${readerText.open(bookTitle(book))}" title="${bookTitle(book)}">
           <span aria-hidden="true">${book.mark}</span>
         </button>`,
     )
@@ -246,7 +264,7 @@ async function selectBook(book, immediate = false) {
   selectedBook = book;
   const token = ++loadToken;
   renderLibrary();
-  setLoading(true, `Preparing ${book.title}`);
+  setLoading(true, readerText.preparing(bookTitle(book)));
   resize();
 
   const pageMaterials = await Promise.all(
@@ -442,9 +460,9 @@ function updateStatus() {
   const statusKey = `${loading}:${shown}:${total}`;
   if (statusKey === lastStatusKey) return;
   lastStatusKey = statusKey;
-  if (shown === 0) pageState.textContent = "Cover";
-  else if (shown >= total) pageState.textContent = "Back cover";
-  else pageState.textContent = `Spread ${Math.ceil(shown / 2)} of ${Math.ceil(total / 2)}`;
+  if (shown === 0) pageState.textContent = readerText.cover;
+  else if (shown >= total) pageState.textContent = readerText.backCover;
+  else pageState.textContent = readerText.spread(Math.ceil(shown / 2), Math.ceil(total / 2));
   previousButton.disabled = loading || shown <= 0;
   nextButton.disabled = loading || shown >= total;
 }

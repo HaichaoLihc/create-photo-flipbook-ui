@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="翻阅死亡谷摄影相册，体验带有翻页动画的 3D 交互相册。Create Photo Flipbook UI 在线演示。" />
+    <link rel="canonical" href="https://haichaolihc.github.io/create-photo-flipbook-ui/zh/demo.html" />
+    <link rel="alternate" hreflang="en" href="https://haichaolihc.github.io/create-photo-flipbook-ui/demo.html" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://haichaolihc.github.io/create-photo-flipbook-ui/zh/demo.html" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>翻页相册演示 — 死亡谷 | Create Photo Flipbook UI</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <canvas id="book-scene" aria-label="可交互的 3D 摄影相册"></canvas>
+      <noscript><p>请启用 JavaScript 以体验翻页，或<a href="./">了解如何制作翻页相册</a>。</p></noscript>
+      <nav class="library" aria-label="选择相册" id="library"></nav>
+      <div class="reader-controls" aria-label="翻页控制">
+        <button class="page-button" id="previous-page" type="button" aria-label="上一页">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="page-button" id="next-page" type="button" aria-label="下一页">
+          <span aria-hidden="true">›</span>
+        </button>
+        <span class="sr-only" id="page-state" aria-live="polite">封面</span>
+      </div>
+      <div class="loading-card" id="loading-card" role="status" aria-live="polite" aria-hidden="true" hidden>
+        <span class="loading-pulse"></span>
+        <span class="sr-only" id="loading-copy">正在准备相册</span>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

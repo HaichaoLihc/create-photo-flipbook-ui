@@ -1,0 +1,73 @@
+:root {
+  color: #202020;
+  background: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-synthesis: none;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 24px; }
+body { margin: 0; min-width: 320px; }
+a { color: inherit; text-underline-offset: 3px; }
+a:hover { color: #646464; }
+a:focus-visible { outline: 2px solid #555; outline-offset: 5px; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2, h3 { font-weight: 600; }
+h1 { margin-bottom: 20px; font-size: clamp(30px, 4.5vw, 44px); line-height: 1.18; letter-spacing: -.035em; }
+h2 { margin-bottom: 24px; font-size: 20px; line-height: 1.4; letter-spacing: -.015em; }
+h3 { margin-bottom: 8px; font-size: 15px; line-height: 1.5; }
+p { margin-bottom: 18px; }
+.site { width: min(920px, calc(100% - 64px)); margin-inline: auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px; font-size: 13px; }
+.site-header a { text-decoration: none; }
+.site-name { font-weight: 500; }
+.header-links { display: flex; align-items: center; gap: 24px; }
+.language-switch { display: flex; gap: 12px; }
+.language-switch a { color: #737373; }
+.language-switch a[aria-current="page"] { color: #202020; text-decoration: underline; text-underline-offset: 4px; }
+html:lang(zh) { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+html:lang(zh) h1 { line-height: 1.4; letter-spacing: -.015em; }
+.skip-link { position: absolute; top: -100px; left: 20px; padding: 10px; background: #fff; }
+.skip-link:focus { top: 10px; z-index: 2; }
+.intro { padding-block: 54px 58px; }
+.intro > p { max-width: 625px; color: #585858; font-size: 16px; line-height: 1.75; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; margin-top: 26px; font-size: 14px; }
+.button { display: inline-block; padding: 10px 17px; background: #222; color: #fff; border: 1px solid #222; border-radius: 3px; text-decoration: none; }
+.button:hover { background: #414141; border-color: #414141; color: #fff; }
+.intro > .intro-note { margin: 17px 0 0; font-size: 12px; color: #737373; }
+.section-bar { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 16px; }
+.section-bar h2 { margin: 0; font-size: 15px; letter-spacing: 0; }
+.section-bar a { font-size: 12px; color: #656565; }
+.demo-frame { display: block; width: 100%; height: clamp(310px, 49vw, 450px); border: 0; background: #f4f4f4; }
+.demo-fallback { display: block; width: 100%; height: auto; }
+.demo-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; padding-top: 12px; color: #737373; font-size: 12px; }
+.content-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid #e8e8e8; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; padding: 0; margin: 0; list-style: none; counter-reset: step; }
+.steps li { counter-increment: step; }
+.steps h3::before { content: counter(step) '. '; color: #808080; font-weight: 400; }
+.steps p { color: #626262; font-size: 14px; margin: 0; }
+.prompt { margin: 22px 0 14px; padding: 20px 22px; border: 1px solid #e5e5e5; border-radius: 3px; background: #fafafa; white-space: pre-wrap; overflow-wrap: anywhere; }
+.prompt code { font: 13px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.muted { color: #737373; font-size: 13px; }
+.questions { max-width: 720px; margin: 0; }
+.questions > div + div { margin-top: 27px; }
+.questions dt { margin-bottom: 7px; font-size: 14px; font-weight: 600; }
+.questions dd { margin: 0; color: #626262; font-size: 14px; }
+.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid #e8e8e8; margin-top: 60px; padding-block: 24px 32px; color: #737373; font-size: 12px; }
+.site-footer nav { display: flex; gap: 24px; }
+.site-footer a { text-decoration: none; }
+@media (max-width: 640px) {
+  .site { width: calc(100% - 40px); }
+  .site-header { flex-wrap: wrap; gap: 12px 20px; padding-block: 22px; font-size: 12px; }
+  .header-links { gap: 18px; }
+  .intro { padding-block: 35px 42px; }
+  .desktop-break { display: none; }
+  .intro > p { font-size: 15px; }
+  .content-section { margin-top: 42px; padding-top: 30px; }
+  .steps { grid-template-columns: 1fr; gap: 25px; }
+  .demo-caption { font-size: 11px; }
+  .prompt { padding: 17px; }
+  .site-footer { margin-top: 42px; }
+}

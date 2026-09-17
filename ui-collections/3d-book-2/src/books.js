@@ -2,6 +2,7 @@ export const books = [
   {
     id: "death-valley",
     title: "Death / Valley",
+    titleZh: "死亡谷",
     mark: "D",
     ratio: 0.75,
     pages: [
