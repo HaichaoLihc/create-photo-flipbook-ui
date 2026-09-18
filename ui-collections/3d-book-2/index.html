@@ -4,126 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
-    <title>Create Photo Flipbook — Turn Photos into Interactive Photobooks</title>
-    <meta name="description" content="Create a photo flipbook from your photos with a Codex skill. Curate images, design photobook spreads, and build an interactive page-turning website." />
-    <link rel="canonical" href="https://haichaolihc.github.io/create-photo-flipbook-ui/" />
-    <link rel="alternate" hreflang="en" href="https://haichaolihc.github.io/create-photo-flipbook-ui/" />
-    <link rel="alternate" hreflang="zh-Hans" href="https://haichaolihc.github.io/create-photo-flipbook-ui/zh/" />
-    <link rel="alternate" hreflang="x-default" href="https://haichaolihc.github.io/create-photo-flipbook-ui/" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="zh_CN" />
-    <meta property="og:site_name" content="Create Photo Flipbook UI" />
-    <meta property="og:title" content="Create Photo Flipbook — Turn Photos into Interactive Photobooks" />
-    <meta property="og:description" content="Give your photos a story, a sequence, and a place to live. A Codex skill for creating interactive photo flipbooks. Explore the live demo." />
-    <meta property="og:url" content="https://haichaolihc.github.io/create-photo-flipbook-ui/" />
-    <meta property="og:image" content="https://haichaolihc.github.io/create-photo-flipbook-ui/photo-flipbook-preview.jpg" />
-    <meta property="og:image:width" content="1800" />
-    <meta property="og:image:height" content="1328" />
-    <meta property="og:image:alt" content="An open Death Valley photobook with desert photography, torn-paper textures, and a blue accent." />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Create Photo Flipbook — Turn Photos into Interactive Photobooks" />
-    <meta name="twitter:description" content="A Codex skill for curating photos, designing photobook spreads, and building interactive page-turning websites." />
-    <meta name="twitter:image" content="https://haichaolihc.github.io/create-photo-flipbook-ui/photo-flipbook-preview.jpg" />
-    <meta name="twitter:image:alt" content="An open Death Valley photobook with desert photography and tactile paper textures." />
-    <link rel="stylesheet" href="/styles.css" />
-    <script type="module" src="/src/site.js"></script>
-    <noscript><style>.demo-frame { display: none; }</style></noscript>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": "https://haichaolihc.github.io/create-photo-flipbook-ui/#webpage",
-            "url": "https://haichaolihc.github.io/create-photo-flipbook-ui/",
-            "name": "Create Photo Flipbook — Turn Photos into Interactive Photobooks",
-            "description": "Create a photo flipbook from your photos with a Codex skill. Curate images, design photobook spreads, and build an interactive page-turning website.",
-            "inLanguage": "en",
-            "image": "https://haichaolihc.github.io/create-photo-flipbook-ui/photo-flipbook-preview.jpg",
-            "mainEntity": { "@id": "https://haichaolihc.github.io/create-photo-flipbook-ui/#software" }
-          },
-          {
-            "@type": "SoftwareSourceCode",
-            "@id": "https://haichaolihc.github.io/create-photo-flipbook-ui/#software",
-            "name": "Create Photo Flipbook UI",
-            "description": "A Codex skill that curates photographs, designs photobook spreads, and generates responsive photo flipbook websites with a bundled 2D reader. Optional 3D readers and galleries are available in the repository.",
-            "codeRepository": "https://github.com/HaichaoLihc/create-photo-flipbook-ui",
-            "url": "https://haichaolihc.github.io/create-photo-flipbook-ui/",
-            "programmingLanguage": ["HTML", "CSS", "JavaScript", "Python"]
-          }
-        ]
-      }
-    </script>
+    <meta name="description" content="3D Book 2 — a tactile WebGL photo-book template." />
+    <title>3D Book 2 — Photo Book Template</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="site">
-      <header class="site-header">
-        <a class="site-name" href="./?lang=en">Create Photo Flipbook UI</a>
-        <div class="header-links">
-          <nav class="language-switch" aria-label="Language">
-            <a href="./?lang=en" lang="en" hreflang="en" data-language="en" aria-current="page">EN</a>
-            <a href="./zh/?lang=zh" lang="zh-Hans" hreflang="zh-Hans" data-language="zh">中文</a>
-          </nav>
-          <a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui">GitHub <span aria-hidden="true">↗</span></a>
-        </div>
-      </header>
-
-      <main id="main">
-        <section class="intro" aria-labelledby="page-title">
-          <h1 id="page-title">Create a photo flipbook<br class="desktop-break" /> from your photos.</h1>
-          <p>A Codex skill for selecting photos, designing photobook pages, and building an interactive website. Start with your images and a description of the book you want.</p>
-          <div class="actions">
-            <a class="button" href="https://github.com/HaichaoLihc/create-photo-flipbook-ui#install">Install the skill</a>
-            <a href="#demo">Try the demo <span aria-hidden="true">↓</span></a>
-          </div>
-          <p class="intro-note">Use the skill in Codex. Publish the finished website on your own hosting.</p>
-        </section>
-
-        <section class="demo-section" id="demo" aria-labelledby="demo-title">
-          <div class="section-bar">
-            <h2 id="demo-title">Interactive demo</h2>
-            <a href="./demo.html">Open full screen <span aria-hidden="true">↗</span></a>
-          </div>
-          <iframe class="demo-frame" src="./demo.html" title="Death Valley 3D photo flipbook — use the arrow buttons or drag a page" loading="lazy"></iframe>
-          <noscript><img class="demo-fallback" src="/photo-flipbook-preview.jpg" width="1800" height="1328" alt="Death Valley photobook with desert photography and paper collage." /></noscript>
-          <div class="demo-caption"><span>Death Valley · 3D Book 2</span><span>Click the arrows or drag a page.</span></div>
-        </section>
-
-        <section class="content-section" id="how-it-works" aria-labelledby="how-title">
-          <h2 id="how-title">How it works</h2>
-          <ol class="steps">
-            <li><h3>Select your photos</h3><p>Provide images, a local folder, or finished pages. Work with Codex to choose the photos and arrange a sequence.</p></li>
-            <li><h3>Design the book</h3><p>Describe the style you want. Keep the original photos, or use a companion photo skill to create an editorial treatment.</p></li>
-            <li><h3>Build and publish</h3><p>Generate a responsive photo flipbook with the bundled 2D reader. Preview it locally, edit the files, and publish it when ready.</p></li>
-          </ol>
-        </section>
-
-        <section class="content-section" id="get-started" aria-labelledby="start-title">
-          <h2 id="start-title">Get started</h2>
-          <p><a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui#install">Install the skill in Codex</a>, add your photographs, and try this prompt:</p>
-          <pre class="prompt"><code>Use $create-photo-flipbook-ui to turn these photographs into a photobook. Find a thoughtful sequence, keep the original photos, and build a website I can flip through.</code></pre>
-          <p class="muted">Works with travel journals, family albums, photo essays, and portfolios.</p>
-        </section>
-
-        <section class="content-section" aria-labelledby="questions-title">
-          <h2 id="questions-title">Questions</h2>
-          <dl class="questions">
-            <div><dt>Can I upload photos here?</dt><dd>This site is an introduction and demo. To create your own photo flipbook, use the skill in Codex with your photographs or a local folder.</dd></div>
-            <div><dt>What’s included?</dt><dd>A 2D page-turning reader, photo sequencing guidance, and tools for contact sheets and photo-library workflows. The repository also has optional <a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui/tree/main/ui-collections">3D readers, a bookshelf, and galleries</a>. The demo above uses the 3D Book 2 template.</dd></div>
-            <div><dt>Can I customize and publish my book?</dt><dd>Yes. You get website files you can edit and host yourself. Change the sequence, typography, colors, and layout, then publish on GitHub Pages or another static web host.</dd></div>
-            <div><dt>Is it open source?</dt><dd>The original project code and skill are MIT licensed. Third-party components retain their own licenses. The adapted 3D Book 1 code and all media are excluded unless expressly stated otherwise. <a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui#license">Read the license details</a>.</dd></div>
-          </dl>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <span>Create Photo Flipbook UI</span>
-        <nav aria-label="Project links"><a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui">Source code</a><a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui/tree/main/ui-collections">Templates</a></nav>
-      </footer>
-    </div>
+    <main class="app-shell">
+      <canvas id="book-scene" aria-label="Interactive three-dimensional photo book"></canvas>
+      <nav class="library" aria-label="Select a photo book" id="library"></nav>
+      <div class="reader-controls" aria-label="Page controls">
+        <button class="page-button" id="previous-page" type="button" aria-label="Previous page">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="page-button" id="next-page" type="button" aria-label="Next page">
+          <span aria-hidden="true">›</span>
+        </button>
+        <span class="sr-only" id="page-state" aria-live="polite">Cover</span>
+      </div>
+      <div class="loading-card" id="loading-card" role="status" aria-live="polite" aria-hidden="true" hidden>
+        <span class="loading-pulse"></span>
+        <span class="sr-only" id="loading-copy">Preparing edition</span>
+      </div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

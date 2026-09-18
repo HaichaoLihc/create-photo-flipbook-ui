@@ -10,6 +10,8 @@ Create a photo flipbook from your photos with a Codex skill that curates images,
 
 The website supports English and Simplified Chinese. On the main URL, it uses your browser’s preferred supported language; the language switch remembers your choice. This README has a separate [Chinese translation](README.zh-CN.md).
 
+The project website and GitHub Pages build live in [`website/`](website/). Reusable UI templates live separately in [`ui-collections/`](ui-collections/).
+
 ## UI collections
 
 These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, and spatial galleries are separate alternatives.

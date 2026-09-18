@@ -4,7 +4,7 @@ import test from "node:test";
 
 const main = await readFile(new URL("./main.js", import.meta.url), "utf8");
 const books = await readFile(new URL("./books.js", import.meta.url), "utf8");
-const html = await readFile(new URL("../demo.html", import.meta.url), "utf8");
+const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const styles = await readFile(new URL("./style.css", import.meta.url), "utf8");
 const config = await readFile(new URL("../vite.config.js", import.meta.url), "utf8");
 
