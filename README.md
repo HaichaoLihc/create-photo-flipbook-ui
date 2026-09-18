@@ -4,8 +4,6 @@
 
 ## [Visit the website →](https://haichaolihc.github.io/create-photo-flipbook-ui/)
 
-**[Explore the project and try the interactive demo](https://haichaolihc.github.io/create-photo-flipbook-ui/)** · [中文网站](https://haichaolihc.github.io/create-photo-flipbook-ui/zh/) · [Full-screen demo](https://haichaolihc.github.io/create-photo-flipbook-ui/demo.html)
-
 Create a photo flipbook from your photos with a Codex skill that curates images, designs expressive photobook spreads, and builds an interactive page-turning website. The skill uses the bundled **2D Book** runtime (formerly v1) in [`assets/html/`](skills/create-photo-flipbook-ui/assets/html/).
 
 The website supports English and Simplified Chinese. On the main URL, it uses your browser’s preferred supported language; the language switch remembers your choice. This README has a separate [Chinese translation](README.zh-CN.md).
