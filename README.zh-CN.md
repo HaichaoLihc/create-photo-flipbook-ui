@@ -4,8 +4,6 @@
 
 ## [访问项目网站 →](https://haichaolihc.github.io/create-photo-flipbook-ui/zh/)
 
-**[了解项目，体验在线翻页相册](https://haichaolihc.github.io/create-photo-flipbook-ui/zh/)** · [English website](https://haichaolihc.github.io/create-photo-flipbook-ui/?lang=en) · [全屏演示](https://haichaolihc.github.io/create-photo-flipbook-ui/zh/demo.html)
-
 用你的照片制作一本可以翻页的相册。这项 Codex 技能帮助你筛选照片、设计有表现力的跨页排版，并生成可交互的翻页相册网站。技能使用 [`assets/html/`](skills/create-photo-flipbook-ui/assets/html/) 中自带的 **2D Book** 阅读器（原 v1）。
 
 网站支持英文和简体中文。从网站主入口访问时，会根据浏览器偏好的语言自动选择；也可以手动切换，网站会记住你的选择。README 的语言通过顶部链接切换。
