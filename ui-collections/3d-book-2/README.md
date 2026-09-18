@@ -14,6 +14,11 @@ npm ci
 npm run dev
 ```
 
+The root URL opens the standalone book reader. Project landing pages, language
+selection, SEO metadata, and GitHub Pages deployment live in [`website/`](../../website/).
+The website reuses this reader's source and sample pages for its demo. This
+template has no dependency on the website and can be copied and built on its own.
+
 ## Interaction
 
 - Open the Death Valley edition from the library rail.

@@ -1,4 +1,4 @@
-name: Deploy demo to GitHub Pages
+name: Deploy website to GitHub Pages
 
 on:
   push:
@@ -25,20 +25,20 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: ui-collections/3d-book-2/package-lock.json
+          cache-dependency-path: website/package-lock.json
       - name: Install dependencies
         run: npm ci
-        working-directory: ui-collections/3d-book-2
+        working-directory: website
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
-      - name: Build demo
+      - name: Build website
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
-        working-directory: ui-collections/3d-book-2
+        working-directory: website
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ui-collections/3d-book-2/dist
+          path: website/dist
 
   deploy:
     environment:
