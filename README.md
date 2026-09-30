@@ -36,24 +36,9 @@ preview instructions and how to add your own images.
 
 ### [Stream / Undertow](ui-collections/stream-implement-3d/)
 
-A waterfall of 2,400 light threads, each opening into a flowing photo story. Zoom
-into the curtain, browse a story, and enlarge individual photographs. Built with
-vanilla JavaScript, CSS, and WebGL 2, with no runtime dependencies or build step.
+![Stream: a waterfall of glowing photo threads](docs/images/stream.png)
 
-Photos are organized in `dist/photos.json`; authored sequences and journal text
-live in `dist/stories.json`. **Photo files are excluded from Git.** A fresh clone
-needs local photos and a matching catalog before it can run. The
-[Stream guide](ui-collections/stream-implement-3d/README.md) explains how to import
-photos, author stories, and check the catalog.
-
-After setting up your photos, preview locally:
-
-```bash
-cd ui-collections/stream-implement-3d
-python3 serve.py
-```
-
-Open [localhost:8766](http://localhost:8766).
+A waterfall of light, with a photo story flowing through every thread. Bring your own photos. [Setup →](ui-collections/stream-implement-3d/README.md)
 
 ## Install
 

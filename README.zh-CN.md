@@ -33,18 +33,9 @@
 
 ### [照片流 Stream / Undertow](ui-collections/stream-implement-3d/)
 
-由 2,400 条光线组成的瀑布，每条光线都能展开为一个流动的照片故事。可以放大光幕、浏览故事，并查看单张照片的大图。使用原生 JavaScript、CSS 和 WebGL 2，无运行时依赖，也无需构建。
+![照片流：由发光的照片线条组成的瀑布](docs/images/stream.png)
 
-照片清单位于 `dist/photos.json`，手动编排的故事和日记文字位于 `dist/stories.json`。**照片文件不会被 Git 跟踪。** 首次克隆后，需要准备本地照片及对应清单才能运行。[Stream 使用指南](ui-collections/stream-implement-3d/README.md)介绍了照片导入、故事编排和清单检查的方法。
-
-配置照片后，运行本地预览：
-
-```bash
-cd ui-collections/stream-implement-3d
-python3 serve.py
-```
-
-打开 [localhost:8766](http://localhost:8766)。
+把照片汇成一场光的瀑布，每条光线都是一个故事。需自行添加照片。[使用指南 →](ui-collections/stream-implement-3d/README.md)
 
 <a id="install"></a>
 
