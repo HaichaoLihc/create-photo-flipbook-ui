@@ -1,0 +1,6 @@
+work/
+outputs/
+.sites-runtime/
+.DS_Store
+# Keep local photographs out of Git.
+dist/assets/
