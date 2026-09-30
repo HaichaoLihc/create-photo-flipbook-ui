@@ -12,7 +12,7 @@ The project website and GitHub Pages build live in [`website/`](website/). Reusa
 
 ## UI collections
 
-These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, and spatial galleries are separate alternatives.
+These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, spatial galleries, and photo stream are separate alternatives.
 
 | [Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
@@ -33,6 +33,27 @@ These three galleries use vanilla HTML, CSS, and JavaScript with local SVG
 placeholders and fictional sample content—no personal photographs or external
 image requests. No install or build step is needed; see each linked README for
 preview instructions and how to add your own images.
+
+### [Stream / Undertow](ui-collections/stream-implement-3d/)
+
+A waterfall of 2,400 light threads, each opening into a flowing photo story. Zoom
+into the curtain, browse a story, and enlarge individual photographs. Built with
+vanilla JavaScript, CSS, and WebGL 2, with no runtime dependencies or build step.
+
+Photos are organized in `dist/photos.json`; authored sequences and journal text
+live in `dist/stories.json`. **Photo files are excluded from Git.** A fresh clone
+needs local photos and a matching catalog before it can run. The
+[Stream guide](ui-collections/stream-implement-3d/README.md) explains how to import
+photos, author stories, and check the catalog.
+
+After setting up your photos, preview locally:
+
+```bash
+cd ui-collections/stream-implement-3d
+python3 serve.py
+```
+
+Open [localhost:8766](http://localhost:8766).
 
 ## Install
 
