@@ -5,6 +5,8 @@
 **/.next/
 **/.wrangler/
 **/dist/
+# The waterfall's dist/ is hand-written source, not build output.
+!ui-collections/stream-implement-3d/dist/
 **/node_modules/
 evals/results/
 marketing/
