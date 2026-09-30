@@ -12,7 +12,7 @@ The project website and GitHub Pages build live in [`website/`](website/). Reusa
 
 ## UI collections
 
-These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, and spatial galleries are separate alternatives.
+These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, spatial galleries, and photo stream are separate alternatives.
 
 | [Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
@@ -33,6 +33,12 @@ These three galleries use vanilla HTML, CSS, and JavaScript with local SVG
 placeholders and fictional sample content—no personal photographs or external
 image requests. No install or build step is needed; see each linked README for
 preview instructions and how to add your own images.
+
+### [Stream / Undertow](ui-collections/stream-implement-3d/)
+
+![Stream: a waterfall of glowing photo threads](docs/images/stream.png)
+
+A waterfall of light, with a photo story flowing through every thread. Bring your own photos. [Setup →](ui-collections/stream-implement-3d/README.md)
 
 ## Install
 

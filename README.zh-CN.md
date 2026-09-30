@@ -12,7 +12,7 @@
 
 ## 界面模板
 
-这些模板位于技能目录之外的 `ui-collections/`，可以按需复制和修改，不会随技能一起安装。技能使用自带的 2D 阅读器；书架、3D 阅读器、胶片档案和空间画廊是独立的可选模板。
+这些模板位于技能目录之外的 `ui-collections/`，可以按需复制和修改，不会随技能一起安装。技能使用自带的 2D 阅读器；书架、3D 阅读器、胶片档案、空间画廊和照片流是独立的可选模板。
 
 | [书架 Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
@@ -30,6 +30,12 @@
 | 通过滚动或拖动，在环形、弧形、堆叠和展开长条之间浏览卡片。 | 探索按年份排列的同心圆空间档案，支持主题搜索和单图浏览。 | 在平铺、倾斜、环形和画廊布局之间切换，同时保留浏览位置。 |
 
 这三个画廊使用原生 HTML、CSS 和 JavaScript，附带本地 SVG 占位图和虚构示例内容，不含个人照片，也不会请求外部图片。无需安装或构建；本地预览和替换图片的方法见各模板的 README。
+
+### [照片流 Stream / Undertow](ui-collections/stream-implement-3d/)
+
+![照片流：由发光的照片线条组成的瀑布](docs/images/stream.png)
+
+把照片汇成一场光的瀑布，每条光线都是一个故事。需自行添加照片。[使用指南 →](ui-collections/stream-implement-3d/README.md)
 
 <a id="install"></a>
 
