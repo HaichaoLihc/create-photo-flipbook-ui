@@ -29,6 +29,28 @@ button {
   font: inherit;
 }
 
+.export-pdf {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgb(38 37 31 / 25%);
+  border-radius: 50%;
+  background: rgb(242 238 228 / 48%);
+  color: #26251f;
+  cursor: pointer;
+}
+.header-actions { display: flex; align-items: center; justify-content: end; gap: 16px; }
+.header-actions #orientation { text-align: right; }
+.export-pdf:hover { background: #f2eee4; border-color: #655f55; }
+.export-pdf:focus-visible { outline: 2px solid #243f39; outline-offset: 3px; }
+.export-pdf:disabled { opacity: .6; cursor: wait; }
+.export-status { grid-column: 1 / -1; text-align: center; min-height: 12px; }
+.export-status:empty { display: none; }
+.pdf-export-stage { position: fixed; left: -100000px; top: 0; pointer-events: none; }
+.pdf-export-stage .book-page { position: relative; transform: none; margin: 0; }
+
 .room {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -300,6 +322,9 @@ button {
   .book-header {
     grid-template-columns: 1fr auto;
   }
+
+  .header-actions { grid-column: 2; }
+  .header-actions #orientation { display: none; }
 
   .book-header span:first-child {
     display: none;
