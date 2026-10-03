@@ -1,3 +1,5 @@
+import { getBookPages } from "./book-document.js";
+
 const bookElement = document.querySelector("#book");
 const pages = bookElement.querySelectorAll(".book-page");
 const previousButton = document.querySelector("#previous");
@@ -69,6 +71,12 @@ pageFlip.on("changeOrientation", (event) => updateOrientation(event.data));
 pageFlip.loadFromHTML(pages);
 updateControls();
 
+document.addEventListener("book-content-changed", () => {
+  pageFlip.updateFromHtml(getBookPages());
+  pageFlip.turnToPage(currentPage);
+  updateControls();
+});
+
 previousButton.addEventListener("click", () => {
   if (!isTurning) pageFlip.flipPrev("bottom");
 });
@@ -79,6 +87,8 @@ nextButton.addEventListener("click", () => {
 
 window.addEventListener("keydown", (event) => {
   if (event.altKey || event.ctrlKey || event.metaKey || isTurning) return;
+  if (document.body.classList.contains("editing-book")) return;
+  if (event.target instanceof Element && event.target.closest("input, textarea, select, button")) return;
 
   if (event.key === "ArrowLeft") {
     event.preventDefault();
