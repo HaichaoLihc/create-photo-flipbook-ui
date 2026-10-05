@@ -1,3 +1,7 @@
+# [Discover and use new visual experiences →](https://haichaolihc.github.io/visual-experience-demo/explore.html)
+
+Explore the platform for discovering and using new visual experiences.
+
 # Create Photo Flipbook UI
 
 **English** · [简体中文](README.zh-CN.md)
