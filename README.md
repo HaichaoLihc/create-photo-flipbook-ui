@@ -1,4 +1,4 @@
-# [Discover and use new visual experiences →](https://haichaolihc.github.io/visual-experience-demo/explore.html)
+# [Discover and use new visual experiences →](https://makehologram.com/)
 
 Explore the platform for discovering and using new visual experiences.
 
