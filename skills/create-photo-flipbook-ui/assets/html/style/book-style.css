@@ -1,6 +1,9 @@
 @font-face{font-family:"Source Serif 4";src:url("fonts/SourceSerif4-Regular.otf.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Source Serif 4";src:url("fonts/SourceSerif4-It.otf.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
 :root{--paper:#f7f6f0;--ink:#292c26;--cloth:#7d8572;--book-serif:"Source Serif 4","Songti SC","Noto Serif CJK SC",Georgia,serif;--book-sans:Arial,Helvetica,sans-serif}
+.generated-page{position:relative;aspect-ratio:var(--page-ratio,.8);overflow:hidden;background:var(--paper)}
+.generated-page .generated-artwork{display:block;width:100%;height:100%;object-fit:contain;filter:none;border:0;border-radius:0;box-shadow:none}
+/* Legacy page composition helpers, retained for existing books and explicit user overrides. */
 .art-page{container-type:inline-size;position:relative;aspect-ratio:var(--page-ratio, .8);overflow:hidden;background:var(--paper) url("paper-grain.svg") repeat;color:var(--ink);font-family:var(--book-serif);font-weight:400}
 .art-page img{display:block;object-fit:contain;filter:none;border:0;border-radius:0;box-shadow:none}
 .art-page .plate{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:74%;height:72%;margin:0;display:flex;align-items:center;justify-content:center}

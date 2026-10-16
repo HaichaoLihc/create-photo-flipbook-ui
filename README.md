@@ -62,12 +62,12 @@ Use $create-photo-flipbook-ui to turn these photographs into photobooks.
 One workflow, three stages:
 
 1. **Understand the photos:** their form, content, and themes. Semantic search and contact sheets are available.
-2. **Define the style and design:** fulfill the user's request with a coherent, high-quality book. Pinterest, the photo-skill catalogue, and image generation are available. Without a preferred style, preserve the original photos and use the bundled default photobook style.
-3. **Build the UI:** present the book with the built-in 2D HTML runtime and deliver a working local URL.
+2. **Design and generate the spreads:** use the default editorial zine aesthetic or the user's requested style. Generate every complete spread with ImageGen using the selected photos as references, including the outside cover and all interior spreads. Pinterest and the photo-skill catalogue are optional research tools.
+3. **Build the UI:** split the generated artwork into facing leaves, present it with the built-in 2D HTML runtime, and deliver a working local URL.
 
-The skill defines outcomes and provides tools. The agent chooses the process.
+The agent chooses the art direction and sequence. ImageGen is required for every spread unless the user explicitly overrides that production method.
 
-The [default photobook style](skills/create-photo-flipbook-ui/references/default-style.md) provides concise text guidance, Source Serif 4, paper and cloth textures, and reusable page styles in the bundled runtime. The starter contains no sample photographs.
+The [default artist-book style](skills/create-photo-flipbook-ui/references/default-style.md) combines transformed photo imagery, casual handwritten text, restrained color, and tactile material. [Book rhythm](skills/create-photo-flipbook-ui/references/book-rhythm.md) guides changes in text, image scale, color intensity, motifs, and breathing room across page turns. Each run plans the sequence, establishes a quiet/impact pair, and reviews the complete book for repetition. The reader displays complete generated artwork and ships without sample photographs. Sequence plans, prompts, source associations, generated masters, and rhythm reviews remain with each output.
 
 ## Photo search and reusable code
 

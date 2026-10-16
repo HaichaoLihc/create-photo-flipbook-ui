@@ -14,23 +14,19 @@
   <section class="stage" aria-label="Interactive photo book">
     <div class="book-rig">
       <div id="book" class="book" data-page-width="512" data-page-height="640">
-        <article class="book-page art-page cloth recto" data-density="hard" aria-label="Front cover">
-          <h2 class="cover-title">Book title</h2><p class="cover-subtitle">Photographs</p>
+        <!-- Supply one complete ImageGen artwork per spread, then split it into PNG leaves.
+             See references/book-editing.md. These empty leaves are scaffolding, not a finished book. -->
+        <article class="book-page generated-page recto" data-density="hard" data-spread-id="cover" data-half="right" aria-label="Front cover">
+          <!-- Insert: <img class="generated-artwork" src="assets/pages/cover-right.png" alt="Book title and cover artwork"> -->
         </article>
-        <article class="book-page art-page endpaper verso" aria-label="Page 1"></article>
-        <article class="book-page art-page paper recto" aria-label="Page 2">
-          <div class="title-block"><h2>Book title</h2><p>Photographs</p></div>
+        <article class="book-page generated-page verso" data-spread-id="spread-01" data-half="left" aria-label="Page 1">
+          <!-- Insert: <img class="generated-artwork" src="assets/pages/spread-01-left.png" alt="Describe the left page"> -->
         </article>
-        <article class="book-page art-page paper verso" aria-label="Page 3"></article>
-        <article class="book-page art-page paper recto" aria-label="Page 4">
-          <figure class="plate medium"><!-- Insert a user photograph with descriptive alt text. --></figure>
+        <article class="book-page generated-page recto" data-spread-id="spread-01" data-half="right" aria-label="Page 2">
+          <!-- Insert: <img class="generated-artwork" src="assets/pages/spread-01-right.png" alt="Describe the right page"> -->
         </article>
-        <article class="book-page art-page paper verso" aria-label="Page 5">
-          <div class="colophon"><p>Book title</p><p>Photographs and credits</p></div>
-        </article>
-        <article class="book-page art-page endpaper recto" aria-label="Page 6"></article>
-        <article class="book-page art-page cloth verso" data-density="hard" aria-label="Back cover">
-          <span class="back-mark">Book title</span>
+        <article class="book-page generated-page verso" data-density="hard" data-spread-id="cover" data-half="left" aria-label="Back cover">
+          <!-- Insert: <img class="generated-artwork" src="assets/pages/cover-left.png" alt="Back cover artwork and credits"> -->
         </article>
       </div>
     </div>

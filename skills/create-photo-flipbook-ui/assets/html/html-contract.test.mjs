@@ -41,7 +41,31 @@ test("default page size stays inside the UI envelope", () => {
   assert.ok(Math.max(width, height) <= 640);
 });
 
-test("vendored runtime and photo directory exist", async () => {
+test("generated spread halves preserve cover and facing-page order", () => {
+  const attribute = (tag, name) => tag.match(new RegExp(`${name}="([^"]+)"`))?.[1];
+  assert.ok(pages.length >= 4 && pages.length % 2 === 0);
+  for (const page of pages) {
+    assert.match(page, /\bgenerated-page\b/);
+    assert.ok(attribute(page, "data-spread-id"));
+  }
+  const coverId = attribute(pages[0], "data-spread-id");
+  assert.equal(attribute(pages.at(-1), "data-spread-id"), coverId);
+  assert.equal(attribute(pages[0], "data-half"), "right");
+  assert.equal(attribute(pages.at(-1), "data-half"), "left");
+  const seen = new Set([coverId]);
+  for (let index = 1; index < pages.length - 1; index += 2) {
+    const id = attribute(pages[index], "data-spread-id");
+    assert.equal(seen.has(id), false, `Repeated spread: ${id}`);
+    seen.add(id);
+    assert.equal(attribute(pages[index + 1], "data-spread-id"), id);
+    assert.equal(attribute(pages[index], "data-half"), "left");
+    assert.equal(attribute(pages[index + 1], "data-half"), "right");
+  }
+});
+
+test("vendored runtime and artwork directories exist", async () => {
   assert.equal((await stat(new URL("vendor/page-flip.browser.js", root))).isFile(), true);
-  assert.equal((await stat(new URL("assets/photos/", root))).isDirectory(), true);
+  for (const directory of ["assets/pages/", "assets/spreads/"]) {
+    assert.equal((await stat(new URL(directory, root))).isDirectory(), true);
+  }
 });
