@@ -59,15 +59,16 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 Use $create-photo-flipbook-ui to turn these photographs into photobooks.
 ```
 
-One workflow, three stages:
+One workflow, four stages:
 
-1. **Understand the photos:** their form, content, and themes. Semantic search and contact sheets are available.
-2. **Define the style and design:** fulfill the user's request with a coherent, high-quality book. Pinterest, the photo-skill catalogue, and image generation are available. Without a preferred style, preserve the original photos and use the bundled default photobook style.
-3. **Build the UI:** present the book with the built-in 2D HTML runtime and deliver a working local URL.
+1. **Understand the photos:** their form, content, themes, and unexpected relationships. Semantic search and contact sheets are available.
+2. **Explore creative directions:** develop distinct concepts for the theme, image presentation, motifs, material, typography, cover, and page turns; choose the strongest direction for the collection.
+3. **Design and generate the spreads:** carry the selected concept through the sequence. Generate every complete spread with ImageGen using the selected photos as references, including the outside cover and all interior spreads.
+4. **Build the UI:** split the generated artwork into facing leaves, present it with the built-in 2D HTML runtime, and deliver a working local URL.
 
-The skill defines outcomes and provides tools. The agent chooses the process.
+The agent chooses the art direction and sequence. ImageGen is required for every spread unless the user explicitly overrides that production method.
 
-The [default photobook style](skills/create-photo-flipbook-ui/references/default-style.md) provides concise text guidance, Source Serif 4, paper and cloth textures, and reusable page styles in the bundled runtime. The starter contains no sample photographs.
+[Creative ideation](skills/create-photo-flipbook-ui/references/creative-ideation.md) explores possibilities before layouts are fixed. The [default editorial zine principles](skills/create-photo-flipbook-ui/references/default-style.md) combine recognizable photography, selective artistic transformation, purposeful page composition, and consistent typography. A small artistic vocabulary drawn from the photos develops across the book: some passages rest, others mix photography with cutouts, overprinting, drawing, or abstraction, and selected moments can transform more boldly. Ordinary middle pages should express this language too. Neither untouched photo boxes throughout nor continuous paintings on every turn establish the intended balance. Pale paper and a standard cover are not prescribed. [Book rhythm](skills/create-photo-flipbook-ui/references/book-rhythm.md) guides changes across page turns. Each run reviews the cover, quiet, impact, and representative middle pilots, then checks the complete book for artistic quality, continuity, and repetition. The reader displays complete generated artwork and ships without sample photographs. Creative directions, sequence plans, prompts, source associations, generated masters, and rhythm reviews remain with each output.
 
 ## Photo search and reusable code
 
@@ -75,7 +76,7 @@ The skill declares the existing `photo-search` MCP dependency for library search
 
 Install the engine and its Python requirements separately, set `PHOTO_SEARCH_ENGINE_DIR` to its location, and use its Python interpreter. See [Photo library setup and commands](skills/create-photo-flipbook-ui/references/photo-library.md). Index caches remain outside the skill and source folders. New and changed images are embedded incrementally; unchanged images are reused. Search output includes a contact sheet and manifest, and selections retain stable IDs and original paths.
 
-Reusable resources shipped with the skill include the photo-library adapter, ordered contact-sheet renderer, Pinterest helper, and 2D book runtime. Art direction and sequencing remain in workflow instructions. Model weights and photo libraries are not part of the skill package.
+Reusable resources shipped with the skill include the photo-library adapter, ordered contact-sheet renderer and 2D book runtime. Art direction and sequencing remain in workflow instructions. Model weights and photo libraries are not part of the skill package.
 
 See each template’s README for local preview instructions.
 

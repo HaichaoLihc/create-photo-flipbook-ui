@@ -1,7 +1,7 @@
 interface:
   display_name: "Photobook Art Direction"
-  short_description: "Understand photos, design a book, and build its 2D UI"
-  default_prompt: "Use $create-photo-flipbook-ui to understand my photos, define the book's style and design from my request, and build it with the built-in 2D book UI."
+  short_description: "Create photo zines with inventive editorial design"
+  default_prompt: "Use $create-photo-flipbook-ui to explore distinct concepts and turn my photos into an editorial zine with recognizable photography, selective artistic transformation, purposeful page composition, consistent typography, and rhythm; generate every spread with ImageGen and present it in the built-in 2D book UI."
 dependencies:
   tools:
     - type: "mcp"
