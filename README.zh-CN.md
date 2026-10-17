@@ -1,4 +1,4 @@
-# [发现并使用新的视觉体验 →](https://makehologram.com/)
+# [找作者定制 →](https://makehologram.com/)
 
 探索这个用于发现和使用新视觉体验的平台。
 
@@ -22,6 +22,8 @@
 | --- | --- |
 | ![包含三本示例空书的书架](docs/images/library.png) | ![2D Book 的照片跨页示例](docs/images/death-valley-flipbook.jpg) |
 | 可拖动排序的书架，包含三本示例空书。 | 技能自带 2D 阅读器的参考示例。 |
+
+[2D Book Editor（可编辑画册）](ui-collections/2d-book-editor/) 是独立模板，支持图片与文字区块编辑、分段文字颜色、每页背景、层级调整、本地保存与整本 PDF 导出。原有 2D Book 阅读器保持独立。启动与使用方法见[编辑器说明](ui-collections/2d-book-editor/README.md)。
 
 | [3D Book 1](ui-collections/3d-book-1/) | [3D Book 2](ui-collections/3d-book-2/) |
 | --- | --- |
