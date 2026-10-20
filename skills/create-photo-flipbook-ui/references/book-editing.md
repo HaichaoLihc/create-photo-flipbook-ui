@@ -1,21 +1,29 @@
-# Built-in 2D book UI
+# Built-in 3D hardcover book UI
 
-The reusable runtime is in `assets/html/`. Copy it into the output book directory and populate the scaffold with the artwork from [spread generation](spread-generation.md). Art direction follows the chosen creative direction and [artist-book principles](default-style.md); the runtime provides navigation, responsive sizing, and binding shadows. Its surrounding UI is not a palette or material reference for the generated pages and cover.
+Use `assets/3d-book/` by default. Copy the whole directory into the output book directory, including `assets/paper/`, `assets/fonts/`, and `assets/vendor/`. It is a static Three.js reader with hardcover boards, curling pages, a felt desk, paper-stock selection, page sounds, and mouse/touch/keyboard controls. No package install or build is needed. Keep the bundled third-party licenses. The reader's desk and materials do not prescribe the artwork's palette or style.
 
-Runtime contract:
+## Artwork and data
 
-- Pages are `.book-page.generated-page` elements inside `#book`; only the first and last leaves have `data-density="hard"`.
-- Page dimensions follow the generated artwork's half-spread ratio, with the longer UI edge at most `640`. Use an even master width so both halves have the same dimensions. Preserve all artwork; request a corrected generation if its ratio is wrong rather than cropping the design to fit.
-- Split each accepted master at its exact center into lossless PNG leaves, with no overlap or missing strip. Each page contains one `.generated-artwork` image showing its complete half. Do not rebuild its photo placement, paper, or type with HTML/CSS overlays.
-- Mark each leaf with `data-spread-id` and `data-half="left"` or `"right"`, matching the generation manifest. For a book with `N` interior spreads, leaf order is: outside-cover **right** (front), spread 1 **left**, spread 1 **right**, ... spread N **left**, spread N **right**, outside-cover **left** (back). Total leaves: `2N + 2`. Do not insert additional ungenerated blanks.
-- Keep the bundled responsive layout, mouse/touch/keyboard controls, turn lock, and page-bound spine shadows.
+Split each accepted ImageGen master at its exact center into lossless PNG leaves, with no overlap or missing strip. Use an even master width and consistent dimensions throughout the book. Preserve all artwork; correct a mismatched generation rather than cropping or stretching it. Put the leaves in `assets/pages/`.
 
-The starter illustrates one outside cover and one interior spread; duplicate the interior pair as needed and insert the real artwork. Give each image useful alt text, including essential in-image text where practical. `style/book-style.css` supplies the generated-image surface; `styles.css` owns the reader.
+Populate `book-data.js` (`window.PHOTOBOOK`):
 
-Validation: run `node --test html-contract.test.mjs` in the book directory. Before delivery, also check that every visible leaf maps to an actual ImageGen master in `generation-manifest.json`, every image/font/script path resolves, the two halves reproduce their master without a seam or reversal, and no scaffold comments stand in for finished pages. Review the cover, several spreads, and the closing pages in desktop and mobile layouts; exercise page buttons and keyboard controls. The scaffold tests alone do not prove generation coverage or visual quality.
+- `id`: unique book identifier, also used to isolate saved paper/sound preferences.
+- `title`: book title; the runtime updates visible titles and document metadata.
+- `pageWidth`, `pageHeight`: actual pixel dimensions of one half-spread; geometry derives its aspect ratio from these values.
+- `frontCover`, `backCover`: objects with `file` (relative to `assets/pages/`) and meaningful `alt` text, including essential in-image wording.
+- `spreads`: at least one interior spread, in reading order. Each has an `id`, a `left` object and a `right` object, each with `file` and `alt`.
 
-Local preview from the output directory, using an available port:
+The scaffold shows one interior spread; replace its descriptions and add pairs as needed. `frontCover` is the outside-cover master's **right** half; `backCover` is its **left** half. For `N` interior spreads, supply exactly `2N + 2` generated faces. Opening the front board reveals spread 1; turning each sheet reveals the next spread; closing the back board reveals the back cover. The board interiors use the first left and final right leaves, so do not add ungenerated endpapers or blanks. Record each file's spread ID and left/right half in `generation-manifest.json`. The runtime maps complete leaf images to book surfaces; do not rebuild photo placement, type, or backgrounds in HTML/CSS.
+
+## Validation and preview
+
+Check that every referenced leaf exists, matches the declared dimensions, and maps to an accepted ImageGen master. Confirm the two halves reproduce their master without reversal or a missing seam. Resolve all script/font/texture paths and remove scaffold wording. Run `node --check book.js` and `node --check book-data.js`.
+
+Serve the output directory on an available port:
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
+
+Review front cover, several interior spreads, and back cover at desktop and mobile sizes. Exercise previous/next, direct spread dots, keyboard arrows, page click/drag, paper selection, and sound toggle. Verify the loader clears and the browser reports no missing assets or rendering errors. `#stage` exposes `data-spread`, `data-left`, and `data-right` for checking the visible artwork order. WebGL is required; a failure message must not be mistaken for a working preview. Deliver the local URL and output directory.

@@ -43,11 +43,12 @@ def main() -> None:
 
     required = [
         SKILL / "agents" / "openai.yaml",
-        SKILL / "assets" / "html" / "index.html",
-        SKILL / "assets" / "html" / "styles.css",
-        SKILL / "assets" / "html" / "flipbook.js",
-        SKILL / "assets" / "html" / "html-contract.test.mjs",
-        SKILL / "assets" / "html" / "vendor" / "page-flip.browser.js",
+        SKILL / "assets" / "3d-book" / "index.html",
+        SKILL / "assets" / "3d-book" / "book.css",
+        SKILL / "assets" / "3d-book" / "book.js",
+        SKILL / "assets" / "3d-book" / "book-data.js",
+        SKILL / "assets" / "3d-book" / "assets" / "vendor" / "three-r128.min.js",
+        SKILL / "assets" / "3d-book" / "assets" / "vendor" / "THREE-LICENSE.txt",
         SKILL / "scripts" / "make_contact_sheet.py",
         SKILL / "scripts" / "photo_library.py",
         SKILL / "references" / "default-style.md",
@@ -85,10 +86,23 @@ def main() -> None:
         if "://" not in target and not target.startswith("#"):
             require((ROOT / target.split("#", 1)[0]).exists(), f"Broken README reference: {target}")
 
-    subprocess.run(
-        ["node", "--test", str(SKILL / "assets" / "html" / "html-contract.test.mjs")],
-        check=True,
-    )
+    reader = SKILL / "assets" / "3d-book"
+    require(not (SKILL / "assets" / "html").exists(), "The skill must ship only the 3D reader")
+    for script in ["book.js", "book-data.js", "assets/vendor/three-r128.min.js"]:
+        subprocess.run(["node", "--check", str(reader / script)], check=True)
+    html = (reader / "index.html").read_text(encoding="utf-8")
+    css = (reader / "book.css").read_text(encoding="utf-8")
+    assets = re.findall(r'(?:src|href)="([^"#]+)"', html)
+    assets += re.findall(r'url\(["\']?([^"\')]+)', css)
+    assets += ["assets/fonts/OFL.txt"]
+    # Includes dynamically selected stocks and the eight cycling leaf textures.
+    paper = ["cloth", "felt", "ep-front", "ep-back", "matte", "gloss",
+             "newsprint", "coldpress", "laid", *(f"leaf{i}" for i in range(1, 9))]
+    assets += [f"assets/paper/{name}.webp" for name in paper]
+    for asset in assets:
+        if asset.startswith("data:") or "://" in asset:
+            continue
+        require((reader / asset).is_file(), f"Missing 3D reader asset: {asset}")
     subprocess.run(
         ["python3", "-m", "unittest", str(ROOT / "tests" / "test_contact_sheet.py"),
          str(ROOT / "tests" / "test_photo_library.py")],

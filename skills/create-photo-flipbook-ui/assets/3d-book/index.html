@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Photobook — an artist book in a tactile 3D hardcover reader.">
+<title>Photobook — artist book</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="book.css">
+</head>
+<body>
+<div id="stage" aria-label="A hardcover photobook titled Photobook, lying on a desk" role="img"></div>
+<div class="vignette"></div>
+
+<header class="top">
+  <div class="brand"><span class="book-title">Photobook</span><span class="en">an artist book</span></div>
+  <div class="right">
+  <div class="paper">
+    <button id="paperBtn" class="pill" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="paperMenu" title="Paper stock (P)">
+      <span class="sw" id="paperSw" aria-hidden="true"></span><span class="lbl">Paper</span><span id="paperName">Uncoated</span>
+    </button>
+    <div id="paperMenu" class="menu" role="menu" aria-label="Paper stock" hidden></div>
+  </div>
+  <button id="sound" class="icon-btn" aria-pressed="true" aria-label="Page sounds" title="Page sounds">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+      <path class="wave" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>
+      <path class="mute" d="M16 9.5l5 5M21 9.5l-5 5"/>
+    </svg>
+  </button>
+  </div>
+</header>
+
+<nav class="dock" aria-label="Book navigation">
+  <div class="row">
+    <button id="prev" class="icon-btn" aria-label="Previous page" title="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg>
+    </button>
+    <div class="where" id="label">Cover</div>
+    <button id="next" class="icon-btn" aria-label="Next page" title="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <div class="dots" id="dots"></div>
+  <p class="hint" id="hint">Drag a page corner to turn it, or click a page. Arrow keys work too.</p>
+</nav>
+
+<div class="loader" id="loader">
+  <div class="loader-in">
+    <div class="book-title">Photobook</div>
+    <div class="bar"><i id="bar"></i></div>
+    <p id="loadtext">Loading pages</p>
+  </div>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+<script src="assets/vendor/three-r128.min.js"></script>
+<script src="book-data.js"></script>
+<script src="book.js"></script>
+</body>
+</html>
