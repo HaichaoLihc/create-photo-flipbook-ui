@@ -8,7 +8,7 @@ Explore the platform for discovering and using new visual experiences.
 
 ## [Visit the website →](https://haichaolihc.github.io/create-photo-flipbook-ui/)
 
-Create a photo flipbook from your photos with a Codex skill that curates images, designs expressive photobook spreads, and builds an interactive page-turning website. The skill uses the bundled **2D Book** runtime (formerly v1) in [`assets/html/`](skills/create-photo-flipbook-ui/assets/html/).
+Create a photo flipbook from your photos with a Codex skill that curates images, designs expressive photobook spreads, and builds an interactive page-turning website. The skill uses the bundled **3D hardcover book** runtime in [`assets/3d-book/`](skills/create-photo-flipbook-ui/assets/3d-book/).
 
 The website supports English and Simplified Chinese. On the main URL, it uses your browser’s preferred supported language; the language switch remembers your choice. This README has a separate [Chinese translation](README.zh-CN.md).
 
@@ -16,12 +16,12 @@ The project website and GitHub Pages build live in [`website/`](website/). Reusa
 
 ## UI collections
 
-These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 2D runtime; the library, 3D readers, film archive, spatial galleries, and photo stream are separate alternatives.
+These templates live in `ui-collections/`, outside the skill folder, and are optional resources for people to copy and customize. They are not installed with the skill. The skill uses its own bundled 3D hardcover runtime; the library, 3D readers, film archive, spatial galleries, and photo stream are separate alternatives.
 
 | [Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
 | ![Library with three mock books](docs/images/library.png) | ![2D Book with a sample photo spread](docs/images/death-valley-flipbook.jpg) |
-| Reorderable shelf with three empty mock books. | Reference example of the skill’s bundled 2D runtime. |
+| Reorderable shelf with three empty mock books. | Reference example of the optional legacy 2D runtime. |
 
 | [3D Book 1](ui-collections/3d-book-1/) | [3D Book 2](ui-collections/3d-book-2/) |
 | --- | --- |
@@ -64,7 +64,7 @@ One workflow, four stages:
 1. **Understand the photos:** their form, content, themes, and unexpected relationships. Semantic search and contact sheets are available.
 2. **Explore creative directions:** develop distinct concepts for the theme, image presentation, motifs, material, typography, cover, and page turns; choose the strongest direction for the collection.
 3. **Design and generate the spreads:** carry the selected concept through the sequence. Generate every complete spread with ImageGen using the selected photos as references, including the outside cover and all interior spreads.
-4. **Build the UI:** split the generated artwork into facing leaves, present it with the built-in 2D HTML runtime, and deliver a working local URL.
+4. **Build the UI:** split the generated artwork into facing leaves, present it with the built-in 3D hardcover runtime, and deliver a working local URL.
 
 The agent chooses the art direction and sequence. ImageGen is required for every spread unless the user explicitly overrides that production method.
 
@@ -76,7 +76,7 @@ The skill declares the existing `photo-search` MCP dependency for library search
 
 Install the engine and its Python requirements separately, set `PHOTO_SEARCH_ENGINE_DIR` to its location, and use its Python interpreter. See [Photo library setup and commands](skills/create-photo-flipbook-ui/references/photo-library.md). Index caches remain outside the skill and source folders. New and changed images are embedded incrementally; unchanged images are reused. Search output includes a contact sheet and manifest, and selections retain stable IDs and original paths.
 
-Reusable resources shipped with the skill include the photo-library adapter, ordered contact-sheet renderer and 2D book runtime. Art direction and sequencing remain in workflow instructions. Model weights and photo libraries are not part of the skill package.
+Reusable resources shipped with the skill include the photo-library adapter, ordered contact-sheet renderer and 3D hardcover book runtime. Art direction and sequencing remain in workflow instructions. Model weights and photo libraries are not part of the skill package.
 
 See each template’s README for local preview instructions.
 

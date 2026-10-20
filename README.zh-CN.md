@@ -8,7 +8,7 @@
 
 ## [访问项目网站 →](https://haichaolihc.github.io/create-photo-flipbook-ui/zh/)
 
-用你的照片制作一本可以翻页的相册。这项 Codex 技能帮助你筛选照片、设计有表现力的跨页排版，并生成可交互的翻页相册网站。技能使用 [`assets/html/`](skills/create-photo-flipbook-ui/assets/html/) 中自带的 **2D Book** 阅读器（原 v1）。
+用你的照片制作一本可以翻页的相册。这项 Codex 技能帮助你筛选照片、设计有表现力的跨页排版，并生成可交互的翻页相册网站。技能使用 [`assets/3d-book/`](skills/create-photo-flipbook-ui/assets/3d-book/) 中自带的 **3D 精装书** 阅读器。
 
 网站支持英文和简体中文。从网站主入口访问时，会根据浏览器偏好的语言自动选择；也可以手动切换，网站会记住你的选择。README 的语言通过顶部链接切换。
 
@@ -16,12 +16,12 @@
 
 ## 界面模板
 
-这些模板位于技能目录之外的 `ui-collections/`，可以按需复制和修改，不会随技能一起安装。技能使用自带的 2D 阅读器；书架、3D 阅读器、胶片档案、空间画廊和照片流是独立的可选模板。
+这些模板位于技能目录之外的 `ui-collections/`，可以按需复制和修改，不会随技能一起安装。技能默认使用自带的 3D 精装书阅读器；书架、3D 阅读器、胶片档案、空间画廊和照片流是独立的可选模板。
 
 | [书架 Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
 | ![包含三本示例空书的书架](docs/images/library.png) | ![2D Book 的照片跨页示例](docs/images/death-valley-flipbook.jpg) |
-| 可拖动排序的书架，包含三本示例空书。 | 技能自带 2D 阅读器的参考示例。 |
+| 可拖动排序的书架，包含三本示例空书。 | 可选的旧版 2D 阅读器参考示例。 |
 
 [2D Book Editor（可编辑画册）](ui-collections/2d-book-editor/) 是独立模板，支持图片与文字区块编辑、分段文字颜色、每页背景、层级调整、本地保存与整本 PDF 导出。原有 2D Book 阅读器保持独立。启动与使用方法见[编辑器说明](ui-collections/2d-book-editor/README.md)。
 
@@ -65,7 +65,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 1. **理解照片：** 分析照片的形式、内容、主题和意外的关联，可使用语义搜索和照片总览图。
 2. **探索创意方向：** 围绕主题、图像呈现、母题、材质、字体、封面和翻页方式构思真正不同的方案，选择最适合这组照片的方向。
 3. **设计并生成跨页：** 将选定的创意落实到全书编排，以所选照片为参考，通过 ImageGen 生成每一张完整跨页，包括外封面和所有内页。
-4. **构建界面：** 将生成的跨页拆成左右页，使用内置的 2D HTML 阅读器呈现，并提供可打开的本地网址。
+4. **构建界面：** 将生成的跨页拆成左右页，使用内置的 3D 精装书阅读器呈现，并提供可打开的本地网址。
 
 智能体自主决定视觉方向和编排；除非用户明确覆盖这一制作方式，每张跨页都必须使用 ImageGen 生成。
 
@@ -77,7 +77,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 请单独安装搜索引擎及其 Python 依赖，将 `PHOTO_SEARCH_ENGINE_DIR` 设为引擎目录，并使用该引擎的 Python 解释器。具体方法见[照片库配置与命令](skills/create-photo-flipbook-ui/references/photo-library.md)。索引缓存保存在技能和源照片目录之外。新增或变更的图片会增量计算嵌入，未变化的图片复用已有结果。搜索输出包含照片总览图和清单，所选照片保留稳定 ID 与原始路径。
 
-技能附带的可复用资源包括照片库适配器、有序照片总览图渲染器和 2D 阅读器。视觉设计与照片编排仍由工作流指令指导。技能包不包含模型权重或照片库。
+技能附带的可复用资源包括照片库适配器、有序照片总览图渲染器和 3D 精装书阅读器。视觉设计与照片编排仍由工作流指令指导。技能包不包含模型权重或照片库。
 
 各模板的本地预览方法见对应 README。
 

@@ -1,6 +1,6 @@
 ---
 name: create-photo-flipbook-ui
-description: Create editorial photo zines and photobooks by exploring creative concepts, editing and composing photographs into pages, generating every spread with ImageGen, and building a local 2D flipbook. Use for photobooks, photo zines, and artist books from photos, image folders, or visual references.
+description: Create editorial photo zines and photobooks by exploring creative concepts, editing and composing photographs into pages, generating every spread with ImageGen, and building a local 3D hardcover book. Use for photobooks, photo zines, and artist books from photos, image folders, or visual references.
 ---
 
 # Photobook Art Direction
@@ -41,6 +41,6 @@ Save a sequence plan with changing page structures, degrees of artistic interven
 
 ## 4. Build the book UI
 
-Goal: deliver the designed book as a working local 2D flipbook, with its URL and output directory.
+Goal: deliver the designed book as a working local 3D hardcover book, with its URL and output directory.
 
-Use the built-in [HTML runtime](assets/html/index.html). Display the accepted generated artwork as paired leaves without recomposing it in HTML. [Runtime notes](references/book-editing.md) cover cover order, splitting, and validation. Completion requires a generated master for every spread and a working local preview.
+Use the built-in [3D hardcover runtime](assets/3d-book/index.html). Copy the complete runtime, including its bundled textures, fonts, and Three.js vendor files, into the output directory. Populate `book-data.js` with the book metadata, leaf dimensions, and accepted generated artwork; display it as paired leaves without recomposing it in HTML. Use this 3D reader by default; the legacy `assets/html/` reader is available when a 2D UI is explicitly requested. [Runtime notes](references/book-editing.md) cover cover order, splitting, and validation. Completion requires a generated master for every spread and a working local preview.
