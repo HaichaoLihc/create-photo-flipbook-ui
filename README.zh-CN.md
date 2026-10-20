@@ -21,7 +21,7 @@
 | [书架 Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
 | ![包含三本示例空书的书架](docs/images/library.png) | ![2D Book 的照片跨页示例](docs/images/death-valley-flipbook.jpg) |
-| 可拖动排序的书架，包含三本示例空书。 | 可选的旧版 2D 阅读器参考示例。 |
+| 可拖动排序的书架，包含三本示例空书。 | 独立的 2D 模板，不包含在技能中。 |
 
 [2D Book Editor（可编辑画册）](ui-collections/2d-book-editor/) 是独立模板，支持图片与文字区块编辑、分段文字颜色、每页背景、层级调整、本地保存与整本 PDF 导出。原有 2D Book 阅读器保持独立。启动与使用方法见[编辑器说明](ui-collections/2d-book-editor/README.md)。
 

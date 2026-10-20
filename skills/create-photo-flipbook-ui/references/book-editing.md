@@ -27,5 +27,3 @@ python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
 Review front cover, several interior spreads, and back cover at desktop and mobile sizes. Exercise previous/next, direct spread dots, keyboard arrows, page click/drag, paper selection, and sound toggle. Verify the loader clears and the browser reports no missing assets or rendering errors. `#stage` exposes `data-spread`, `data-left`, and `data-right` for checking the visible artwork order. WebGL is required; a failure message must not be mistaken for a working preview. Deliver the local URL and output directory.
-
-For an explicitly requested 2D reader, use `assets/html/` and [legacy runtime notes](book-editing-2d.md).

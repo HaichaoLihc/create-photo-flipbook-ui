@@ -21,7 +21,7 @@ These templates live in `ui-collections/`, outside the skill folder, and are opt
 | [Library](ui-collections/library/) | [2D Book](ui-collections/2d-book/) |
 | --- | --- |
 | ![Library with three mock books](docs/images/library.png) | ![2D Book with a sample photo spread](docs/images/death-valley-flipbook.jpg) |
-| Reorderable shelf with three empty mock books. | Reference example of the optional legacy 2D runtime. |
+| Reorderable shelf with three empty mock books. | Standalone 2D template; not included in the skill. |
 
 | [3D Book 1](ui-collections/3d-book-1/) | [3D Book 2](ui-collections/3d-book-2/) |
 | --- | --- |
